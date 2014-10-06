@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 05, 2014 at 07:31 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Host: 127.0.0.1
+-- Generation Time: Oct 05, 2014 at 05:50 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cureme`
 --
-CREATE DATABASE IF NOT EXISTS `cureme` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `cureme`;
 
 -- --------------------------------------------------------
 
@@ -93,16 +91,24 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `patient_Id` int(11) NOT NULL,
   `patient_FName` varchar(45) NOT NULL,
   `patient_LName` varchar(45) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `address_No` varchar(45) DEFAULT NULL,
   `address_Street` varchar(45) DEFAULT NULL,
   `address_City` varchar(45) DEFAULT NULL,
   `date_Of_Birth` date NOT NULL,
   `mobile_Number` varchar(45) DEFAULT NULL,
-  `resident_Number` varchar(45) DEFAULT NULL,
+  `gender` varchar(6) NOT NULL,
   `date_Of_Registration` date DEFAULT NULL,
   `password` varchar(64) NOT NULL,
   PRIMARY KEY (`patient_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`patient_Id`, `patient_FName`, `patient_LName`, `email`, `address_No`, `address_Street`, `address_City`, `date_Of_Birth`, `mobile_Number`, `gender`, `date_Of_Registration`, `password`) VALUES
+(201201, 'Hiran', 'Weerasinghe', 'hirane1@gmail.com', 'No03', 'Nuwarawewa watta, mihinthale road', 'Anuradhapura', '1992-05-15', '0712102378', 'Male', '2014-09-23', '123');
 
 -- --------------------------------------------------------
 
@@ -162,6 +168,8 @@ CREATE TABLE IF NOT EXISTS `pharmacy` (
   `Address` varchar(45) DEFAULT NULL,
   `pharmacy_regId` varchar(45) DEFAULT NULL,
   `password` varchar(64) NOT NULL,
+  `district` varchar(50) NOT NULL,
+  `email_address` varchar(50) NOT NULL,
   PRIMARY KEY (`pharmacy_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
