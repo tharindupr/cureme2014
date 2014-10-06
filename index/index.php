@@ -6,48 +6,9 @@
 
 	
 	
-		session_start();
+		include '../core/init.php';
 	
-		$mess="";
-		
-		
-		if(isset($_POST['submit']))//&&($_POST["submit"]=="Login"))
-		{
-			$mess="Hello";
-			require_once('../conn/conn.php');
-			
-			$user=$_POST['txtUser'];
-			$password=$_POST['txtPassword'];
-			$query = "Select * FROM patient WHERE email='$user' AND password='$password'";
-			$result = mysql_query($query) or die(mysql_error()); 
-			$query1 = "Select * FROM pharmacy WHERE email='$user' AND password='$password'";
-			$result1 = mysql_query($query1) or die(mysql_error()); 
-
-
-			while($rows = mysql_fetch_array($result))
-			{
-
-				$name = $rows['patient_FName'];
-
-			}
-			if($user=='admin' AND $password==123)
-			{
-				$_SESSION['user'] = $user;
-				header('../views/doctor/doctor.php');
-			}
-			else if (mysql_num_rows($result)==0)
-			{
- 
-				$mess="Invalid Username Or Password"; 
-			}
-			else
-			{
-				$_SESSION['name'] = $name;
-				$_SESSION['user'] = $user;
-				header('../views/patient/patient.php');
-			}
-
-		}
+	
 
 	?>
 	
