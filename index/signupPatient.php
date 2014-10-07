@@ -1,41 +1,59 @@
 <html>
 	<head>
-		<?php
-		
-			$mess="";
-			if(isset($_POST["add"])&&($_POST["add"]=="Send"))
-			{
-				$mess="Hello World";
-				require_once('../conn/conn.php');
-
-				$fname = $_POST['fname'];
-				$lname = $_POST['lname'];
-				$email = $_POST['email'];
-				$adno = $_POST['adNo'];
-				$adstreet = $_POST['adstreet'];
-				$district = $_POST['district'];
-				$dob = $_POST['dob'];
-				$mobileNo = $_POST['mobileNo'];
-				$gender = $_POST['gender'];
-				$password = $_POST['txtPassword'];
+	<?php
+	
+	require_once '../core/init.php';
+	
+	if(Input::exists())
+	{
+		//Input::get('fname'); //this is the way of getting data from a form.fname is the input name.
+		$validate=new Validation();
+		$validation=$validate->check($_POST, array(
+			'patient_FName'=>array(
+				'required'=>true,
+				'min'=>2,
+				'max'=>44),
+			'patient_LName'=>array(
+				'required'=>true,
+				'min'=>2,
+				'max'=>44),
+			'email'=>array(
+				'required'=>true,
+				'min'=>2,
+				'max'=>1023,
+				'unique'=>'patient'),
+			'address_No'=>array(
+				'required'=>true,
+				'max'=>44),
+			'address_Street'=>array(
+				'required'=>true,
+				'max'=>44),
+			'address_City'=>array(
+				'required'=>true,
+				'max'=>44),
+			'date_Of_Birth'=>array(
+				'required'=>true),
+			'mobile_Number'=>array(
+				'required'=>true,
+				'ismobile'=>true),
+			'gender'=>array(
+				'required'=>true),
+			'password'=>array(
+				'required'=>true,
+				'min'=>6),
+			'confirmPassword'=>array(
+				'required'=>true,
+				'matches'=>'password')));
 				
-				echo $fname;
-
-				$query ="INSERT INTO patient(patient_FName,patient_LName,email,address_No,address_Street,address_City,date_Of_Birth,mobile_Number,gender,password)VALUES('$fname','$lname','$email','$adno','$adstreet','$district','$dob','$mobileNo','$gender','$password')";
-			  
-				$result = mysql_query($query ) or die(mysql_error());
-
-				if($result>0)
-				{
-
-					$mess = "Successfully Saved";
-				}
-				else
-				{
-					$mess = "Not Saved";
-				}
-			}
-		?>
+		if($validation->passed()){
+			echo 'Passed';
+		} 
+		else {
+			print_r($validation->errors());
+		}
+	}
+	
+	?>
 		
 		<script language="javascript">
 			function check()
@@ -71,47 +89,47 @@
 				<h4>Register as a patient</h4>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" method="POST" action="" id="contactForm" novalidate>
+                    <form name="sentMessage" method="POST" action="" id="contactForm">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" name="fname" placeholder="First Name" id="name" required data-validation-required-message="Please enter your first name.">
+                                <input type="text" class="form-control" name="patient_FName" placeholder="First Name" id="name" value=<?php echo Input::get('patient_FName') ?> >
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name" name="lname" id="name" required data-validation-required-message="Please enter your last name.">
+                                <input type="text" class="form-control" placeholder="Last Name" name="patient_LName" id="name" value=<?php echo Input::get('patient_LName') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control" placeholder="Email Address" name="email"id="email" required data-validation-required-message="Please enter your email address.">
+                                <input type="email" class="form-control" placeholder="Email Address" name="email"id="email" value=<?php echo Input::get('email') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Address Number</label>
-                                <input type="text" class="form-control" placeholder="Address Number" name="adNo" id="name" required data-validation-required-message="Please enter your Address Number.">
+                                <input type="text" class="form-control" placeholder="Address Number" name="address_No" id="name" value=<?php echo Input::get('address_No') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Address Street</label>
-                                <input type="text" class="form-control" placeholder="Address Street" name="adstreet" id="name" required data-validation-required-message="Please enter your Address Street.">
+                                <input type="text" class="form-control" placeholder="Address Street" name="address_Street" id="name" value=<?php echo Input::get('address_Street') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>District</label>
-								<select name="district" class="form-control" id="district" required data-validation-required-message="Please select your district.">
-									<option disabled>I am from</option>
+								<select  class="form-control" id="address_City" name="address_City" value=<?php echo Input::get('address_City') ?>>
+									<option selected value=''>I am from</option>
 									<option>Ampara</option>
 									<option>Anuradhapura</option>
 									<option>Badulla</option>
@@ -145,22 +163,22 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Date of birth</label>
 								<p>Date of birth</p>
-                                <input type="date" class="form-control" id="dob" name="dob" required data-validation-required-message="Please select your date of birth.">
+                                <input type="date" class="form-control" id="date_Of_Birth" name="date_Of_Birth" value=<?php echo Input::get('date_Of_Birth') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Phone Number</label>
-                                <input type="tel" class="form-control" placeholder="Phone Number" name="mobileNo" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <input type="tel" class="form-control" placeholder="Phone Number" name="mobile_Number" id="phone" value=<?php echo Input::get('mobile_Number') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Gender</label>
-								<select name="gender" class="form-control" id="gender" required data-validation-required-message="Please select your gender.">
-									<option disabled>I am</option>
+								<select name="gender" class="form-control" id="gender" value=<?phpInput::get('gender') ?>>
+									<option selected value=''>I am</option>
 									<option>Male</option>
 									<option>Female</option>
 								</select>
@@ -173,14 +191,13 @@
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password" name="password" id="password" required data-validation-required-message="Please enter a password.">
-                                <p class="help-block text-danger"></p>
+                                <input type="password" class="form-control" placeholder="Password" name="password" id="password" value=<?php echo Input::get('password') ?>>  <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Confirm password</label>
-                                <input type="password" class="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" onblur='check()' required data-validation-required-message="Please confirm your password.">
+                                <input type="password" class="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" onblur='check()' value=<?php echo Input::get('confirmPassword') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -188,18 +205,18 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Your Image</label>
 								<p font color="#DCDCDC">Select your photo</p>
-                                <input type="file" class="form-control" id="image" accept="image/x-png, image/gif, image/jpeg" required data-validation-required-message="Please select a recent photo of yours.">
+                                <input type="file" class="form-control" id="image" accept="image/x-png, image/gif, image/jpeg">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <br>
-                        <div id="success"></div>
-                        <div class="row">
+                        
+                        <div>
                             <div class="form-group col-xs-12">
                                 <input type="submit" name="add" value="Send"  class="btn btn-success btn-lg">
                             </div>
 							<?php
-								echo $mess."<br><br>";
+								//echo $mess."<br><br>";
 							?>
                         </div>
 						
@@ -208,22 +225,6 @@
                 </div>
 				
 				
-	  <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/freelancer.js"></script>
+	
 	</body>
 </html>

@@ -42,6 +42,8 @@ class DB{
 					$x++;
 					}
 				} 
+				
+				
 				if($this->_query->execute()){
 					$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 					$this->_count=$this->_query->rowCount();
@@ -51,6 +53,7 @@ class DB{
 					$this->_error=true;
 				}
 		}
+		
 		return($this);
 	}
 	
@@ -85,7 +88,58 @@ class DB{
 	{
 		return ($this->action('DELETE *',$table,$where));
 	}
+	public function insert($table,$fields=array())
+	{
+		if(count($fields))
+		{
+			$keys=array_keys($fields);
+			$values=null;
+			$x=1;
+			
+			foreach($fields as $field)
+			{
+				$values.="?";
+				if($x<count($fields)){
+					$values.=', ';
+				}
+				$x++;
+			}
+			$sql="INSERT INTO {$table} (`". implode('`,`',$keys)  ."`) VALUES({$values})";
+			
+			if($this->query($sql,$fields)->error()){
+				return true;
+			}
+			
+		}
+		return false;
+	}
 	
+	public function update($table,$id,$fields)
+	{
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="UPDATE {$table} SET {$set} WHERE patient_Id={$id}";
+		
+		
+	
+		if($this->query($sql,$fields)->error()){
+				
+			
+				
+				return true;
+			}
+		return false;
+	}
 	public function error(){
 		return $this->_error; 
 	}
