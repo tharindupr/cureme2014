@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 05, 2014 at 05:50 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Oct 07, 2014 at 12:25 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cureme`
 --
+CREATE DATABASE IF NOT EXISTS `cureme` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `cureme`;
 
 -- --------------------------------------------------------
 
@@ -89,9 +91,10 @@ CREATE TABLE IF NOT EXISTS `historyevent` (
 
 CREATE TABLE IF NOT EXISTS `patient` (
   `patient_Id` int(11) NOT NULL,
+  `active` int(1) NOT NULL DEFAULT '0',
   `patient_FName` varchar(45) NOT NULL,
   `patient_LName` varchar(45) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `email` varchar(1024) NOT NULL,
   `address_No` varchar(45) DEFAULT NULL,
   `address_Street` varchar(45) DEFAULT NULL,
   `address_City` varchar(45) DEFAULT NULL,
@@ -107,8 +110,10 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`patient_Id`, `patient_FName`, `patient_LName`, `email`, `address_No`, `address_Street`, `address_City`, `date_Of_Birth`, `mobile_Number`, `gender`, `date_Of_Registration`, `password`) VALUES
-(201201, 'Hiran', 'Weerasinghe', 'hirane1@gmail.com', 'No03', 'Nuwarawewa watta, mihinthale road', 'Anuradhapura', '1992-05-15', '0712102378', 'Male', '2014-09-23', '123');
+INSERT INTO `patient` (`patient_Id`, `active`, `patient_FName`, `patient_LName`, `email`, `address_No`, `address_Street`, `address_City`, `date_Of_Birth`, `mobile_Number`, `gender`, `date_Of_Registration`, `password`) VALUES
+(921456556, 0, 'Hiran', 'Weerasinghe', 'hirane1@gmail.com', 'No 7', 'Jaffna Junction', 'Anuradapura', '1992-05-10', '0710554644', 'Male', '2014-05-10', 'hiran123'),
+(921477756, 0, 'Kalpani', 'rasangika', 'kalpani.prf@gmail.com', 'No 7', 'Pubudupura', 'Anuradapura', '1992-09-01', '0710556744', 'Male', '2014-05-10', 'kalpani123'),
+(921891288, 0, 'Tharindu', 'Ranathunga', 'tharindu.prf@gmail.com', 'TissaWewa West', 'Pandulagama', 'Anuradhapura', '1992-07-07', '0710554644', 'Male', '2014-10-06', 'a2dc5262f171c7781f7e1d024738ae8e');
 
 -- --------------------------------------------------------
 
