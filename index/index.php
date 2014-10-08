@@ -3,10 +3,88 @@
 
 <head>
 	<?php
-
+require_once '../core/init.php';
 	
+	//var_dump(Token::check(Input::get('token')));
 	
-		include '../core/init.php';
+	if(Input::exists())
+	{	
+			
+		
+	
+		//Input::get('fname'); //this is the way of getting data from a form.fname is the input name.
+		$validate=new Validation();
+		$validation=$validate->check($_POST, array(
+			'patient_FName'=>array(
+				'required'=>true,
+				'min'=>2,
+				'max'=>44),
+			'patient_LName'=>array(
+				'required'=>true,
+				'min'=>2,
+				'max'=>44),
+			'email'=>array(
+				'required'=>true,
+				'min'=>2,
+				'max'=>1023,
+				'unique'=>'patient'),
+			'address_No'=>array(
+				'required'=>true,
+				'max'=>44),
+			'address_Street'=>array(
+				'required'=>true,
+				'max'=>44),
+			'address_City'=>array(
+				'required'=>true,
+				'max'=>44),
+			'date_Of_Birth'=>array(
+				'required'=>true),
+			'mobile_Number'=>array(
+				'required'=>true,
+				'ismobile'=>true),
+			'gender'=>array(
+				'required'=>true),
+			'password'=>array(
+				'required'=>true,
+				'min'=>6),
+			'confirmPassword'=>array(
+				'required'=>true,
+				'matches'=>'password')));
+		
+		
+		if($validation->passed()){
+			$patient = new Patient(); 
+			$salt=Hash::salt(32);
+			
+			
+			
+			try{
+				$patient->create(array(
+				'patient_Id'=>$patient->getkey(), //this will generate a patient id next to previous patient		
+				'patient_FName'=>Input::get('patient_FName'),		
+				'patient_LName'=>Input::get('patient_LName'),			
+				'email'=>Input::get('email'),				
+				'address_No'=>Input::get('address_No'),			
+				'address_Street'=>Input::get('address_Street'),	
+				'address_City'=>Input::get('address_City'),			
+				'date_Of_Birth'=>Input::get('date_Of_Birth'),	
+				'mobile_Number'=>Input::get('mobile_Number'),
+				'gender'=>Input::get('gender'),			
+				'date_Of_Registration'=>date("Y-m-d"),
+				'password'=>Hash::make(Input::get('password'),$salt),
+				'salt'=>$salt)); 
+				
+				
+			}
+			catch(Exception $e){
+				
+				die($e->getMessage());
+			}
+		} 
+		else {
+			print_r($validation->errors());
+		}
+	}
 	
 	
 
@@ -179,7 +257,7 @@
 				
 
 					</br>
-					
+					<a name="login">
                     <form action="test.php" name="sentMessage" method="POST" id="contactForm" >
 					
                         <div class="row control-group">
@@ -206,6 +284,7 @@
                             </div>
                         </div>
                     </form>
+					</a>
                 </div>
             </div>
         </div>

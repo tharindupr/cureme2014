@@ -12,8 +12,8 @@ $GLOBALS['config']=array(
 			'cookie_expiry'=>604800),
 	'session'=>array(
 			'session_name'=>'patient' 
-	)
-);
+			
+			));
 
 spl_autoload_register(function($class){
 	require_once ($_SERVER['DOCUMENT_ROOT'].'/cureme2014/cureme2014/classes/' .$class . '.php');

@@ -4,8 +4,12 @@
 	
 	require_once '../core/init.php';
 	
+	//var_dump(Token::check(Input::get('token')));
+	
 	if(Input::exists())
-	{
+	{	
+			
+	
 		//Input::get('fname'); //this is the way of getting data from a form.fname is the input name.
 		$validate=new Validation();
 		$validation=$validate->check($_POST, array(
@@ -44,14 +48,44 @@
 			'confirmPassword'=>array(
 				'required'=>true,
 				'matches'=>'password')));
-				
+		
+		
 		if($validation->passed()){
-			echo 'Passed';
+			$patient = new Patient(); 
+			$salt=Hash::salt(32);
+			
+			
+			
+			try{
+				$patient->create(array(
+				'patient_Id'=>$patient->getkey(), //this will generate a patient id next to previous patient		
+				'patient_FName'=>Input::get('patient_FName'),		
+				'patient_LName'=>Input::get('patient_LName'),			
+				'email'=>Input::get('email'),				
+				'address_No'=>Input::get('address_No'),			
+				'address_Street'=>Input::get('address_Street'),	
+				'address_City'=>Input::get('address_City'),			
+				'date_Of_Birth'=>Input::get('date_Of_Birth'),	
+				'mobile_Number'=>Input::get('mobile_Number'),
+				'gender'=>Input::get('gender'),			
+				'date_Of_Registration'=>date("Y-m-d"),
+				'password'=>Hash::make(Input::get('password'),$salt),
+				'salt'=>$salt)); 
+				
+				header('Location: index.php#login');
+				
+				
+			}
+			catch(Exception $e){
+				
+				die($e->getMessage());
+			}
 		} 
 		else {
 			print_r($validation->errors());
 		}
 	}
+	
 	
 	?>
 		
@@ -86,49 +120,50 @@
 		<div class="row">
                 <div class="col-lg-4 col-lg-offset-4">
 				<br><br>
+			
 				<h4>Register as a patient</h4>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" method="POST" action="" id="contactForm">
+                    <form name="sentMessage" method="POST" action="signupPatient.php" id="contactForm">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" name="patient_FName" placeholder="First Name" id="name" value=<?php echo Input::get('patient_FName') ?> >
+                                <input required type="text" class="form-control" name="patient_FName" placeholder="First Name" id="name" value=<?php echo Input::get('patient_FName') ?> >
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name" name="patient_LName" id="name" value=<?php echo Input::get('patient_LName') ?>>
+                                <input required type="text" class="form-control" placeholder="Last Name" name="patient_LName" id="name" value=<?php echo Input::get('patient_LName') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control" placeholder="Email Address" name="email"id="email" value=<?php echo Input::get('email') ?>>
+                                <input required type="email" class="form-control" placeholder="Email Address" name="email"id="email" value=<?php echo Input::get('email') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Address Number</label>
-                                <input type="text" class="form-control" placeholder="Address Number" name="address_No" id="name" value=<?php echo Input::get('address_No') ?>>
+                                <input required type="text" class="form-control" placeholder="Address Number" name="address_No" id="name" value=<?php echo Input::get('address_No') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Address Street</label>
-                                <input type="text" class="form-control" placeholder="Address Street" name="address_Street" id="name" value=<?php echo Input::get('address_Street') ?>>
+                                <input required type="text" class="form-control" placeholder="Address Street" name="address_Street" id="name" value=<?php echo Input::get('address_Street') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>District</label>
-								<select  class="form-control" id="address_City" name="address_City" value=<?php echo Input::get('address_City') ?>>
+								<select required class="form-control" id="address_City" name="address_City" value=<?php echo Input::get('address_City') ?>>
 									<option selected value=''>I am from</option>
 									<option>Ampara</option>
 									<option>Anuradhapura</option>
@@ -177,7 +212,7 @@
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Gender</label>
-								<select name="gender" class="form-control" id="gender" value=<?phpInput::get('gender') ?>>
+								<select required name="gender" class="form-control" id="gender" value=<?phpInput::get('gender') ?>>
 									<option selected value=''>I am</option>
 									<option>Male</option>
 									<option>Female</option>
@@ -191,13 +226,13 @@
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password" name="password" id="password" value=<?php echo Input::get('password') ?>>  <p class="help-block text-danger"></p>
+                                <input required type="password" class="form-control" placeholder="Password" name="password" id="password" value=<?php echo Input::get('password') ?>>  <p class="help-block text-danger"></p>
                             </div>
                         </div>
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Confirm password</label>
-                                <input type="password" class="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" onblur='check()' value=<?php echo Input::get('confirmPassword') ?>>
+                                <input required type="password" class="form-control" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" onblur='check()' value=<?php echo Input::get('confirmPassword') ?>>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -205,20 +240,23 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Your Image</label>
 								<p font color="#DCDCDC">Select your photo</p>
-                                <input type="file" class="form-control" id="image" accept="image/x-png, image/gif, image/jpeg">
+                                <input type="file" class="form-control" id="image" name="profile "accept="image/x-png, image/gif, image/jpeg">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <br>
                         
-                        <div>
+						<div>
                             <div class="form-group col-xs-12">
+								
                                 <input type="submit" name="add" value="Send"  class="btn btn-success btn-lg">
                             </div>
 							<?php
 								//echo $mess."<br><br>";
 							?>
                         </div>
+						
+						<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 						
                     </div>
                     </form>

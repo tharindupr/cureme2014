@@ -40,12 +40,14 @@ class DB{
 					{
 					$this->_query->bindValue($x,$param);
 					$x++;
+					
 					}
 				} 
 				
 				
 				if($this->_query->execute()){
-					$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+					
+					$this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
 					$this->_count=$this->_query->rowCount();
 					
 					}
@@ -69,6 +71,7 @@ class DB{
 			if(in_array($operator,$operators))
 				{
 					$sql="{$action} FROM {$table} WHERE {$field} {$operator} ?";
+					
 					if(!($this->query($sql,array($value))->error()))
 						{
 						 return($this);
@@ -106,7 +109,7 @@ class DB{
 			}
 			$sql="INSERT INTO {$table} (`". implode('`,`',$keys)  ."`) VALUES({$values})";
 			
-			if($this->query($sql,$fields)->error()){
+			if(!$this->query($sql,$fields)->error()){
 				return true;
 			}
 			
@@ -150,7 +153,7 @@ class DB{
 	
 	public function results()
 	{
-		return $this->_results;
+		return $this->_result;
 	}
 }
 ?>

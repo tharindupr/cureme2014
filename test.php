@@ -3,20 +3,27 @@ require_once('core/init.php');
 
 //echo Config::get('mysql/host');
 
-//$patient=DB::getInstance()->get('patient',array('patient_FName','=','Tharindu'));
+//$patient=DB::getInstance()->get('patient',array('patient_Id','=','100000'));
 
 //we can also insert a q like this :- query('SELECT * FROM patient WHERE patient_FName =?',array('Tharindu'));
 
-//$patient=DB::getInstance()->query('UPDATE patient SET  patient_FName = ? WHERE patient_Id=921456556',array('patient_FName=>Erandha'));
+$patient=DB::getInstance()->query('SELECT MAX(patient_Id) FROM patient;',array());
 
 
 
-$patient=DB::getInstance()->update('patient',921456556,array(
-				'patient_FName'=>'Hiran'));
+//$patient=DB::getInstance()->query('SELECT * FROM key WHERE id < ?',array(1000000000));
+$a=(($patient->results()[0]));
+
+foreach ($a as $key => $object) {
+    echo intval($object);
+}
+//echo 'hello';
+				
+
 
 //echo $patient;				
 
-$patient=DB::getInstance()->insert('patient',array(
+/*$patient=DB::getInstance()->insert('patient',array(
 				'patient_Id'=>921477756,		
 				'patient_FName'=>'Kalpani',		
 				'patient_LName'=>'rasangika',			
@@ -28,7 +35,7 @@ $patient=DB::getInstance()->insert('patient',array(
 				'mobile_Number'=>'0710556744',
 				'gender'=>'Male',			
 				'date_Of_Registration'=>'2014-05-10',
-				'password'=>'kalpani123')); 
+				'password'=>'kalpani123')); */
 				
 				
 /*if(!$patient->count())
