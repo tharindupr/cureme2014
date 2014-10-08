@@ -11,7 +11,7 @@ class Patient{
 	
 	
     //put your code here
-	private $_db;
+	private $_db,$_data;
 	
 	public function __construct($patient=null){
 		$this->_db=DB::getInstance();
@@ -36,6 +36,44 @@ class Patient{
 			}
 			
 		return(++$key);	
+	}
+	
+	public function find($user=null){
+		if($user){
+		 
+		 $data=$this->_db->get('patient',array('email','=',$user));
+			
+		 if($data->count())
+		 {
+			$this->_data=$data->results(); 
+			return(true);
+		 }
+		}
+		return(false);
+	}
+	
+	public function login($username=null,$password=null){
+	
+		
+		$user=$this->find($username);
+		
+		//$pass=($this->data()[0]->password);
+		
+		if($user){
+			if($this->data()[0]->password===Hash::make($password,$this->data()[0]->salt)){
+				Session::put('patient',$this->data()[0]);
+				
+				return(true);
+			}
+			
+			
+		}
+	
+		return(false);
+	}
+	
+	public function data(){
+		return $this->_data;
 	}
     
     

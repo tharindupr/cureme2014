@@ -5,87 +5,9 @@
 	<?php
 require_once '../core/init.php';
 	
-	//var_dump(Token::check(Input::get('token')));
-	
-	if(Input::exists())
-	{	
-			
-		
-	
-		//Input::get('fname'); //this is the way of getting data from a form.fname is the input name.
-		$validate=new Validation();
-		$validation=$validate->check($_POST, array(
-			'patient_FName'=>array(
-				'required'=>true,
-				'min'=>2,
-				'max'=>44),
-			'patient_LName'=>array(
-				'required'=>true,
-				'min'=>2,
-				'max'=>44),
-			'email'=>array(
-				'required'=>true,
-				'min'=>2,
-				'max'=>1023,
-				'unique'=>'patient'),
-			'address_No'=>array(
-				'required'=>true,
-				'max'=>44),
-			'address_Street'=>array(
-				'required'=>true,
-				'max'=>44),
-			'address_City'=>array(
-				'required'=>true,
-				'max'=>44),
-			'date_Of_Birth'=>array(
-				'required'=>true),
-			'mobile_Number'=>array(
-				'required'=>true,
-				'ismobile'=>true),
-			'gender'=>array(
-				'required'=>true),
-			'password'=>array(
-				'required'=>true,
-				'min'=>6),
-			'confirmPassword'=>array(
-				'required'=>true,
-				'matches'=>'password')));
-		
-		
-		if($validation->passed()){
-			$patient = new Patient(); 
-			$salt=Hash::salt(32);
-			
-			
-			
-			try{
-				$patient->create(array(
-				'patient_Id'=>$patient->getkey(), //this will generate a patient id next to previous patient		
-				'patient_FName'=>Input::get('patient_FName'),		
-				'patient_LName'=>Input::get('patient_LName'),			
-				'email'=>Input::get('email'),				
-				'address_No'=>Input::get('address_No'),			
-				'address_Street'=>Input::get('address_Street'),	
-				'address_City'=>Input::get('address_City'),			
-				'date_Of_Birth'=>Input::get('date_Of_Birth'),	
-				'mobile_Number'=>Input::get('mobile_Number'),
-				'gender'=>Input::get('gender'),			
-				'date_Of_Registration'=>date("Y-m-d"),
-				'password'=>Hash::make(Input::get('password'),$salt),
-				'salt'=>$salt)); 
-				
-				
-			}
-			catch(Exception $e){
-				
-				die($e->getMessage());
-			}
-		} 
-		else {
-			print_r($validation->errors());
-		}
+	if(Input::exists()){
+		echo "Hello";
 	}
-	
 	
 
 	?>
@@ -247,42 +169,34 @@ require_once '../core/init.php';
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Log In</h2><hr>
-                    <!--<hr class="star-primary">
-                </div>
-            </div>
-			<div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-				
-
-					</br>
+                  					</br>
 					<a name="login">
-                    <form action="test.php" name="sentMessage" method="POST" id="contactForm" >
+                    <form action="check.php" name="sentMessage" method="POST" >
 					
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <div class="row">
+                            <div class="form-group col-xs-12 floating-label-form-group">
                                 <label>Username</label>
-                                <input type="email" class="form-control" placeholder="Email address" name="txtUser" id="emailAd" required data-validation-required-message="Please enter the username.">
-                                <p class="help-block text-danger"></p>
+                                <input type="email" class="form-control" placeholder="Email address" name="username" id="emailAd" required>
+                                
                             </div>
                         </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <div class="row">
+                            <div class="form-group col-xs-12 floating-label-form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password" name="txtPassword" id="password" required data-validation-required-message="Please enter the password.">
-                                <p class="help-block text-danger"></p>
+                                <input type="password" class="form-control" placeholder="Password" name="password" id="password" required >
+                               
                             </div>
                         </div>
                         <br><br><br><br>
 						
-                        <div id="success"></div>
+                        
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <input type="Submit" name="submit" value="Login">
+                                <input type="submit" name="submit" value="Login">
 							
                             </div>
                         </div>
+						
                     </form>
 					</a>
                 </div>
@@ -404,9 +318,7 @@ require_once '../core/init.php';
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
