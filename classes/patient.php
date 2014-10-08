@@ -72,6 +72,13 @@ class Patient{
 		return(false);
 	}
 	
+	public function logout(){
+		
+			Session::delete('patient');
+			header('Location: ../../index/index.php');
+	
+	}
+	
 	public function data(){
 		return $this->_data;
 	}

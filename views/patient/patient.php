@@ -31,7 +31,13 @@
 </head>
 <body class="skin-blue">
 
+
 <?php
+require_once('../../core/init.php');
+if(Session::get('patient')===null)
+{
+	header('Location: ../../index/index.php');   //this is to check wether the user is logged in or not
+}
 include ('header.html');
 include ('navigation.html');
 
