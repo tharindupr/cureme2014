@@ -1,0 +1,15 @@
+<?php
+
+class Key{
+ 
+	private $_db;
+	
+	public function __construct($patient=null){
+		$this->_db=DB::getInstance();
+	}
+	
+	publ
+
+}
+
+?>
