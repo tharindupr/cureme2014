@@ -1,55 +1,88 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Pharmasist
+ * Description of pharmasist
  *
  * @author Viranga Mahesh
  */
-class Pharmasist extends Person {
+class Pharmasist{
+	
+	
+	
+	
     //put your code here
-    private $pharmacyNo;
-    private $pharmacyName;
-    
-    public function setPharmacyNo($pharmacyNo){
-        $this->pharmacyNo=$pharmacyNo;
-        
-    }
-    public function getPharmacyNo(){
-        return $this->pharmacyNo;
-        
-    }
-    public function setPharmacyName($pharmacyName){
-        $this->pharmacyName=$pharmacyName;
-        
-    }
-    public function getPharmacyName(){
-        return $this->pharmacyName;
-        
-    }
-    public function viewPrescription(Prescription $prescription) {
-        $prescription->getPrescriptionNo();
-        $prescription->getPatientName();
-        $prescription->getPre_DateTime();
-        $prescription->getPrescriptionDetails();
-    }
-    
-    public function conFirmPrescription(Prescription $prescription,$prescriptionNo) {
-        if($prescription->getPrescriptionNo()==$prescriptionNo){
-            
-        }
-        
-    }
-     
-    public function paySubscription(Payment $payment) {
-        
-    }
-    
+	private $_db,$_data;
+	
+	public function __construct($pharmasist=null){
+		$this->_db=DB::getInstance();
+	}
+	
+	public function create($fields=array()){
+		print_r($fields);
+		if(!($this->_db->insert('pharmasist',$fields))){
+		
+			throw new Exception('There was a problem creating an account');
+		
+		}
+	}
+	
+	public function getKey()
+	{
+		$this->_db->query('SELECT MAX(pharmacy_Id) FROM pharmasist;',array());
+					
+			$a=(($this->_db->results()[0]));
+			$key=0;
+			foreach ($a as $key => $object) {
+				$key=intval($object);
+			}
+			
+		return(++$key);	
+	}
+	
+	public function find($user=null){
+		if($user){
+		 
+		 $data=$this->_db->get('pharmasist',array('email','=',$user));
+			
+		 if($data->count())
+		 {
+			$this->_data=$data->results(); 
+			return(true);
+		 }
+		}
+		return(false);
+	}
+	
+	public function login($username=null,$password=null){
+	
+		
+		$user=$this->find($username);
+		
+		//$pass=($this->data()[0]->password);
+		
+		if($user){
+			if($this->data()[0]->password===Hash::make($password,$this->data()[0]->salt)){
+				Session::put('pharmasist',$this->data()[0]);
+				
+				return(true);
+			}
+			
+			
+		}
+	
+		return(false);
+	}
+	
+	public function logout(){
+		
+			Session::delete('pharmasist');
+			
+	
+	}
+	
+	public function data(){
+		return $this->_data;
+	}
     
     
 }

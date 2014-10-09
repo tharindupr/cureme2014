@@ -31,8 +31,14 @@
     </head>
 	<body class="skin-blue">
 	<?php 
-	include('header.html');
-	include('navigation.html');
+	require_once('../../core/init.php');
+	if(Session::get('pharmasist')===null)
+	{
+	header('Location: ../../index/index.php');   //this is to check wether the user is logged in or not
+	}
+	
+	include('header.php');
+	include('navigation.php');
 	
 	
 	?>

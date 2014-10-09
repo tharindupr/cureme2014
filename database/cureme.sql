@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 07, 2014 at 12:25 PM
+-- Generation Time: Oct 08, 2014 at 04:52 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `gender` varchar(6) NOT NULL,
   `date_Of_Registration` date DEFAULT NULL,
   `password` varchar(64) NOT NULL,
+  `salt` varchar(1024) NOT NULL,
   PRIMARY KEY (`patient_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -110,10 +111,17 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`patient_Id`, `active`, `patient_FName`, `patient_LName`, `email`, `address_No`, `address_Street`, `address_City`, `date_Of_Birth`, `mobile_Number`, `gender`, `date_Of_Registration`, `password`) VALUES
-(921456556, 0, 'Hiran', 'Weerasinghe', 'hirane1@gmail.com', 'No 7', 'Jaffna Junction', 'Anuradapura', '1992-05-10', '0710554644', 'Male', '2014-05-10', 'hiran123'),
-(921477756, 0, 'Kalpani', 'rasangika', 'kalpani.prf@gmail.com', 'No 7', 'Pubudupura', 'Anuradapura', '1992-09-01', '0710556744', 'Male', '2014-05-10', 'kalpani123'),
-(921891288, 0, 'Tharindu', 'Ranathunga', 'tharindu.prf@gmail.com', 'TissaWewa West', 'Pandulagama', 'Anuradhapura', '1992-07-07', '0710554644', 'Male', '2014-10-06', 'a2dc5262f171c7781f7e1d024738ae8e');
+INSERT INTO `patient` (`patient_Id`, `active`, `patient_FName`, `patient_LName`, `email`, `address_No`, `address_Street`, `address_City`, `date_Of_Birth`, `mobile_Number`, `gender`, `date_Of_Registration`, `password`, `salt`) VALUES
+(100000, 0, 'Tharindu', 'Ranathunga', 'tharindu.prf@gmail.com', 'TissaWewa West', 'Pandulagama', 'Anuradhapura', '1992-07-07', '0710554644', 'Male', '2014-10-06', '1234567', ''),
+(100001, 0, 'Kalpani', 'Rasangika', 'kalpani', 'dasfa', 'adsfdsa', 'adsfdasf', '2014-10-01', 'dsfsad', 'sdafa', '2014-10-01', 'asdfasdf', 'adfdsafsad'),
+(100003, 0, 'Gayani', 'Ranathunga', 'gmkulathunga@gmail.com', 'Thissawewa', 'West', 'Anuradhapura', '1997-05-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '&Îö¹¾C]É$uŒM´/¨u¶SrD“ÎÒÇ$˜cñ'),
+(100004, 0, 'asdas', 'asda', 'asds@sada.ca', 'sad', 'sadad', 'Moneragala', '1992-01-02', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '¹·¥É\r>mHÇŽ×øˆ¢Ø7Åú°Bæý¨Jdž¾l'),
+(100005, 0, 'sadsd', 'asda', 'asssssds@sada.ca', 'sadasd', 'adasd', 'Batticaloa', '1992-01-10', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '²DSDñæŸ"ÿ/§4÷e\rFý")Ö®h¥—*²é9'),
+(100006, 0, 'sdsa', 'dasd', 'asdass@sada.ca', 'sadas', 'adsad', 'Matara', '1992-01-02', '0710554644', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '´_î>Êô¬Ïv–äÙ¾x’.¸l¡g.Ž„\0°ñÁ'),
+(100007, 0, 'kaaaaaaaa', 'sdads', 'asdasdasdas@sada.ca', 'sda', 'dasda', 'Matara', '1990-01-02', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'V{\\]Mþ—üÊú=¶Ò@ßM›³Ïf»¡lhÎhgí«ÆZ'),
+(100008, 0, 'Nihal', 'asdsa', 'thasadas.prf@gmail.com', 'sadsada', 'asdasd', 'Mannar', '1995-01-12', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'ô€îµî½ƒ|Òž=¤Üï€Gìrê&¤>«‚ZÏa'),
+(100009, 0, 'asda', 'sada', 'tharinsaddu1.prf@gmail.com', 'sada', 'asda', 'Anuradhapura', '1992-10-12', '0710664555', 'Female', '2014-10-08', '…ˆ1\n˜gjöâ%cÁUž\Zâ…•’½Í3HgÅEÍ', 'µÎÃJÔŠvÝï,ô<àü>öÙì£#d''W'),
+(100010, 0, 'Anjna', 'Poro', 'axevilladge@sada.ca', 'adadas', 'sadsada', 'Anuradhapura', '2014-10-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', ')A½lÌwçŽNá”Š€\\¤.N>/ÿ“ÌÌ#›v');
 
 -- --------------------------------------------------------
 
@@ -162,21 +170,32 @@ CREATE TABLE IF NOT EXISTS `payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pharmacy`
+-- Table structure for table `pharmasist`
 --
 
-CREATE TABLE IF NOT EXISTS `pharmacy` (
+CREATE TABLE IF NOT EXISTS `pharmasist` (
   `pharmacy_Id` int(11) NOT NULL,
   `pharmacy_Name` varchar(45) DEFAULT NULL,
   `expiration_Date` datetime DEFAULT NULL,
   `contact_Number` varchar(45) DEFAULT NULL,
-  `Address` varchar(45) DEFAULT NULL,
-  `pharmacy_regId` varchar(45) DEFAULT NULL,
   `password` varchar(64) NOT NULL,
-  `district` varchar(50) NOT NULL,
-  `email_address` varchar(50) NOT NULL,
+  `email` varchar(1024) NOT NULL,
+  `active` int(2) NOT NULL DEFAULT '0',
+  `salt` varchar(1024) NOT NULL,
+  `registration_Number` varchar(50) NOT NULL,
+  `owner` varchar(50) NOT NULL,
+  `address_No` varchar(50) NOT NULL,
+  `address_Street` varchar(50) NOT NULL,
+  `address_City` varchar(50) NOT NULL,
   PRIMARY KEY (`pharmacy_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pharmasist`
+--
+
+INSERT INTO `pharmasist` (`pharmacy_Id`, `pharmacy_Name`, `expiration_Date`, `contact_Number`, `password`, `email`, `active`, `salt`, `registration_Number`, `owner`, `address_No`, `address_Street`, `address_City`) VALUES
+(1000010, 'City Clinic', '2014-10-31 00:00:00', '0710554644', '123', 'tharindu.prfatgmail', 0, '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -279,14 +298,14 @@ ALTER TABLE `patient_has_healthtip`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `fk_Payment_Patient1` FOREIGN KEY (`Patient_patient_Id`) REFERENCES `patient` (`patient_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Payment_Pharmacy1` FOREIGN KEY (`Pharmacy_pharmacy_Id`) REFERENCES `pharmacy` (`pharmacy_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Payment_Pharmacy1` FOREIGN KEY (`Pharmacy_pharmacy_Id`) REFERENCES `pharmasist` (`pharmacy_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `prescription`
 --
 ALTER TABLE `prescription`
   ADD CONSTRAINT `fk_Prescription_Patient1` FOREIGN KEY (`Patient_patient_Id`) REFERENCES `patient` (`patient_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Prescription_Pharmacy1` FOREIGN KEY (`Pharmacy_pharmacy_Id`) REFERENCES `pharmacy` (`pharmacy_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Prescription_Pharmacy1` FOREIGN KEY (`Pharmacy_pharmacy_Id`) REFERENCES `pharmasist` (`pharmacy_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `prescriptionentry`

@@ -50,7 +50,7 @@ require_once '../core/init.php';
 					if(flag==2)
 					{
 						document.getElementById("loadData").innerHTML=xmlhttp.responseText;
-						//xmlhttp.open("GET","signupPharmacist.html",true);
+						//xmlhttp.open("GET","signupPharmacy.html",true);
 					}
 
 				}
@@ -63,7 +63,7 @@ require_once '../core/init.php';
 			
 			if(flag==2)
 			{
-			xmlhttp.open("GET","signupPharmacist.php",true);
+			xmlhttp.open("GET","signupPharmacy.php",true);
 			xmlhttp.send();
 			}
 			
@@ -192,7 +192,7 @@ require_once '../core/init.php';
                         
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <input type="submit" name="submit" value="Login">
+                                <input type="submit" name="submit" class="btn btn-success btn-lg" value="Login">
 							
                             </div>
                         </div>
