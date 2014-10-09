@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 08, 2014 at 04:52 PM
+-- Generation Time: Oct 09, 2014 at 05:55 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -121,7 +121,8 @@ INSERT INTO `patient` (`patient_Id`, `active`, `patient_FName`, `patient_LName`,
 (100007, 0, 'kaaaaaaaa', 'sdads', 'asdasdasdas@sada.ca', 'sda', 'dasda', 'Matara', '1990-01-02', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'V{\\]Mþ—üÊú=¶Ò@ßM›³Ïf»¡lhÎhgí«ÆZ'),
 (100008, 0, 'Nihal', 'asdsa', 'thasadas.prf@gmail.com', 'sadsada', 'asdasd', 'Mannar', '1995-01-12', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'ô€îµî½ƒ|Òž=¤Üï€Gìrê&¤>«‚ZÏa'),
 (100009, 0, 'asda', 'sada', 'tharinsaddu1.prf@gmail.com', 'sada', 'asda', 'Anuradhapura', '1992-10-12', '0710664555', 'Female', '2014-10-08', '…ˆ1\n˜gjöâ%cÁUž\Zâ…•’½Í3HgÅEÍ', 'µÎÃJÔŠvÝï,ô<àü>öÙì£#d''W'),
-(100010, 0, 'Anjna', 'Poro', 'axevilladge@sada.ca', 'adadas', 'sadsada', 'Anuradhapura', '2014-10-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', ')A½lÌwçŽNá”Š€\\¤.N>/ÿ“ÌÌ#›v');
+(100010, 0, 'Anjna', 'Poro', 'axevilladge@sada.ca', 'adadas', 'sadsada', 'Anuradhapura', '2014-10-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', ')A½lÌwçŽNá”Š€\\¤.N>/ÿ“ÌÌ#›v'),
+(100011, 0, 'Hiran', 'Weerasinghe', 'hirane1@live.com', 'No 3', 'Nuwarawewa Watta', 'Anuradhapura', '1992-05-05', '0712102378', 'Male', '2014-10-09', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '~’³iæ-I]øŸl,¹£#‚Zi+n€\0v(Ç¬!Dís¹');
 
 -- --------------------------------------------------------
 
@@ -176,7 +177,6 @@ CREATE TABLE IF NOT EXISTS `payment` (
 CREATE TABLE IF NOT EXISTS `pharmasist` (
   `pharmacy_Id` int(11) NOT NULL,
   `pharmacy_Name` varchar(45) DEFAULT NULL,
-  `expiration_Date` datetime DEFAULT NULL,
   `contact_Number` varchar(45) DEFAULT NULL,
   `password` varchar(64) NOT NULL,
   `email` varchar(1024) NOT NULL,
@@ -187,6 +187,7 @@ CREATE TABLE IF NOT EXISTS `pharmasist` (
   `address_No` varchar(50) NOT NULL,
   `address_Street` varchar(50) NOT NULL,
   `address_City` varchar(50) NOT NULL,
+  `date_Of_Registration` date NOT NULL,
   PRIMARY KEY (`pharmacy_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -194,8 +195,10 @@ CREATE TABLE IF NOT EXISTS `pharmasist` (
 -- Dumping data for table `pharmasist`
 --
 
-INSERT INTO `pharmasist` (`pharmacy_Id`, `pharmacy_Name`, `expiration_Date`, `contact_Number`, `password`, `email`, `active`, `salt`, `registration_Number`, `owner`, `address_No`, `address_Street`, `address_City`) VALUES
-(1000010, 'City Clinic', '2014-10-31 00:00:00', '0710554644', '123', 'tharindu.prfatgmail', 0, '', '', '', '', '', '');
+INSERT INTO `pharmasist` (`pharmacy_Id`, `pharmacy_Name`, `contact_Number`, `password`, `email`, `active`, `salt`, `registration_Number`, `owner`, `address_No`, `address_Street`, `address_City`, `date_Of_Registration`) VALUES
+(1000010, 'City Clinic', '0710554644', '123', 'tharindu.prfatgmail', 0, '', '', '', '', '', '', '0000-00-00'),
+(1000011, 'CityClinic', '0710555464', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'gmkulathunga@gmail.com', 0, 'ðZ#¸„|Wj<\0qC,/‰;:_Ÿ~ý“oæýþ‰Ù­', 'pasda4646', 'Tharndu', 'Tissawewa', 'West', 'Hambantota', '2014-10-08'),
+(1000012, 'Hemaz', '0252224243', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'tharindu.prf@live.com', 0, '˜…ŒˆŠcÅùæìY.àîYT¥$bÖ', 'ph45', 'Gamindu', 'No 5', 'New Bustand', 'Anuradhapura', '2014-10-09');
 
 -- --------------------------------------------------------
 
