@@ -30,6 +30,24 @@
         <![endif]-->
     </head>
 	<body>
+	<?php 
+	require_once '../../core/init.php';
+	
+	
+	//getting the values from the created session
+	$arr=[];
+	foreach(Session::get('patient') as $t)
+	{
+		array_push($arr,"{$t}");;
+	}
+
+	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
+
+	//print_r($arr);
+	//print_r($currentPatient);
+	
+	
+	?>
 		 <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
@@ -74,23 +92,30 @@
                                                         <table class="table table-hover">
 
                                                             <tr>
-                                                                <td>Name </td>
+                                                                <td>First Name </td>
 
-                                                                <td>Tharindu Prabhth Ranathunga</td>
+                                                                <td><?php echo $currentPatient['patient_FName'];?></td>
+
+                                                            </tr>
+															
+															<tr>
+                                                                <td>Last Name </td>
+
+                                                                <td><?php echo $currentPatient['patient_LName'];?></td>
 
                                                             </tr>
 
                                                             <tr>
                                                                 <td>Gender</td>
 
-                                                                <td>Male</td>
+                                                                <td><?php echo $currentPatient['gender'];?></td>
 
                                                             </tr>
 
                                                             <tr>
                                                                 <td>Date of Birth </td>
 
-                                                                <td>1992-07-07</td>
+                                                                <td><?php echo $currentPatient['date_Of_Birth'];?></td>
 
                                                             </tr>
 
@@ -98,7 +123,25 @@
 
                                                             <td>Age </td>
 
-                                                            <td>22</td>
+                                                            <td><?php 
+															 //date in mm/dd/yyyy format; or it can be in other formats as well
+															  $originalDate = $currentPatient['date_Of_Birth'];;
+																
+															  $birthDate = date("d-m-Y", strtotime($originalDate));
+															  //explode the date to get month, day and year
+															  $birthDate = explode("-", $birthDate);
+															  //get age from date or birthdate
+															  $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+																? ((date("Y") - $birthDate[2]) - 1)
+																: (date("Y") - $birthDate[2]));
+															  echo $age;?>
+															</td>
+
+                                                            </tr>
+															
+															<td>Email </td>
+
+                                                            <td><?php echo $currentPatient['email']; ?></td>
 
                                                             </tr>
 
@@ -110,33 +153,33 @@
                                                             <tr>
                                                                 <td>&nbsp;&nbsp;Number </td>
 
-                                                                <td>No 12 </td>
+                                                                <td><?php echo $currentPatient['address_No']; ?> </td>
 
                                                             </tr>
 
                                                             <tr>
                                                                  <td>&nbsp;&nbsp;Street </td>
 
-                                                                 <td>Pandulagama </td>
+                                                                 <td><?php echo $currentPatient['address_Street']; ?> </td>
 
                                                             </tr>
 
                                                             <tr>
                                                                 <td>&nbsp;&nbsp;City </td>
 
-                                                                <td>Anuradhapura </td>
+                                                                <td><?php echo $currentPatient['address_City'] ?> </td>
 
                                                             </tr>
                                                             <tr>
 
                                                             <td>Mobile Number </td>
 
-                                                            <td>0710554644</td>
+                                                            <td><?php echo $currentPatient['mobile_Number'] ?></td>
 
                                                             </tr>
                                                             <tr>
 
-                                                                <td>Land Number </td>
+                                                                <td>Residential Number </td>
 
                                                                 <td>0250554644</td>
 

@@ -30,6 +30,24 @@
     <![endif]-->
 </head>
 <body class="skin-blue">
+<?php 
+	require_once '../../core/init.php';
+	
+	
+	//getting the values from the created session
+	$arr=[];
+	foreach(Session::get('patient') as $t)
+	{
+		array_push($arr,"{$t}");;
+	}
+
+	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
+
+	//print_r($arr);
+	//print_r($currentPatient);
+	
+	
+?>
 <!-- header logo: style can be found in header.less -->
 <header class="header">
     <a href="p_home.html" class="logo">
@@ -140,15 +158,15 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i>
-                        <span>Tharindu Prabhath <i class="caret"></i></span>
+                        <span><?php echo " {$currentPatient['patient_FName']}  {$currentPatient['patient_LName']}" ;?> <i class="caret"></i></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header bg-light-blue">
                             <img src="img/avatar3.png" class="img-circle" alt="User Image" />
                             <p>
-                                Tharindu - Patient
-                                <small>Member since Nov. 2012</small>
+                                <?php echo " {$currentPatient['patient_FName']} " ;?> - Patient
+                                <small>Member since <?php echo " {$currentPatient['date_Of_Registration']} " ;?></small>
                             </p>
                         </li>
 
