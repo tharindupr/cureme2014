@@ -59,7 +59,6 @@
 		}
 	</script>
 	
-	
 	</head>
 	<body>
 		<div class="row">
