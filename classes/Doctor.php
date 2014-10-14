@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Description of Patient
+ * Description of Doctor
  *
- * @author Viranga Mahesh
+ * @author Hiran Eranda
  */
-class Patient{
+class Doctor{
 	
 	
 	
@@ -13,35 +13,31 @@ class Patient{
     //put your code here
 	private $_db,$_data;
 	
-	public function __construct($patient=null){
+	public function __construct($doctor=null){
 		$this->_db=DB::getInstance();
 	}
 	
 	public function create($fields=array()){
-		if(!($this->_db->insert('patient',$fields))){
+		if(!($this->_db->insert('doctor',$fields))){
 		
 			throw new Exception('There was a problem creating an account');
 		
 		}
 	}
 	
-	public function getKey()
-	{
-		$this->_db->query('SELECT MAX(patient_Id) FROM patient;',array());
-					
-			$a=(($this->_db->results()[0]));
-			$key=0;
-			foreach ($a as $key => $object) {
-				$key=intval($object);
-			}
-			
-		return(++$key);	
+	public function updatedoctor($id,$fields=array()){
+		if(!($this->_db->updatedoctor('doctor',$id,$fields))){
+		
+			throw new Exception('There was a problem in updating account');
+		
+		}
 	}
+	
 	
 	public function find($user=null){
 		if($user){
 		 
-		 $data=$this->_db->get('patient',array('email','=',$user));
+		 $data=$this->_db->get('doctor',array('email','=',$user));
 			
 		 if($data->count())
 		 {
@@ -60,8 +56,8 @@ class Patient{
 		//$pass=($this->data()[0]->password);
 		
 		if($user){
-			if($this->data()[0]->password===Hash::make($password,$this->data()[0]->salt)){
-				Session::put('patient',$this->data()[0]);
+			if($this->data()[0]->password===$password){
+				Session::put('doctor',$this->data()[0]);
 				
 				return(true);
 			}
@@ -74,7 +70,7 @@ class Patient{
 	
 	public function logout(){
 		
-			Session::delete('patient');
+			Session::delete('doctor');
 			header('Location: ../../index/index.php');
 	
 	}

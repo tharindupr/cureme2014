@@ -143,6 +143,34 @@ class DB{
 			}
 		return false;
 	}
+	
+	public function updatedoctor($table,$id,$fields)
+	{
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="UPDATE {$table} SET {$set} WHERE doctor_Id={$id}";
+		
+		
+	
+		if($this->query($sql,$fields)->error()){
+				
+			
+				
+				return true;
+			}
+		return false;
+	}
+	
 	public function error(){
 		return $this->_error; 
 	}

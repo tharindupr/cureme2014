@@ -32,8 +32,17 @@
 <body class="skin-blue">
 
 <?php
-include('header.html');
-include('navigation.html');
+require_once('../../core/init.php');
+
+include ('header.html');
+include ('navigation.html');
+
+if(Session::get('doctor')===null)
+{
+	print_r(Session::get('doctor'));
+	//header('Location: ../../index/index.php');   //this is to check whether the user is logged in or not
+}
+
 
 
 ?>
