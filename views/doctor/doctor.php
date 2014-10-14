@@ -39,8 +39,8 @@ include ('navigation.html');
 
 if(Session::get('doctor')===null)
 {
-	print_r(Session::get('doctor'));
-	//header('Location: ../../index/index.php');   //this is to check whether the user is logged in or not
+	//print_r(Session::get('doctor'));
+	header('Location: ../../index/index.php');   //this is to check whether the user is logged in or not
 }
 
 
