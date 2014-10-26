@@ -164,25 +164,25 @@
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-chart" style="position: relative; height: 1000px;">
                                         <center>
-                                        <form role="form"  style="width:550px; ">
+                                        <form role="form" action="editProfile.php"  style="width:550px; ">
                                             <div class="box-body">
                                                 <div class="form-group">
                                                     <label for="firstName">Pharmacy Name : </label>
-                                                    <input type="text" class="form-control" id="firstName" placeholder="Enter Pharmacy Name">
+                                                    <input type="text" class="form-control" name='pharmacy_Name' id="firstName" placeholder="Enter Pharmacy Name">
                                                 </div>
                                                
                                                 
 
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" class="form-control" id="address1" placeholder="Number">
-                                                    <input type="text" class="form-control" id="address2" placeholder="Street">
-                                                    <input type="text" class="form-control" id="address3" placeholder="City">
+                                                    <input type="text" name="address_No" class="form-control" id="address1" placeholder="Number">
+                                                    <input type="text" name="address_Street" class="form-control" id="address2" placeholder="Street">
+                                                    <input type="text" name="address_City" class="form-control" id="address3" placeholder="City">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="mobile">Contact Number</label>
-                                                    <input type="text" class="form-control" id="mobile" placeholder="Enter Pharmacy Contact Number">
+                                                    <input type="text" class="form-control" name="contact_Number" id="mobile" placeholder="Enter Pharmacy Contact Number">
                                                 </div>
 
                                                

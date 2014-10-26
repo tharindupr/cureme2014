@@ -30,6 +30,7 @@ class DB{
 	
 	public function  query($sql, $params=array())
 	{
+	
 		$this->_error = false;
 		if($this->_query = $this->_pdo->prepare($sql))
 		{
@@ -39,11 +40,10 @@ class DB{
 				foreach($params as $param)
 					{
 					$this->_query->bindValue($x,$param);
-					$x++;
-					
+					$x++;					
 					}
 				} 
-				
+
 				
 				if($this->_query->execute()){
 					
@@ -54,6 +54,7 @@ class DB{
 				else{ 
 					$this->_error=true;
 				}
+
 		}
 		
 		return($this);
@@ -143,6 +144,41 @@ class DB{
 			}
 		return false;
 	}
+
+
+////////////////////////////////////////////////////////////////////	
+	public function updatePharmasist($table,$id,$fields)
+	{
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="UPDATE pharmasist SET {$set} WHERE pharmasist_id={$id}";
+//		echo "done",$sql;
+		
+		$rst=$this->query($sql,$fields);
+		
+//		echo "done2";
+		if($rst->error()){
+				
+			
+//				echo "done4",$this->_error;
+				return true;
+		}else{
+//			echo "done3";
+			return false;
+		}
+	}
+/////////////////////////////////////////////////////////////////	
+	
 	public function error(){
 		return $this->_error; 
 	}
