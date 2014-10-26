@@ -47,6 +47,11 @@
 	//print_r($currentPatient);
 	
 	
+	if(Input::exists())
+	{	
+		echo "Success";
+	}
+	
 	?>
 		 <aside class="right-side">
                 <!-- Content Header (Page header) -->
@@ -196,60 +201,63 @@
 
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-chart" style="position: relative; height: 1000px;">
-                                        <center>
-                                        <form role="form"  style="width:550px; ">
+                                       
+                                        <form role="form" method="POST" action="profile.php" style="width:550px; ">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                    <label for="firstName">First Name</label>
-                                                    <input type="text" class="form-control" id="firstName" placeholder="Enter Your First Name">
+                                                    <label for="firstName">&nbsp;&nbsp;First Name</label>
+                                                    <input type="text" required class="form-control" id="firstName" value=<?php echo $currentPatient['patient_FName'] ?> >
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="lastName">Last Name</label>
-                                                    <input type="text" class="form-control" id="lastName" placeholder="Enter Your Last Name">
+                                                    <label for="lastName">&nbsp;&nbsp;Last Name</label>
+                                                    <input type="text" required  class="form-control" id="lastName" value=<?php echo $currentPatient['patient_LName'] ?>>
                                                 </div>
-
+			
                                                 <div class="form-group">
-                                                    <label>Gender</label>
+                                                    <label>&nbsp;&nbsp;Gender</label>
                                                     <select class="form-control">
-                                                        <option>Male</option>
-                                                        <option>Female</option>
+                                                        <option  <?php if($currentPatient['gender']=='Male') echo "selected";?> >Male</option>
+                                                        <option  <?php if($currentPatient['gender']=='Female') echo "selected";?>	>Female</option>
                                                     </select>
                                                 </div>
-
+												
                                                 <div class="form-group">
-                                                    <label for="dob">Date of Birth</label>
-                                                    <input type="date" class="form-control" id="dob" >
+                                                    <label for="dob">&nbsp;&nbsp;Date of Birth </label>
+                                                    <input type="date" class="form-control" id="dob" value=<?php  echo date($currentPatient['date_Of_Birth']); ?> >
+                                                </div>
+												
+												<div class="form-group">
+                                                    <label>&nbsp;&nbsp;Email</label>
+                                                    <input type="email" required  class="form-control" id="email" value=<?php echo $currentPatient['email'] ?> >
+                                                    
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>Address</label>
-                                                    <input type="text" class="form-control" id="address1" placeholder="Number">
-                                                    <input type="text" class="form-control" id="address2" placeholder="Street">
-                                                    <input type="text" class="form-control" id="address3" placeholder="City">
+                                                    <label>&nbsp;&nbsp;Address</label>
+                                                    <input type="text" required  class="form-control" id="address1" value=<?php echo $currentPatient['address_No'] ?>>
+                                                    <input type="text" required  class="form-control" id="address2" value=<?php echo $currentPatient['address_Street'] ?>>
+                                                    <input type="text" required  class="form-control" id="address3" value=<?php echo $currentPatient['address_City'] ?>>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="mobile">Mobile Number</label>
-                                                    <input type="text" class="form-control" id="mobile" placeholder="Enter Your Mobile Phone Number">
+                                                    <label for="mobile">&nbsp;&nbsp;Mobile Number</label>
+                                                    <input type="text" required  class="form-control" id="mobile" value=<?php echo $currentPatient['mobile_Number'] ?>>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label for="lnumber">Mobile Number</label>
-                                                    <input type="text" class="form-control" id="lnumber" placeholder="Enter Your Land Phone Number">
-                                                </div>
+                                              
 
 
                                                 <div class="form-group">
-                                                    <label for="exampleInputFile">Upload a profile picture</label>
-                                                    <input type="file" id="exampleInputFile">
-                                                    <p class="help-block">Click and upload.</p>
+                                                    <label for="exampleInputFile">&nbsp;&nbsp;Upload a profile picture</label>
+                                                    &nbsp;&nbsp;<input type="file" id="exampleInputFile">
+                                                    <p class="help-block">&nbsp;&nbsp;Click and upload.</p>
                                                 </div>
 
                                             </div><!-- /.box-body -->
 
                                             <div class="box-footer">
-                                                <button type="submit" class="btn btn-primary">Save</button>
+                                               &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </form>
                                         </center>

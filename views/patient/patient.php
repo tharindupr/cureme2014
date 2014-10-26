@@ -38,8 +38,8 @@ if(Session::get('patient')===null)
 {
 	header('Location: ../../index/index.php');   //this is to check wether the user is logged in or not
 }
-include ('header.html');
-include ('navigation.html');
+include ('header.php');
+include ('navigation.php');
 
 
 //getting the values from the created session
@@ -55,7 +55,7 @@ foreach(Session::get('patient') as $t)
 $currentPatient=array('patient_Id'=>"{arr[0]}",'active'=>"{arr[1]}",'patient_FName'=>"{arr[2]}",'email'=>"{arr[3]}",'address_No'=>"{arr[4]}",'address_Street' =>"{arr[5]}",'address_City' => "{arr[6]}",'date_Of_Birth' => "{arr[7]}",'mobile_Number' => "{arr[8]}",'gender' =>"{arr[9]}",'date_Of_Registration'=>"{arr[10]}",'password' =>"{arr[11]}");
 
 
-print_r($currentPatient);
+//print_r($currentPatient);
 $_POST['cp']=$currentPatient;
 ?>
 
