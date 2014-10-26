@@ -8,6 +8,9 @@ require_once '../core/init.php';
 		$user_ph=new Pharmasist();
 		$login_pharmasist=$user_ph->login(Input::get('username'),Input::get('password'));
 		
+		$user_doc=new Doctor();
+		$login_doctor=$user_doc->login(Input::get('username'),Input::get('password'));
+		
 		if($login_patient){
 			
 			echo 'Success';
@@ -19,6 +22,12 @@ require_once '../core/init.php';
 		{
 			//echo 'Success as a pharmacy';
 			header('Location: ../views/pharmacist/phar_home.php');
+		}
+		
+		else if($login_doctor)
+		{
+			//echo 'Success as a doctor';
+			header('Location: ../views/doctor/doctor.php');
 		}
 	}
 	
