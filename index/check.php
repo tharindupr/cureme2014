@@ -20,6 +20,10 @@ require_once '../core/init.php';
 			//echo 'Success as a pharmacy';
 			header('Location: ../views/pharmacist/phar_home.php');
 		}
+		else{
+			header('Location: index.php#login');
+			
+		}
 	}
 	
 
