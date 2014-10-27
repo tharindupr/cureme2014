@@ -30,7 +30,6 @@ class DB{
 	
 	public function  query($sql, $params=array())
 	{
-	
 		$this->_error = false;
 		if($this->_query = $this->_pdo->prepare($sql))
 		{
@@ -40,7 +39,8 @@ class DB{
 				foreach($params as $param)
 					{
 					$this->_query->bindValue($x,$param);
-					$x++;					
+					$x++;	
+					
 					}
 				} 
 
@@ -54,7 +54,6 @@ class DB{
 				else{ 
 					$this->_error=true;
 				}
-
 		}
 		
 		return($this);
@@ -161,19 +160,20 @@ class DB{
 			$x++;
 		}
 		
-		$sql="UPDATE pharmasist SET {$set} WHERE pharmasist_id={$id}";
-//		echo "done",$sql;
+		$sql="UPDATE pharmasist SET {$set} WHERE pharmacy_id={$id}";
+		echo $sql;
+		echo "<br>";
+		print_r($fields);
 		
-		$rst=$this->query($sql,$fields);
-		
-//		echo "done2";
+		$rst=$this->query($sql,$fields);		
+		echo "done2";
 		if($rst->error()){
 				
 			
-//				echo "done4",$this->_error;
+				echo "done4",$this->_error;
 				return true;
 		}else{
-//			echo "done3";
+			echo "done3";
 			return false;
 		}
 	}

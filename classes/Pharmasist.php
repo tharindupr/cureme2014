@@ -29,17 +29,18 @@ class Pharmasist{
 //////////////////////////////
 	
 	
-	public function update($fields){
-		print_r($fields);
-		$rslt=$this->_db->updatePharmasist('pharmasist',$fields['pharmacy_Id'],$fields);
+	public function update($pid,$fields){
+		//print_r($fields);
+		$this->_db->updatePharmasist('pharmasist',$pid,$fields);
 		
-		if($rslt){
+/*		if($rslt){
 		
 			throw new Exception('There was a problem updating this account');
 		
 		}else{
 			echo "success";
 		}
+*/	
 	}
 	
 ////////////////////////////////////////	
