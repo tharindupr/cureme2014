@@ -34,7 +34,7 @@
 			
 			if(n==2)
 			{
-				xmlhttp.open("GET","appoinment.html",true);
+				xmlhttp.open("GET","profile.php",true);
 				xmlhttp.send();
 			}
 			
@@ -97,7 +97,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="appoinment.html">
+                            <a onclick='showdata(2);'>
                                 <i class="fa fa-user"></i> <span>About</span>
                             </a>
                         </li>

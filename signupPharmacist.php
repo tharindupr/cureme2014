@@ -59,7 +59,6 @@
 		}
 	</script>
 	
-	
 	</head>
 	<body>
 		<div class="row">
@@ -109,7 +108,7 @@
 									<option>Hambantota</option>
 									<option>Jaffna</option>
 									<option>Kalutara</option>
-									<option>Kandy</option>
+								
 									<option>Kegalla</option>
 									<option>Kilinochchi</option>
 									<option>Kurunegala</option>
