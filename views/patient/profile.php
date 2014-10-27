@@ -32,9 +32,14 @@
 	<body>
 	<?php 
 	require_once '../../core/init.php';
+	$updated=0;
+	//this method is used to update patient
+	
 	
 	
 	//getting the values from the created session
+	if($updated==0)
+	{
 	$arr=[];
 	foreach(Session::get('patient') as $t)
 	{
@@ -42,7 +47,8 @@
 	}
 
 	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
-
+	}
+	
 	//print_r($arr);
 	//print_r($currentPatient);
 	
@@ -52,6 +58,9 @@
 		echo "Success";
 	}
 	
+	
+   
+		
 	?>
 		 <aside class="right-side">
                 <!-- Content Header (Page header) -->
@@ -68,11 +77,7 @@
 
                 <!-- Main content -->
                 <section class="content">
-
-
-
-
-                    <!-- Main row -->
+				    <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
                         <section class="col-lg-7 connectedSortable">
@@ -182,13 +187,7 @@
                                                             <td><?php echo $currentPatient['mobile_Number'] ?></td>
 
                                                             </tr>
-                                                            <tr>
-
-                                                                <td>Residential Number </td>
-
-                                                                <td>0250554644</td>
-
-                                                            </tr>
+                                                          
 
                                                         </table>
                                                     </div><!-- /.box-body -->
@@ -202,21 +201,21 @@
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-chart" style="position: relative; height: 1000px;">
                                        
-                                        <form role="form" method="POST" action="profile.php" style="width:550px; ">
+                                        <form role="form" method="POST" action="update.php" style="width:550px; ">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                    <label for="firstName">&nbsp;&nbsp;First Name</label>
-                                                    <input type="text" required class="form-control" id="firstName" value=<?php echo $currentPatient['patient_FName'] ?> >
+                                                    <label for="patient_FName">&nbsp;&nbsp;First Name</label>
+                                                    <input type="text" required class="form-control" name="patient_FName" value=<?php echo $currentPatient['patient_FName'] ?> >
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="lastName">&nbsp;&nbsp;Last Name</label>
-                                                    <input type="text" required  class="form-control" id="lastName" value=<?php echo $currentPatient['patient_LName'] ?>>
+                                                    <label for="patient_LName">&nbsp;&nbsp;Last Name</label>
+                                                    <input type="text" required  class="form-control" name="patient_LName" value=<?php echo $currentPatient['patient_LName'] ?>>
                                                 </div>
 			
                                                 <div class="form-group">
                                                     <label>&nbsp;&nbsp;Gender</label>
-                                                    <select class="form-control">
+                                                    <select class="form-control" name="gender">
                                                         <option  <?php if($currentPatient['gender']=='Male') echo "selected";?> >Male</option>
                                                         <option  <?php if($currentPatient['gender']=='Female') echo "selected";?>	>Female</option>
                                                     </select>
@@ -224,25 +223,25 @@
 												
                                                 <div class="form-group">
                                                     <label for="dob">&nbsp;&nbsp;Date of Birth </label>
-                                                    <input type="date" class="form-control" id="dob" value=<?php  echo date($currentPatient['date_Of_Birth']); ?> >
+                                                    <input type="date" class="form-control" name="date_Of_Birth" value=<?php  echo date($currentPatient['date_Of_Birth']); ?> >
                                                 </div>
 												
 												<div class="form-group">
                                                     <label>&nbsp;&nbsp;Email</label>
-                                                    <input type="email" required  class="form-control" id="email" value=<?php echo $currentPatient['email'] ?> >
+                                                    <input type="email" required  class="form-control" name="email" value=<?php echo $currentPatient['email'] ?> >
                                                     
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>&nbsp;&nbsp;Address</label>
-                                                    <input type="text" required  class="form-control" id="address1" value=<?php echo $currentPatient['address_No'] ?>>
-                                                    <input type="text" required  class="form-control" id="address2" value=<?php echo $currentPatient['address_Street'] ?>>
-                                                    <input type="text" required  class="form-control" id="address3" value=<?php echo $currentPatient['address_City'] ?>>
+                                                    <label>&nbsp;&nbsp;Address </label>
+                                                    <input type="text" required  class="form-control" name="address_No"  value=<?php echo "\"".$currentPatient['address_No']."\"" ?> >
+                                                    <input type="text" required  class="form-control" name="address_Street" value=<?php echo "\"".$currentPatient['address_Street']."\"" ?>>
+                                                    <input type="text" required  class="form-control" name="address_City" value=<?php echo $currentPatient['address_City'] ?>>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="mobile">&nbsp;&nbsp;Mobile Number</label>
-                                                    <input type="text" required  class="form-control" id="mobile" value=<?php echo $currentPatient['mobile_Number'] ?>>
+                                                    <input type="text" required  class="form-control" name="mobile_Number" value=<?php echo $currentPatient['mobile_Number'] ?>>
                                                 </div>
 
                                               
@@ -257,7 +256,7 @@
                                             </div><!-- /.box-body -->
 
                                             <div class="box-footer">
-                                               &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" class="btn btn-primary">Save</button>
+                                               &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit"  class="btn btn-primary">Save</button>
                                             </div>
                                         </form>
                                         </center>

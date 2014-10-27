@@ -108,7 +108,8 @@ class DB{
 				$x++;
 			}
 			$sql="INSERT INTO {$table} (`". implode('`,`',$keys)  ."`) VALUES({$values})";
-			
+			//this qurrey will be like INSERT INTO patient (`patient_Id`,`patient_FName`,`patient_LName`,`email`,`address_No`,`address_Street`,`address_City`,`date_Of_Birth`,`mobile_Number`,`gender`,`date_Of_Registration`,`password`,`salt`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) $sql;
+		
 			if(!$this->query($sql,$fields)->error()){
 				return true;
 			}
@@ -119,6 +120,7 @@ class DB{
 	
 	public function update($table,$id,$fields)
 	{
+		
 		
 		$set='';
 		$x=1;
@@ -133,7 +135,8 @@ class DB{
 		
 		$sql="UPDATE {$table} SET {$set} WHERE patient_Id={$id}";
 		
-		
+		echo $sql;
+		print_r ($fields);
 	
 		if($this->query($sql,$fields)->error()){
 				
@@ -143,34 +146,6 @@ class DB{
 			}
 		return false;
 	}
-	
-	public function updatedoctor($table,$id,$fields)
-	{
-		
-		$set='';
-		$x=1;
-		foreach($fields as $name => $value){
-			$set.="{$name} = ?";
-			if($x<count($fields)){
-				$set.=',';
-			
-			}
-			$x++;
-		}
-		
-		$sql="UPDATE {$table} SET {$set} WHERE doctor_Id={$id}";
-		
-		
-	
-		if($this->query($sql,$fields)->error()){
-				
-			
-				
-				return true;
-			}
-		return false;
-	}
-	
 	public function error(){
 		return $this->_error; 
 	}

@@ -19,20 +19,20 @@ class Validation{
 			
 			if($rule=='required' && empty($value))
 				{
-					$this->addError("{$item} is required");
+					$this->addError("{$item} is required</br>");
 				} 
 			else if(!empty($value)){
 				switch($rule){
 					case 'min':
 						if(strlen($value)<$rule_value)
 						{
-						$this->addError("{$item} must be a minimum of {$rule_value} characters.");
+						$this->addError("{$item} must be a minimum of {$rule_value} characters.</br>");
 						}
 						break;
 					case 'max':
 						if(strlen($value)>$rule_value)
 						{
-						$this->addError("{$item} must be maximum of {$rule_value} characters.");
+						$this->addError("{$item} must be maximum of {$rule_value} characters.</br>");
 						}
 						
 						break;
@@ -40,14 +40,14 @@ class Validation{
 					case 'unique':
 						$check=$this->_db->get($rule_value,array($item,'=',$value));
 						if($check->count()){
-						 $this->addError("{$item} already exist");
+						 $this->addError("{$item} already exist.</br>");
 						}
 						break;
 						
 					case 'ismobile':
 						if(!preg_match("/^[0][0-9]{9}$/", $value))
 						{
-							$this->addError("Invalid Mobile Number");
+							$this->addError("invalid mobile number.</br>");
 						}
 						break;
 				

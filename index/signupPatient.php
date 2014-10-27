@@ -5,7 +5,7 @@
 	require_once '../core/init.php';
 	
 	//var_dump(Token::check(Input::get('token')));
-	
+	$vali="";
 	if(Input::exists())
 	{	
 			
@@ -82,7 +82,13 @@
 			}
 		} 
 		else {
-			print_r($validation->errors());
+			//print_r($validation->errors());
+			
+			
+			foreach ($validation->errors() as $err)
+			{
+				$vali.=$err;
+			}
 		}
 	}
 	
@@ -241,7 +247,9 @@
                                 <label>Your Image</label>
 								<p font color="#DCDCDC">Select your photo</p>
                                 <input type="file" class="form-control" id="image" name="profile "accept="image/x-png, image/gif, image/jpeg">
-                                <p class="help-block text-danger"></p>
+                                <p class="help-block text-danger">
+								<?php echo $vali ?>
+								</p>
                             </div>
                         </div>
                         <br>
