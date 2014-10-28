@@ -164,12 +164,45 @@ class DB{
 		}
 		
 		$sql="UPDATE pharmasist SET {$set} WHERE pharmacy_id={$id}";
-		echo $sql;
+//		echo $sql;
 		echo "<br>";
-		print_r($fields);
+//		print_r($fields);
 		
 		$rst=$this->query($sql,$fields);		
-		echo "done2";
+//		echo "done2";
+		if($rst->error()){
+				
+			
+//				echo "done4",$this->_error;
+				return true;
+		}else{
+//			echo "done3";
+			return false;
+		}
+	}
+/////////////////////////////////////////////////////////////////	
+
+	public function updateDoctor($table,$id,$fields)
+	{
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="UPDATE doctor SET {$set} WHERE doctor_Id={$id}";
+//		echo $sql;
+		echo "<br>";
+//		print_r($fields);
+		
+		$rst=$this->query($sql,$fields);		
+//		echo "done2";
 		if($rst->error()){
 				
 			
@@ -181,6 +214,8 @@ class DB{
 		}
 	}
 /////////////////////////////////////////////////////////////////	
+
+
 	
 	public function error(){
 		return $this->_error; 

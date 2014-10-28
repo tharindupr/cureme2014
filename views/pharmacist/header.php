@@ -30,6 +30,27 @@
         <![endif]-->
     </head>
     <body class="skin-blue">
+	
+		<?php 
+	require_once '../../core/init.php';
+	
+	
+	//getting the values from the created session
+	$arr=[];
+	foreach(Session::get('pharmasist') as $t)
+	{
+		array_push($arr,"{$t}");;
+	}
+
+	$currentPharmacy=array('pharmacy_Id'=>$arr[0],'password' =>$arr[3],'active'=>$arr[5],'pharmacy_Name'=>$arr[1],'contact_Number'=>$arr[2],'email'=>$arr[4],'address_No'=>$arr[9],'address_Street' =>$arr[10],'address_City' => $arr[11],'registration_Number' => $arr[7],'owner' => $arr[8],'date_Of_Registration'=>$arr[12]);
+
+	//print_r($arr);
+	//print_r($currentPharmacy);
+	
+	
+	?>
+	
+	
         <!-- header logo: style can be found in header.less -->
         <header class="header">
             <a href="phar_home.html" class="logo">
@@ -51,15 +72,15 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>City Clinic Pharmacy <i class="caret"></i></span>
+                                <span><?php echo " {$currentPharmacy['pharmacy_Name']} " ;?> Pharmacy <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <img src="img/redcross.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        City Clinic Pharmacy
-                                        <small>Registered since Nov. 2012</small>
+                                        <?php echo " {$currentPharmacy['pharmacy_Name']} " ;?>
+                                        <small>Registered since <?php echo " {$currentPharmacy['date_Of_Registration']} " ;?></small>
                                     </p>
                                 </li>
 

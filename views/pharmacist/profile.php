@@ -167,16 +167,16 @@
                                             <div class="box-body">
                                                 <div class="form-group">
                                                     <label for="firstName">Pharmacy Name : </label>
-                                                    <input type="text" class="form-control" name='pharmacy_Name' id="firstName" value=<?php echo $currentPharmacy['pharmacy_Name'];?>>
+                                                    <input type="text" class="form-control" name='pharmacy_Name' id="firstName" value=<?php echo "\"" $currentPharmacy['pharmacy_Name']"\"";?>>
                                                 </div>
                                                
                                                 
 
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" name="address_No" class="form-control" id="address1" value=<?php echo $currentPharmacy['address_No']; ?>>
-                                                    <input type="text" name="address_Street" class="form-control" id="address2" value=<?php echo $currentPharmacy['address_Street']; ?>>
-                                                    <input type="text" name="address_City" class="form-control" id="address3" value=<?php echo $currentPharmacy['address_City'] ?>>
+                                                    <input type="text" name="address_No" class="form-control" id="address1" value=<?php echo "\""$currentPharmacy['address_No']"\""; ?>>
+                                                    <input type="text" name="address_Street" class="form-control" id="address2" value=<?php echo "\""$currentPharmacy['address_Street']"\""; ?>>
+                                                    <input type="text" name="address_City" class="form-control" id="address3" value=<?php echo"\"" $currentPharmacy['address_City'] "\""?>>
                                                 </div>
 
                                                 <div class="form-group">
@@ -191,7 +191,7 @@
 												
 												<div class="form-group">
                                                     <label for="mobile">Owner</label>
-                                                    <input type="text" class="form-control" name="owner" id="owner" value=<?php echo $currentPharmacy['owner'] ?>>
+                                                    <input type="text" class="form-control" name="owner" id="owner" value=<?php echo "\"" $currentPharmacy['owner']"\"" ?>>
                                                 </div>
 
                                                
