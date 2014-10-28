@@ -1,5 +1,5 @@
 <?php
-
+//require_once '../core/init.php';
 /**
  * Description of pharmasist
  *
@@ -25,6 +25,25 @@ class Pharmasist{
 		
 		}
 	}
+	
+//////////////////////////////
+	
+	
+	public function update($pid,$fields){
+		//print_r($fields);
+		$this->_db->updatePharmasist('pharmasist',$pid,$fields);
+		
+/*		if($rslt){
+		
+			throw new Exception('There was a problem updating this account');
+		
+		}else{
+			echo "success";
+		}
+*/	
+	}
+	
+////////////////////////////////////////	
 	
 	public function getKey()
 	{

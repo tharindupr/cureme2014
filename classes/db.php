@@ -39,11 +39,11 @@ class DB{
 				foreach($params as $param)
 					{
 					$this->_query->bindValue($x,$param);
-					$x++;
+					$x++;	
 					
 					}
 				} 
-				
+
 				
 				if($this->_query->execute()){
 					
@@ -146,6 +146,42 @@ class DB{
 			}
 		return false;
 	}
+
+
+////////////////////////////////////////////////////////////////////	
+	public function updatePharmasist($table,$id,$fields)
+	{
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="UPDATE pharmasist SET {$set} WHERE pharmacy_id={$id}";
+		echo $sql;
+		echo "<br>";
+		print_r($fields);
+		
+		$rst=$this->query($sql,$fields);		
+		echo "done2";
+		if($rst->error()){
+				
+			
+				echo "done4",$this->_error;
+				return true;
+		}else{
+			echo "done3";
+			return false;
+		}
+	}
+/////////////////////////////////////////////////////////////////	
+	
 	public function error(){
 		return $this->_error; 
 	}
