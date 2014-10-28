@@ -29,35 +29,129 @@
 
     <![endif]-->
 </head>
-<body class="skin-blue">
-
+<body>
 
 <?php
-require_once('../../core/init.php');
-if(Session::get('patient')===null)
-{
-	header('Location: ../../index/index.php');   //this is to check wether the user is logged in or not
-}
-include ('header.php');
-include ('navigation.php');
-
-
-//getting the values from the created session
-
- 
-
+require_once '../../core/init.php';
 $arr=[];
-foreach(Session::get('patient') as $t)
+
+foreach(Session::get('patient') as $pid)
 {
-	array_push($arr,"{$t}");;
+	break;
 }
 
-$currentPatient=array('patient_Id'=>"{arr[0]}",'active'=>"{arr[1]}",'patient_FName'=>"{arr[2]}",'email'=>"{arr[3]}",'address_No'=>"{arr[4]}",'address_Street' =>"{arr[5]}",'address_City' => "{arr[6]}",'date_Of_Birth' => "{arr[7]}",'mobile_Number' => "{arr[8]}",'gender' =>"{arr[9]}",'date_Of_Registration'=>"{arr[10]}",'password' =>"{arr[11]}");
-
-
-//print_r($currentPatient);
-$_POST['cp']=$currentPatient;
 ?>
+
+
+<aside class="right-side">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+       Conversations
+
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Conversations</li>
+    </ol>
+</section>
+
+    <section class="content">
+    <div class="col-md-12">
+    <form role="form" method="post" action="questionpost.php" style="width:100% ">
+		
+        <div class="box-body">
+            <div class="form-group">
+                <label>Post you question here</label>
+				
+				<textarea class="form-control" rows="1" placeholder="Subject" name="subject"></textarea>
+				
+                <textarea class="form-control" rows="3" placeholder="Question" name="question"></textarea>
+				
+            </div>
+
+         </div><!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Post</button>
+        </div>
+    </form>
+    </div>
+
+        &nbsp;<br>
+        &nbsp;<br>
+		<?php 
+			  
+			  $db=DB::getInstance();
+			  $db->query('SELECT * FROM question WHERE Patient_patient_Id=?',array('Patient_patient_Id'=>$pid));
+			  $a=$db->results();
+			  //print_r($a);
+			  
+			  
+			  
+
+		?>
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- The time line -->
+                <ul class="timeline">
+                    <!-- timeline time label -->
+                    <li class="time-label">
+                                    <span class="bg-red">
+                                        Conversations
+                                    </span>
+                    </li>
+                    <!-- /.timeline-label -->
+                    <!-- timeline item -->
+                    <li>
+                        <i class="fa fa-envelope bg-blue"></i>
+						
+						<?php 
+						 foreach($a as $i)
+						 {	
+							$ray=array();
+							foreach($i as $j)
+							{
+								array_push($ray,$j);
+							}
+							
+							echo(
+							" <div class=\"timeline-item\">
+                            <span class=\"time\"><i class=\"fa fa-clock-o\"></i>".$ray[2]."</span>
+                            <h3 class=\"timeline-header\"><a href=\"#\">".$ray[5]."</a> </h3>
+                            <div class=\"timeline-body\">
+                                ".$ray[1]."
+                            </div>
+                            <div class=\'timeline-footer\'>
+                                <a class=\"btn btn-primary btn-xs\">Comment</a>
+                                <a class=\"btn btn-danger btn-xs\">Delete</a>
+                            </div>
+							</div>");
+							
+							
+						 }
+						?>
+                        
+                    </li>
+
+
+                    <!-- END timeline item -->
+                    <li>
+                        <i class="fa fa-clock-o"></i>
+                    </li>
+                </ul>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+
+
+
+    </section><!-- /.content -->
+</div><!-- /.row (main row) -->
+
+</section><!-- /.content -->
+</aside><!-- /.right-side -->
+
 
 
 
@@ -74,7 +168,7 @@ $_POST['cp']=$currentPatient;
 <!-- Bootstrap -->
 <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
 <!-- Morris.js charts -->
-<script src="../../cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="../../js/plugins/morris/morris.min.js" type="text/javascript"></script>
 <!-- Sparkline -->
 <script src="../../js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>

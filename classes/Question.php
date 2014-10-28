@@ -17,6 +17,18 @@ class Question {
     private $question;
     private $replyRecieved;
     private $datePosted;
+	
+	public function __construct($question=null){
+		$this->_db=DB::getInstance();
+	}
+	
+	public function create($fields=array()){
+		if(!($this->_db->insert('question',$fields))){
+		
+			throw new Exception('There was a problem creating an account');
+		
+		}
+	}
     
     public function setQuestionID($questionID){
         $this->questionID=$questionID;

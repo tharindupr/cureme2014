@@ -1,10 +1,15 @@
 <?php
 require_once '../../core/init.php';
+foreach (Session::get('patient') as $pId)
+{
+	break;
+}
 
 print_r($_POST);
 $newp=new Patient();
-$newp->update('100003',$_POST);
+$newp->update($pId,$_POST);
 header('Location: patient.php');
+
 
 
 /*$a->create(array(

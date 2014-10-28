@@ -48,7 +48,7 @@
 			
 			if(n==4)
 			{
-				xmlhttp.open("GET","conversations.html",true);
+				xmlhttp.open("GET","conversations.php",true);
 				xmlhttp.send();
 			}
 			
