@@ -187,7 +187,20 @@ require_once '../core/init.php';
                                
                             </div>
                         </div>
-                        <br><br><br><br>
+                        <br><br>
+							<?php
+								// Echo session variables that were set on previous page
+								
+								
+//								session_start();
+
+								if (isset($_SESSION['logError'])) {
+									echo  $_SESSION["logError"] ;
+								}else {
+									
+								}
+							?>
+						<br><br>
 						
                         
                         <div class="row">

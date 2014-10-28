@@ -2,6 +2,9 @@
 require_once '../core/init.php';
 	
 	if(Input::exists()){
+	
+		Session::delete('logError');
+	
 		$user=new Patient();
 		$login_patient=$user->login(Input::get('username'),Input::get('password'));
 		
@@ -28,6 +31,12 @@ require_once '../core/init.php';
 		{
 			//echo 'Success as a doctor';
 			header('Location: ../views/doctor/doctor.php');
+		}else{
+			session_start();
+
+			$_SESSION['logError'] = 'UserName or Password is incorrect';
+			
+			header('Location: index.php#login');
 		}
 	}
 	
