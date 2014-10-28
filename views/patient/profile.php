@@ -345,7 +345,7 @@
                                         <p class="message">
                                             <a href="#" class="name">
                                                 <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                                                Tharindu
+                                                <?php echo $currentPatient['patient_FName'];?>
                                             </a>
                                             Ok
                                         </p>
