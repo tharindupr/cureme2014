@@ -187,14 +187,28 @@ require_once '../core/init.php';
                                
                             </div>
                         </div>
-                        <br><br><br><br>
+                        <br><br>
+							<?php
+								// Echo session variables that were set on previous page
+								
+								
+//								session_start();
+
+								if (isset($_SESSION['logError'])) {
+									echo  $_SESSION["logError"] ;
+								}else {
+									
+								}
+							?>
+						<br><br>
 						
                         
                         <div class="row">
                             <div class="form-group col-xs-12">
                                 <input type="submit" name="submit" class="btn btn-success btn-lg" value="Login">
-							
+								
                             </div>
+							
                         </div>
 						
                     </form>
