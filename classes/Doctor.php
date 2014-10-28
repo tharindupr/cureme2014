@@ -25,14 +25,26 @@ class Doctor{
 		}
 	}
 	
-	public function updatedoctor($id,$fields=array()){
-		if(!($this->_db->updatedoctor('doctor',$id,$fields))){
+	public function update($id,$fields)
+	{
+		$this->_db->updateDoctor('doctor',$id,$fields);
+		//$this->_db->query('UPDATE doctor SET doctor_FName = ? WHERE doctor_Id=100000',array("doctor_FName"=>"Tharindddd"));
+		/*if(!($this->_db->update('doctor',$id,$fields))){
+		
+			throw new Exception('There was a problem creating an account');
+		
+		}*/
+		
+	}
+	
+/*	public function update($id,$fields=array()){
+		if(!($this->_db->updateDoctor('doctor',$id,$fields))){
 		
 			throw new Exception('There was a problem in updating account');
 		
 		}
 	}
-	
+*/	
 	
 	public function find($user=null){
 		if($user){
