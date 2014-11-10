@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 26, 2014 at 03:32 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Nov 10, 2014 at 04:29 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cureme`
 --
+CREATE DATABASE IF NOT EXISTS `cureme` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `cureme`;
 
 -- --------------------------------------------------------
 
@@ -135,9 +137,8 @@ CREATE TABLE IF NOT EXISTS `patient` (
 --
 
 INSERT INTO `patient` (`patient_Id`, `active`, `patient_FName`, `patient_LName`, `email`, `address_No`, `address_Street`, `address_City`, `date_Of_Birth`, `mobile_Number`, `gender`, `date_Of_Registration`, `password`, `salt`) VALUES
-(100000, 0, 'Tharindu', 'Ranathunga', 'tharindu.prf@gmail.com', 'TissaWewa West', 'Pandulagama', 'Anuradhapura', '1992-07-07', '0710554644', 'Male', '2014-10-06', '1234567', ''),
 (100001, 0, 'Kalpani', 'Rasangika', 'kalpani', 'dasfa', 'adsfdsa', 'adsfdasf', '2014-10-01', 'dsfsad', 'sdafa', '2014-10-01', 'asdfasdf', 'adfdsafsad'),
-(100003, 0, 'Gayani', 'Ranathunga', 'gmkulathunga@gmail.com', 'Thissawewa', 'West', 'Anuradhapura', '1997-05-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '&Îö¹¾C]É$uŒM´/¨u¶SrD“ÎÒÇ$˜cñ'),
+(100003, 0, 'mahsh', 'Ranathunga', 'gmkulathunga@gmail.com', 'Thissawewa', 'West', 'Anuradhapura', '1997-05-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '&Îö¹¾C]É$uŒM´/¨u¶SrD“ÎÒÇ$˜cñ'),
 (100004, 0, 'asdas', 'asda', 'asds@sada.ca', 'sad', 'sadad', 'Moneragala', '1992-01-02', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '¹·¥É\r>mHÇŽ×øˆ¢Ø7Åú°Bæý¨Jdž¾l'),
 (100005, 0, 'sadsd', 'asda', 'asssssds@sada.ca', 'sadasd', 'adasd', 'Batticaloa', '1992-01-10', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '²DSDñæŸ"ÿ/§4÷e\rFý")Ö®h¥—*²é9'),
 (100006, 0, 'sdsa', 'dasd', 'asdass@sada.ca', 'sadas', 'adsad', 'Matara', '1992-01-02', '0710554644', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '´_î>Êô¬Ïv–äÙ¾x’.¸l¡g.Ž„\0°ñÁ'),
@@ -145,8 +146,9 @@ INSERT INTO `patient` (`patient_Id`, `active`, `patient_FName`, `patient_LName`,
 (100008, 0, 'Nihal', 'asdsa', 'thasadas.prf@gmail.com', 'sadsada', 'asdasd', 'Mannar', '1995-01-12', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'ô€îµî½ƒ|Òž=¤Üï€Gìrê&¤>«‚ZÏa'),
 (100009, 0, 'asda', 'sada', 'tharinsaddu1.prf@gmail.com', 'sada', 'asda', 'Anuradhapura', '1992-10-12', '0710664555', 'Female', '2014-10-08', '…ˆ1\n˜gjöâ%cÁUž\Zâ…•’½Í3HgÅEÍ', 'µÎÃJÔŠvÝï,ô<àü>öÙì£#d''W'),
 (100010, 0, 'Anjna', 'Poro', 'axevilladge@sada.ca', 'adadas', 'sadsada', 'Anuradhapura', '2014-10-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', ')A½lÌwçŽNá”Š€\\¤.N>/ÿ“ÌÌ#›v'),
-(100011, 0, 'Hiran', 'Weerasinghe', 'hirane1@live.com', 'No 3', 'Nuwarawewa Watta', 'Anuradhapura', '1992-05-05', '0712102378', 'Male', '2014-10-09', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '~’³iæ-I]øŸl,¹£#‚Zi+n€\0v(Ç¬!Dís¹'),
-(100012, 0, 'Menuka', 'Ishan', 'menuka@gmail.com', 'No 32', 'Methniwasa Ganthera', 'Matara', '1991-07-17', '0716642345', 'Male', '2014-10-14', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '\nKÊ-URéZ-ÊqØiOfÑ³Ùd.ñ½‰Q““b‚Z´');
+(100011, 0, 'Hiran', 'Weerasinghe', 'hiran1@live.com', 'No 3', 'Nuwarawewa Watta', 'Anuradhapura', '1992-05-05', '0712102378', 'Male', '2014-10-09', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '~’³iæ-I]øŸl,¹£#‚Zi+n€\0v(Ç¬!Dís¹'),
+(100012, 0, 'Menuka', 'Ishan', 'menuka@gmail.com', 'No 32', 'Methniwasa Ganthera', 'Matara', '1991-07-17', '0716642345', 'Male', '2014-10-14', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '\nKÊ-URéZ-ÊqØiOfÑ³Ùd.ñ½‰Q““b‚Z´'),
+(100013, 0, 'fd', 'gh', 'adsf@asd.com', 'fdgg', 'dfg', 'Galle', '2014-10-01', '0710664555', 'Male', '2014-10-28', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '*i‹&±¾Ý½òÂ_ôå''DB¹wˆ1ò–¶Ë·ßì');
 
 -- --------------------------------------------------------
 
@@ -221,8 +223,7 @@ CREATE TABLE IF NOT EXISTS `pharmasist` (
 
 INSERT INTO `pharmasist` (`pharmacy_Id`, `pharmacy_Name`, `contact_Number`, `password`, `email`, `active`, `salt`, `registration_Number`, `owner`, `address_No`, `address_Street`, `address_City`, `date_Of_Registration`) VALUES
 (1000010, 'City Clinic', '0710554644', '123', 'tharindu.prfatgmail', 0, '', '', '', '', '', '', '0000-00-00'),
-(1000011, 'CityClinic', '0710555464', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'gmkulathunga@gmail.com', 0, 'ðZ#¸„|Wj<\0qC,/‰;:_Ÿ~ý“oæýþ‰Ù­', 'pasda4646', 'Tharndu', 'Tissawewa', 'West', 'Hambantota', '2014-10-08'),
-(1000012, 'Hemaz', '0252224243', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'tharindu.prf@live.com', 0, '˜…ŒˆŠcÅùæìY.àîYT¥$bÖ', 'ph45', 'Gamindu', 'No 5', 'New Bustand', 'Anuradhapura', '2014-10-09');
+(1000012, 'City', '0252224243', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'tharindu.prf@live.com', 0, '˜…ŒˆŠcÅùæìY.àîYT¥$bÖ', 'ph45', 'Gamindu', 'No', 'New', 'Anuradhapura', '2014-10-09');
 
 -- --------------------------------------------------------
 
@@ -265,15 +266,26 @@ CREATE TABLE IF NOT EXISTS `prescriptionentry` (
 --
 
 CREATE TABLE IF NOT EXISTS `question` (
-  `question_Id` varchar(45) NOT NULL,
-  `question_Type` varchar(45) DEFAULT NULL,
+  `question_Id` int(45) NOT NULL AUTO_INCREMENT,
   `question_Content` varchar(45) DEFAULT NULL,
   `question_Date&Time` datetime DEFAULT NULL,
   `Patient_patient_Id` int(11) NOT NULL,
   `Answer` varchar(45) NOT NULL,
+  `subject` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`question_Id`,`Patient_patient_Id`),
   KEY `fk_Question_Patient1_idx` (`Patient_patient_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`question_Id`, `question_Content`, `question_Date&Time`, `Patient_patient_Id`, `Answer`, `subject`) VALUES
+(1, 'ABCDE', '2014-10-28 03:25:10', 100003, '', 'aaaa'),
+(4, 'I have a dream', '2014-10-28 04:12:05', 100003, '', 'Hey'),
+(5, 'sadasdfafaa', '2014-10-28 04:13:44', 100003, '', 'Question 2'),
+(6, 'I have a big head ache', '2014-10-28 05:15:24', 100008, '', 'Cold'),
+(7, 'I hadasda', '2014-10-28 09:40:55', 100003, '', 'Headache');
 
 -- --------------------------------------------------------
 
