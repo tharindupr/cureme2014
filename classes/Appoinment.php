@@ -12,58 +12,35 @@
  * @author Viranga Mahesh
  */
 class Appoinment  {
-    //put your code here
-    private $appoinmentNo;
-    private $time;
-    private $date;
-    private $comment;
+   private $_db,$_data;
+	
+	public function __construct($appoinment=null){
+		$this->_db=DB::getInstance();
+	}
+	
+	public function create($aid,$date,$time,$title,$description,$patientid){
+		$fields=array('appoinment_Id'=>$aids,'title'=>$title,'description'=>$description,'confirmation_Flag'=>0,'Patient_patient_Id'=>$patientid,'date'=>$date,'time'=>$time,'createdDate'=>date('Y-m-d H:i:s'));
+		if(!($this->_db->insert('appoinment',$fields))){
+		
+			throw new Exception('There was a problem creating an account');
+		
+		}
+	}
+	
+	
+	public function getKey()
+	{
+		$this->_db->query('SELECT MAX(appoinment_Id) FROM appoinment;',array());
+					
+			$a=(($this->_db->results()[0]));
+			$key=0;
+			foreach ($a as $key => $object) {
+				$key=intval($object);
+			}
+			
+		return(++$key);	
+	}
     
-    public function setAppoinmentNo($appoinmentNo){
-        $this->appoinmentNo=$appoinmentNo;
-        
-    }
-    public function getAppoinmentNo(){
-        return $this->appoinmentNo;
-        
-    }
-    public function setTime(DateTime $time){
-        $this->time=$time;
-        
-    }
-    public function getTime(){
-        return $this->time;
-        
-    }
-    public function setDate(DateTime $date){
-        $this->date=$date;
-        
-    }
-    public function getDate(){
-        return $this->date;
-        
-    }
-    public function setComment($comment){
-        $this->comment=$comment;
-        
-    }
-    public function getComment(){
-        return $this->comment;
-        
-    }
-    public function changeDate($appoinmentNo, DateTime $date) {
-        if($this->getAppoinmentNo()==$appoinmentNo){
-            $this->setDate($date);
-        }
-        
-    }
-    public function changeTime($appoinmentNo, DateTime $time) {
-        if($this->getAppoinmentNo()==$appoinmentNo){
-            $this->setTime($time);
-        }
-    }
-    public function alertDoctor() {
-        
-    }
     
     
 }

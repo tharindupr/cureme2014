@@ -28,8 +28,46 @@
         <!--[if lt IE 9]>
 
         <![endif]-->
+		
+		<script>
+					$(document).ready(function(){
+					$('.button').click(function(){
+						var clickBtnValue = $(this).val();
+						var ajaxurl = 'ajax.php',
+						data =  {'action': clickBtnValue};
+						$.post(ajaxurl, data, function (response) {
+							// Response div goes here.
+							alert("action performed successfully");
+						});
+					});
+
+				});
+		</script>
+		
+		
     </head>
     <body class="skin-blue">
+	
+	
+	
+	<?php
+	require_once '../../core/init.php';
+	$arr=[];
+
+	foreach(Session::get('patient') as $pid)
+	{
+		break;
+	}
+	
+	
+	
+	
+	
+	
+	
+	//$a->create($_POST['date'],$_POST['time'],$_POST['title'],$_POST['description'],$pid);
+
+	?>
       
                    <aside class="right-side">
                 <!-- Content Header (Page header) -->
@@ -76,17 +114,17 @@
                                                 <h3 class="box-title">&nbsp;&nbsp;Create a new appoinment</h3>
                                             </div><!-- /.box-header -->
                                             <div class="box-body">
-                                                <form role="form">
+                                                <form role="form" action="appoinmentpost.php" method="POST">
                                                     <!-- appoinment title input -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Title</label>
-                                                        <input type="text" class="form-control" placeholder="Enter the appoinment title ..."/>
+                                                        <input type="text" class="form-control" placeholder="Enter the appoinment title ..." name="title" required/>
                                                     </div>
                                                     <!--/appoinment title input-->
                                                     <!-- Discription of appoinment -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Discription</label>
-                                                        <textarea class="form-control" rows="3" placeholder="Enter appoinment discription ..."></textarea>
+                                                        <textarea class="form-control" rows="3" placeholder="Enter appoinment discription ..." name="description" required></textarea>
                                                     </div>
                                                     <!--/Discription of appoinment -->
                                                     <!-- Date dd/mm/yyyy -->
@@ -96,7 +134,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <input id="calander" type="DATE" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask/>
+                                                            <input id="calander" type="DATE" name="date" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required/>
                                                         </div><!-- /.input group -->
                                                     </div><!-- /.form group -->
 
@@ -104,18 +142,18 @@
 
                                                     <!--Time picker-->
                                                     <div class="form-group">
-                                                        <label>Appoinment Time:</label>
+                                                        <label>&nbsp;&nbsp;Appoinment Time:</label>
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-clock-o"></i>
                                                             </div>
-                                                            <input  type="time" class="form-control calendar-time " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask/>
+                                                            <input  type="time" name="time" class="form-control calendar-time " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required/>
                                                         </div><!-- /.input group -->
                                                     </div><!-- /.form group -->
 
-                                                    <button class="btn btn-primary right pull-right">
-                                                        Add
-                                                    </button>
+                                                    <button class="btn btn-primary right pull-right" type="submit">
+                                                        &nbsp;&nbsp;Add
+													</button>
 
                                                     <div class="right">
 
@@ -141,7 +179,7 @@
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-appoinment" style="position: relative; height: 1000px;">
                                         <div class="box-header" style="cursor: move;">
-                                            <h3 class="box-title">Edit a new appoinment</h3>
+                                            <h3 class="box-title">&nbsp;&nbsp;Edit a new appoinment</h3>
                                         </div>
 
                                         <!--Edite Appoinment-->
@@ -149,22 +187,22 @@
 
                                             <label>
 
-                                                Select Appoinment
+                                                &nbsp;&nbsp;Select Appoinment
 
                                             </label>
                                             <select class="form-control">
                                                 <option>
 
-                                                   Suger Checking
+                                                   &nbsp;&nbsp;Suger Checking
 
                                                 </option>
                                                 <option>
 
-                                                    M R I Scan..
+                                                   &nbsp;&nbsp;M R I Scan..
 
                                                 </option>
                                                 <option>
-                                                    About blood report
+                                                    &nbsp;&nbsp;About blood report
                                                 </option>
                                             </select>
 
@@ -172,7 +210,7 @@
 
                                         <!-- Date dd/mm/yyyy -->
                                         <div class="form-group">
-                                            <label>Appoinment Date:</label>
+                                            <label>&nbsp;&nbsp;Appoinment Date:</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
@@ -185,7 +223,7 @@
 
                                         <!--Time picker-->
                                         <div class="form-group">
-                                            <label>Appoinment Time:</label>
+                                            <label>&nbsp;&nbsp;Appoinment Time:</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
@@ -196,7 +234,7 @@
                                         <div class="right">
 
                                             <button class="btn btn-danger right pull-right">
-                                                Detete
+                                                &nbsp;&nbsp;Detete
                                             </button>
 
 
@@ -205,7 +243,7 @@
                                         <div class="right">
 
                                             <button class="btn btn-primary right pull-right">
-                                                Add
+                                                &nbsp;&nbsp;Add
                                             </button>
 
 

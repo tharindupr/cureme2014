@@ -35,7 +35,7 @@
 			
 			if(n==2)
 			{
-				xmlhttp.open("GET","appoinment.html",true);
+				xmlhttp.open("GET","appoinment.php",true);
 				xmlhttp.send();
 			}
 			
