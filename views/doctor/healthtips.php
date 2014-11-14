@@ -30,7 +30,14 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body class="skin-blue">
+
+<?php
+require_once '../../core/init.php';
+$arr=[];
+
+?>
 
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -57,64 +64,48 @@
             <section class="col-lg-7 connectedSortable ">
 
                 <!-- Tips -->
+				
+				<?php 
+			  
+				$db=DB::getInstance();
+				$db->query('SELECT * FROM healthtip');
+				$a=$db->results();
+				//print_r($a);
+				?>
+				
                 <div class="box">
                     <div class="box-header">
                         <i class="fa fa-comments"></i>
                         <h3 class="box-title">Tips</h3>
 
                     </div>
-
-                    <div class="box-body chat" id="chat-box">
-                        <!-- chat item -->
-                        <div class="item">
-                            <img src="img/avatar.png" alt="user image" class="online"/>
-                            <p class="message">
-                                <a href="#" class="name">
-                                    <small class="text-muted pull-right">  <i class="fa fa-map-marker"></i>&nbsp;<i class="fa fa-clock-o"></i> 2:15</small>
-                                    Doctor
-                                </a>
-                                Tip0
-                            </p>
-
-                        </div><!-- /.item -->
-                        <!-- chat item -->
-                        <!-- chat item -->
-                        <div class="item">
-                            <img src="img/avatar.png" alt="user image" class="offline"/>
-                            <p class="message">
-                                <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i class="fa fa-gear"></i>&nbsp;<i class="fa fa-clock-o"></i> 5:30</small>
-                                    Doctor
-                                </a>
-                                Tip1
-                            </p>
-
-                        </div><!-- /.item -->
-
-                        <!-- chat item -->
-                        <div class="item">
-                            <img src="img/avatar.png" alt="user image" class="offline"/>
-                            <p class="message">
-                                <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i class="fa fa-globe"></i>&nbsp;<i class="fa fa-clock-o"></i> 5:30</small>
-                                    Doctor
-                                </a>
-                                Tip2
-                            </p>
-                        </div><!-- /.item -->
+					
+					<div class='box-body chat' id='chat-box'>
+					<?php
+					$arraylen=sizeof($a);
+					//echo $arraylen;
+					foreach ($a as $ab){
+						echo"<div class='item'>
+                            <img src='img/avatar.png' alt='user image' class='online'/>
+                            <p class='message'>
+                                <a href='#' class='name'>
+                                    <small class='text-muted pull-right'>Tip ID: ".$ab->tip_Id."</small>".$ab->tip_Type."
+                                </a>".$ab->tip_Content."</p>
+							</div>";
+					
+					}
+					
+					?>
+					
                     </div><!-- /.tips -->
                     <div class="box-footer ">
 
-
-
-
-
-
+					<form role="form" method="post" action="healthtipspost.php">
                         <div class="input-group">
-                            <label>Tip Titel</label>
-                            <input class="form-control" type="text"  placeholder="Type message titel..."/>
+                            <label>Tip Title</label>
+                            <input class="form-control" type="text" name="tiptitle" placeholder="Type message titel..."/>
                             <label>Tip body</label>
-                            <input class="form-control" type="text"  placeholder="Type message..."/>
+                            <input class="form-control" type="text" name="tipbody" placeholder="Type message..."/>
 
                         </div>
                         <div class="input-group-btn">
@@ -134,7 +125,7 @@
 
                                 </ul>
                             </div>-->
-                                <button type="button" class="btn btn-primary  fa fa-plus">
+                                <button type="submit" class="btn btn-primary  fa fa-plus">
                                     Send tip
                                 </button>
 
@@ -142,7 +133,7 @@
                             </div>
 
                         </div>
-
+					</form>
 
                     </div>
             </section>
@@ -163,6 +154,11 @@
                                 <tr>
                                     <td>
                                         <label>
+                                            Tip ID
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
                                             Date
                                         </label>
                                     </td>
@@ -172,12 +168,9 @@
                                         </label>
                                     </td>
                                     <td>
-                                        <label>
-                                            Tip Titel
-                                        </label>
-                                    </td>
-                                    <td>
-                                        Viewer <!-- if docter check it and give comment and do click chech box -->
+										<label>
+											Tip Title<!-- if docter check it and give comment and do click chech box -->
+										</label>	
                                     </td>
                                 </tr>
                                 <!--Apoinment shedule-->
@@ -187,84 +180,35 @@
                                     <!-- button with a dropdown -->
                                     <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
-
-
-
-
-
-                                <div class="box box-body no-padding ">
-
-                                    <tr >
-                                        <td>
-                                            <label>
-                                                03/09/2014
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                14:30h
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                diabetic
-                                            </label>
-                                        </td>
-                                        <td>
-
-
-                                            <i class="pull-right fa fa-globe"></i>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr class="box box-solid ">
-                                        <td>
-                                            <label>
-                                                03/10/2014
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                14:00h
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                About dengi
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <i class="pull-right fa fa-map-marker"></i>
-                                        </td>
-                                    </tr>
-                                    <tr class="box box-solid ">
-                                        <td>
-                                            <label>
-                                                05/10/2014
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                08:00h
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-
-                                                alcohol
-
-                                            </label>
-                                        </td>
-                                        <td>
-
-                                            <i class="pull-right fa fa-gear"></i>
-
-                                        </td>
-                                    </tr>
-                                    <!--/Apoinment shedule-->
-
-
+									<div class="box box-body no-padding ">
+									<?php
+										$arraylen=sizeof($a);
+										//echo $arraylen;
+										foreach ($a as $ab){
+											echo
+												"<tr >
+													<td>
+														<label>
+															".$ab->tip_Id."
+														</label>
+													</td>
+													<td>
+														<label>
+															03/09/2014
+														</label>
+													</td>
+													<td>
+														<label>
+															14:30h
+														</label>
+													</td>
+													<td>
+														<label>
+															".$ab->tip_Type."
+														</label>
+													</td>";
+										}
+									?>
                                 </div>
                                 </div><!-- /. tools -->
 
