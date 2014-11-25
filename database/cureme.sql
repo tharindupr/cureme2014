@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 10, 2014 at 04:29 PM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Host: 127.0.0.1
+-- Generation Time: Nov 17, 2014 at 12:10 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cureme`
 --
-CREATE DATABASE IF NOT EXISTS `cureme` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `cureme`;
 
 -- --------------------------------------------------------
 
@@ -88,9 +86,22 @@ CREATE TABLE IF NOT EXISTS `healthtip` (
   `tip_Id` int(11) NOT NULL,
   `tip_Type` varchar(45) DEFAULT NULL,
   `tip_Content` varchar(45) DEFAULT NULL,
-  `tip_Date&Time` datetime DEFAULT NULL,
+  `tip_Date` date DEFAULT NULL,
+  `tip_Time` time NOT NULL,
   PRIMARY KEY (`tip_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `healthtip`
+--
+
+INSERT INTO `healthtip` (`tip_Id`, `tip_Type`, `tip_Content`, `tip_Date`, `tip_Time`) VALUES
+(1, 'Viral Fever', 'A new viral fever with a stomachache is sprea', '2014-11-14', '06:20:48'),
+(2, 'Dengue Virus', 'Dengue is rapidly spreading in Colombo 07', '2014-11-14', '06:22:25'),
+(3, 'Maleria', 'Spreading all over the country these days', '2014-11-15', '06:08:10'),
+(4, 'swhg', 'hdskjchs', '2014-11-15', '09:05:58'),
+(5, 'dd', 'dd', '2014-11-15', '09:09:38'),
+(6, 'dd', 'rgbt', '2014-11-15', '09:13:10');
 
 -- --------------------------------------------------------
 
@@ -274,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `subject` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`question_Id`,`Patient_patient_Id`),
   KEY `fk_Question_Patient1_idx` (`Patient_patient_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `question`
@@ -285,7 +296,8 @@ INSERT INTO `question` (`question_Id`, `question_Content`, `question_Date&Time`,
 (4, 'I have a dream', '2014-10-28 04:12:05', 100003, '', 'Hey'),
 (5, 'sadasdfafaa', '2014-10-28 04:13:44', 100003, '', 'Question 2'),
 (6, 'I have a big head ache', '2014-10-28 05:15:24', 100008, '', 'Cold'),
-(7, 'I hadasda', '2014-10-28 09:40:55', 100003, '', 'Headache');
+(7, 'I hadasda', '2014-10-28 09:40:55', 100003, '', 'Headache'),
+(8, 'abcdefghij', '2014-11-10 17:39:57', 100003, '', 'abc');
 
 -- --------------------------------------------------------
 

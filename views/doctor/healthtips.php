@@ -194,12 +194,12 @@ $arr=[];
 													</td>
 													<td>
 														<label>
-															03/09/2014
+															".$ab->tip_Date."
 														</label>
 													</td>
 													<td>
 														<label>
-															14:30h
+															".$ab->tip_Time."
 														</label>
 													</td>
 													<td>
