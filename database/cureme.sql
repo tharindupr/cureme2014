@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD:database/cureme.sql
 -- Generation Time: Nov 17, 2014 at 12:10 PM
+=======
+-- Generation Time: Nov 25, 2014 at 06:59 AM
+>>>>>>> remotes/origin/sanda:database/cureme.sql
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -233,8 +237,8 @@ CREATE TABLE IF NOT EXISTS `pharmasist` (
 --
 
 INSERT INTO `pharmasist` (`pharmacy_Id`, `pharmacy_Name`, `contact_Number`, `password`, `email`, `active`, `salt`, `registration_Number`, `owner`, `address_No`, `address_Street`, `address_City`, `date_Of_Registration`) VALUES
-(1000010, 'City Clinic', '0710554644', '123', 'tharindu.prfatgmail', 0, '', '', '', '', '', '', '0000-00-00'),
-(1000012, 'City', '0252224243', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'tharindu.prf@live.com', 0, '˜…ŒˆŠcÅùæìY.àîYT¥$bÖ', 'ph45', 'Gamindu', 'No', 'New', 'Anuradhapura', '2014-10-09');
+(1000013, 'Shady Pharmacies', '0712106378', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'shady12@gmail.com', 0, '¿{tG¯´¸~ßß>ŒÑH#n¦rütžó­õ', 'ph60', 'Hiran Eranda', 'No 32', 'Chatham Street', 'Colombo', '2014-11-25'),
+(1000014, 'City Clinic', '0710554644', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', 'tharindu.prf@live.com', 0, 'k¢nÀâÓö¸S>WÅ—×Ùâ\nQ÷I›³yàX,8âœÜ', 'ph45', 'Gamindu', 'No:50', 'Main Street', 'Nuwara Eliya', '2014-11-25');
 
 -- --------------------------------------------------------
 

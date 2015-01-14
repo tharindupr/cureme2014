@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>CureMe| Dashboard</title>
+    <title>CureMe Patient | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -26,14 +26,31 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
     <![endif]-->
 </head>
 <body class="skin-blue">
+<?php 
+	require_once '../../core/init.php';
+	
+	
+	//getting the values from the created session
+	$arr=[];
+	foreach(Session::get('patient') as $t)
+	{
+		array_push($arr,"{$t}");;
+	}
+
+	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
+
+	//print_r($arr);
+	//print_r($currentPatient);
+	
+	
+?>
 <!-- header logo: style can be found in header.less -->
 <header class="header">
-    <a href="treat_patient.html" class="logo">
+    <a href="p_home.html" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
         CureMe
     </a>
@@ -65,10 +82,10 @@
                                             <img src="img/avatar3.png" class="img-circle" alt="User Image"/>
                                         </div>
                                         <h4>
-                                            Support Team
+                                            Test1
                                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                                         </h4>
-                                        <p></p>
+                                        <p>Tets 1 Message</p>
                                     </a>
                                 </li><!-- end message -->
                                 <li>
@@ -77,46 +94,23 @@
                                             <img src="img/avatar2.png" class="img-circle" alt="user image"/>
                                         </div>
                                         <h4>
-
+                                            Test2
                                             <small><i class="fa fa-clock-o"></i> 2 hours</small>
                                         </h4>
-                                        <p></p>
+                                        <p>Test Message?</p>
                                     </a>
                                 </li>
+
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
                                             <img src="img/avatar.png" class="img-circle" alt="user image"/>
                                         </div>
                                         <h4>
-                                            Developers
-                                            <small><i class="fa fa-clock-o"></i> Today</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="img/avatar2.png" class="img-circle" alt="user image"/>
-                                        </div>
-                                        <h4>
-                                            Sales Department
-                                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="img/avatar.png" class="img-circle" alt="user image"/>
-                                        </div>
-                                        <h4>
-                                            Reviewers
+                                            Test3
                                             <small><i class="fa fa-clock-o"></i> 2 days</small>
                                         </h4>
-                                        <p>Why not buy a new awesome theme?</p>
+                                        <p>Test3 Message</p>
                                     </a>
                                 </li>
                             </ul>
@@ -137,30 +131,21 @@
                             <ul class="menu">
                                 <li>
                                     <a href="#">
-                                        <i class="ion ion-ios7-people info"></i> 5 new members joined today
+                                        <i class="ion ion-ios7-people info"></i> Doctor as assign you some new medicines
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-warning danger"></i> Very long description here that may not fit into the page and may cause design problems
+                                        <i class="fa fa-warning danger"></i> Doctor Viewed your report
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-users warning"></i> 5 new members joined
+                                        <i class="fa fa-users warning"></i> Your have paid your subscription
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="ion ion-ios7-cart success"></i> 25 sales made
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion ion-ios7-person danger"></i> You changed your username
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
                         <li class="footer"><a href="#">View all</a></li>
@@ -173,26 +158,26 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i>
-                        <span>Administrator <i class="caret"></i></span>
+                        <span><?php echo " {$currentPatient['patient_FName']}  {$currentPatient['patient_LName']}" ;?> <i class="caret"></i></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header bg-light-blue">
                             <img src="img/avatar3.png" class="img-circle" alt="User Image" />
                             <p>
-
-
+                                <?php echo " {$currentPatient['patient_FName']} " ;?> - Patient
+                                <small>Member since <?php echo " {$currentPatient['date_Of_Registration']} " ;?></small>
                             </p>
                         </li>
 
-
+						
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
@@ -203,6 +188,12 @@
 </header>
 
 
+
+
+
+
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 
 <!-- jQuery 2.0.2 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

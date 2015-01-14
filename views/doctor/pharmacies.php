@@ -30,6 +30,16 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
+<<<<<<< HEAD
+=======
+
+<?php
+require_once '../../core/init.php';
+$arr=[];
+
+?>
+
+>>>>>>> remotes/origin/sanda
 <body class="skin-blue">
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -62,21 +72,43 @@
 <div class="box">
 <div class="box-header">
     <h3 class="box-title">Pharamcies List</h3>
+<<<<<<< HEAD
+=======
+	
+				<?php 
+			  
+					$db=DB::getInstance();
+					$db->query('SELECT * FROM pharmasist');
+					$a=$db->results();
+					//print_r($a);
+					?>
+	
+	
+>>>>>>> remotes/origin/sanda
 </div><!-- /.box-header -->
 <div class="box-body table-responsive">
 
 <table id="example1" class="table table-bordered table-striped">
 <thead>
 <tr>
+<<<<<<< HEAD
     <th>Pharmacy ID</th>
     <th>Pharmacy Name</th>
     <th>Address</th>
+=======
+    <th>Pharmacy Reg No</th>
+	<th>Owner Name</th>
+    <th>Pharmacy Name</th>
+    <th>Address</th>
+	<th>Contact No</th>
+>>>>>>> remotes/origin/sanda
     <th>Registered Date</th>
     <th>Edit</th>
 </tr>
 </thead>
 <tbody>
 
+<<<<<<< HEAD
 <tr>
     <td>PH011</td>
     <td>City Clinic</td>
@@ -175,6 +207,30 @@
     <th>Edit</th>
 </tr>
 </tfoot>
+=======
+<?php
+	$arraylen=sizeof($a);
+	//echo $arraylen;
+	foreach ($a as $ab){
+	echo
+"<tr>
+    <td>".$ab->registration_Number."</td>
+	<td>".$ab->owner."</td>
+    <td>".$ab->pharmacy_Name."</td>
+    <td>".$ab->address_No.", ".$ab->address_No.", ".$ab->address_Street.", ".$ab->address_City."</td>
+	<td>".$ab->contact_Number."</td>
+    <td>".$ab->date_Of_Registration."</td>
+    <td><button class='btn btn-primary btn-flat'>Remove</button></td>
+</tr>";
+}
+
+?>
+
+
+
+</tbody>
+
+>>>>>>> remotes/origin/sanda
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->
