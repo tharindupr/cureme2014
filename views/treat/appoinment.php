@@ -142,15 +142,14 @@
 
                                                     <!--Time picker-->
                                                     <div class="form-group">
-													<label>Select</label>
-													<select class="form-control">
-														<option>option 1</option>
-														<option>option 2</option>
-														<option>option 3</option>
-														<option>option 4</option>
-														<option>option 5</option>
-													</select>
-													</div>
+                                                        <label>&nbsp;&nbsp;Appoinment Time:</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                            <input  type="time" name="time" class="form-control calendar-time " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required/>
+                                                        </div><!-- /.input group -->
+                                                    </div><!-- /.form group -->
 
                                                     <button class="btn btn-primary right pull-right" type="submit">
                                                         &nbsp;&nbsp;Add
@@ -239,9 +238,6 @@
                                             </button>
 
 
-											
-											
-											
                                         </div>
 
                                         <div class="right">
