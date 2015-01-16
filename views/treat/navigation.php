@@ -41,7 +41,7 @@
 			
 			if(n==3)
 			{
-				xmlhttp.open("GET","report.html",true);
+				xmlhttp.open("GET","report.php",true);
 				xmlhttp.send();
 			}
 			
@@ -54,11 +54,15 @@
 			
 			if(n==5)
 			{
-				xmlhttp.open("GET","history.html",true);
+				xmlhttp.open("GET","history.php",true);
 				xmlhttp.send();
 			}
 			
-			
+			if(n==6)
+			{
+				xmlhttp.open("GET","prescription.php",true);
+				xmlhttp.send();
+			}
 			
 			
 			
@@ -98,7 +102,7 @@
     </head>
     <body class="skin-blue">
         
-        <div class="wrapper row-offcanvas row-offcanvas-left">
+        <div class="row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
@@ -128,7 +132,7 @@
                     <ul class="sidebar-menu">
                         <li class="active">
 							
-                            <a onclick="showdata(1);">
+                            <a href="profile.php">
 							
                                 <i class="fa fa-dashboard"></i> <span>Profile</span>
 							
@@ -138,27 +142,33 @@
 							
 						</li>
                         <li>
-                            <a onclick="showdata(2);">
+                            <a href="appoinment.php">
                                 <i class="fa fa-calendar"></i> <span>Appoinments</span>
                             </a>
                         </li>
 
                         <li>
-                            <a onclick="showdata(3);">
+                            <a href="report.php">
                                 <i class="fa fa-calendar-o"></i> <span>Report Submission</span>
                             </a>
                         </li>
 
 
                         <li>
-                            <a onclick="showdata(4);">
+                            <a href="conversations.php">
                                 <i class="fa fa-comments"></i> <span>Conversations</span>
                             </a>
                         </li>
 
                         <li>
-                            <a onclick="showdata(5);">
+                            <a href="history.php">
                                 <i class="fa  fa-clock-o"></i> <span>History</span>
+                            </a>
+                        </li>
+						
+						<li>
+                            <a href="prescription.php">
+                                <i class="fa fa-pencil-square-o"></i> <span>Prescription</span>
                             </a>
                         </li>
 
@@ -169,10 +179,7 @@
                 <!-- /.sidebar -->
             </aside>
 
-         <div id="content">
-		 <?php //include ('profile.html'); ?>
-		
-		</div>
+        
           
         </div><!-- ./wrapper -->
 		

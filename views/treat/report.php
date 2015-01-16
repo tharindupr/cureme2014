@@ -8,7 +8,7 @@ require_once 'navigation.php';
 ?>
 
     <meta charset="UTF-8">
-    <title>CureMe | Dashboard</title>
+    <title>CureMe| Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,140 +32,90 @@ require_once 'navigation.php';
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-
-<?php
-require_once '../../core/init.php';
-$arr=[];
-
-foreach(Session::get('patient') as $pid)
-{
-	break;
-}
-
-?>
-
+<body class="skin-blue">
 
 <aside class="right-side">
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-       Conversations
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Report Submission
 
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Conversations</li>
-    </ol>
-</section>
-
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Report Submission</li>
+        </ol>
+    </section>
+    <!-- Main content -->
     <section class="content">
-    <div class="col-md-12">
-    <form role="form" method="post" action="questionpost.php" style="width:100% ">
-		
-        <div class="box-body">
-            <div class="form-group">
-                <label>Post you question here</label>
-				
-				<textarea class="form-control" rows="1" placeholder="Subject" name="subject"></textarea>
-				
-                <textarea class="form-control" rows="3" placeholder="Question" name="question"></textarea>
-				
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-9">
+    <!-- general form elements -->
+    <div class="box box-primary">
+
+        <!-- form start -->
+        <form role="form">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="ReportType">Report type</label>
+                    <!--drop box-->
+
+                    <th><select name="Report type">
+                    <option >A</option>
+                    <option >B</option>
+                    <option >C</option>
+                    </select></th>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="DATE">Date</label>
+                    <input type="date" class="form-control" id="DATE" placeholder="date">
+                </div>
+                <!--text area-->
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+                <!-- text area-->
+                <div class="form-group">
+                    <label for="exampleInputFile">Add report</label>
+                    <input type="file" id="exampleInputFile">
+
+                </div>
+
+            </div><!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
-         </div><!-- /.box-body -->
-
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Post</button>
-        </div>
-    </form>
+        </form>
+    </div><!-- /.box -->
     </div>
 
-        &nbsp;<br>
-        &nbsp;<br>
-		<?php 
-			  
-			  $db=DB::getInstance();
-			  $db->query('SELECT * FROM question WHERE Patient_patient_Id=?',array('Patient_patient_Id'=>$pid));
-			  $a=$db->results();
-			  //print_r($a);
-			  
-			  
-			  
 
-		?>
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- The time line -->
-                <ul class="timeline">
-                    <!-- timeline time label -->
-                    <li class="time-label">
-                                    <span class="bg-red">
-                                        Conversations
-                                    </span>
-                    </li>
-                    <!-- /.timeline-label -->
-                    <!-- timeline item -->
-                    <li>
-                        <i class="fa fa-envelope bg-blue"></i>
-						
-						<?php 
-						 foreach($a as $i)
-						 {	
-							$ray=array();
-							foreach($i as $j)
-							{
-								array_push($ray,$j);
-							}
-							
-							echo(
-							" <div class=\"timeline-item\">
-                            <span class=\"time\"><i class=\"fa fa-clock-o\"></i>".$ray[2]."</span>
-                            <h3 class=\"timeline-header\"><a href=\"#\">".$ray[5]."</a> </h3>
-                            <div class=\"timeline-body\">
-                                ".$ray[1]."
-                            </div>
-                            <div class=\'timeline-footer\'>
-                                <a class=\"btn btn-primary btn-xs\">Comment</a>
-                                <a class=\"btn btn-danger btn-xs\">Delete</a>
-                            </div>
-							</div>");
-							
-							
-						 }
-						?>
-                        
-                    </li>
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-2 connectedSortable">
 
 
-                    <!-- END timeline item -->
-                    <li>
-                        <i class="fa fa-clock-o"></i>
-                    </li>
-                </ul>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+
 
 
 
     </section><!-- /.content -->
-</div><!-- /.row (main row) -->
-
-</section><!-- /.content -->
-</aside><!-- /.right-side -->
 
 
 
 
 
+    <!-- /.content -->
+<!-- add new calendar event modal -->
 
-
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 
 <!-- jQuery 2.0.2 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

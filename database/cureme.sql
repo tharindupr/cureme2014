@@ -3,11 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD:database/cureme.sql
--- Generation Time: Nov 17, 2014 at 12:10 PM
-=======
--- Generation Time: Nov 25, 2014 at 06:59 AM
->>>>>>> remotes/origin/sanda:database/cureme.sql
+-- Generation Time: Jan 15, 2015 at 07:15 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -248,7 +244,7 @@ INSERT INTO `pharmasist` (`pharmacy_Id`, `pharmacy_Name`, `contact_Number`, `pas
 
 CREATE TABLE IF NOT EXISTS `prescription` (
   `prescription_Id` int(11) NOT NULL,
-  `prescription_Date&Time` datetime DEFAULT NULL,
+  `prescription_Date` date DEFAULT NULL,
   `prescription_Type` varchar(45) DEFAULT NULL,
   `Patient_patient_Id` int(11) NOT NULL,
   `Pharmacy_pharmacy_Id` int(11) NOT NULL,
@@ -265,14 +261,44 @@ CREATE TABLE IF NOT EXISTS `prescription` (
 
 CREATE TABLE IF NOT EXISTS `prescriptionentry` (
   `entry_Id` varchar(45) NOT NULL,
-  `drug_Name` varchar(45) DEFAULT NULL,
-  `drug_Dosage` varchar(45) DEFAULT NULL,
-  `drug_Times` varchar(45) DEFAULT NULL,
-  `drug_Description` varchar(45) DEFAULT NULL,
+  `drug1_Name` varchar(45) DEFAULT NULL,
+  `drug1_Dosage` varchar(45) DEFAULT NULL,
+  `drug2_Name` varchar(45) DEFAULT NULL,
+  `drug2_Dosage` varchar(45) DEFAULT NULL,
   `Prescription_prescription_Id` int(11) NOT NULL,
   PRIMARY KEY (`entry_Id`,`Prescription_prescription_Id`),
   KEY `fk_PrescriptionEntry_Prescription1_idx` (`Prescription_prescription_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prescriptions`
+--
+
+CREATE TABLE IF NOT EXISTS `prescriptions` (
+  `prescription_Id` int(5) NOT NULL,
+  `patient_Id` int(6) NOT NULL,
+  `date` date NOT NULL,
+  `drug1_name` varchar(100) NOT NULL,
+  `drug1_dose` varchar(200) NOT NULL,
+  `drug2_name` varchar(100) NOT NULL,
+  `drug2_dose` varchar(200) NOT NULL,
+  `drug3_name` varchar(100) NOT NULL,
+  `drug3_dose` varchar(200) NOT NULL,
+  `drug4_name` varchar(100) NOT NULL,
+  `drug4_dose` varchar(200) NOT NULL,
+  `drug5_name` varchar(100) NOT NULL,
+  `drug5_dose` varchar(200) NOT NULL,
+  PRIMARY KEY (`prescription_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prescriptions`
+--
+
+INSERT INTO `prescriptions` (`prescription_Id`, `patient_Id`, `date`, `drug1_name`, `drug1_dose`, `drug2_name`, `drug2_dose`, `drug3_name`, `drug3_dose`, `drug4_name`, `drug4_dose`, `drug5_name`, `drug5_dose`) VALUES
+(1, 123, '2015-01-15', 'a', '1', 'b', '2', 'c', '3', 'd', '4', 'e', '5');
 
 -- --------------------------------------------------------
 
