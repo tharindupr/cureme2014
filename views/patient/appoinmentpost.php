@@ -5,12 +5,13 @@ foreach(Session::get('patient') as $pid)
 	{
 		break;
 	}
+//echo $_POST['time'];
 $a=new Appoinment();
 
 $a->create($a->getkey(),$_POST['date'],$_POST['time'],$_POST['title'],$_POST['description'],$pid);
 
-echo $_POST['date'];
+//echo $_POST['date'];
 
-header('Location: patient.php');
+header('Location: appoinment.php');
 
 ?>

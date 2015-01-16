@@ -19,7 +19,7 @@ class Appoinment  {
 	}
 	
 	public function create($aid,$date,$time,$title,$description,$patientid){
-		$fields=array('appoinment_Id'=>$aids,'title'=>$title,'description'=>$description,'confirmation_Flag'=>0,'Patient_patient_Id'=>$patientid,'date'=>$date,'time'=>$time,'createdDate'=>date('Y-m-d H:i:s'));
+		$fields=array('appoinment_Id'=>$aid,'title'=>$title,'description'=>$description,'confirmation_Flag'=>0,'Patient_patient_Id'=>$patientid,'date'=>$date,'time'=>$time,'createdDate'=>date('Y-m-d H:i:s'));
 		if(!($this->_db->insert('appoinment',$fields))){
 		
 			throw new Exception('There was a problem creating an account');

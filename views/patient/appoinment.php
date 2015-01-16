@@ -22,6 +22,8 @@
         <link href="../../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
+		
+		
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,23 +31,56 @@
 
         <![endif]-->
 		
-		<script>
-					$(document).ready(function(){
-					$('.button').click(function(){
-						var clickBtnValue = $(this).val();
-						var ajaxurl = 'ajax.php',
-						data =  {'action': clickBtnValue};
-						$.post(ajaxurl, data, function (response) {
-							// Response div goes here.
-							alert("action performed successfully");
-						});
-					});
+		 <script type="text/javascript" src="jquery-2.1.3.js"> </script>
 
+		 <script type="text/javascript">
+
+		 $(document).ready(function() {
+
+			$(".date").change(function() {                
+
+			  $.ajax({    //create an ajax request to load_page.php
+				type: "GET",
+				url: "display.php?d="+$(".date").val(),             
+				dataType: "html",   //expect html to be returned                
+				success: function(response){                    
+					$("#responsecontainer").html(response); 
+					//alert(response);
+				}
+				
+				
+				
+
+			});
+				
+			
+			
+			
+			
+		});
+		
+				$(".date").datepicker({
+				  onSelect: function() {
+					$(this).change();
+				
+				  }
 				});
+				
+	
+		
+		});
+
 		</script>
+
+		
+		
+
+ 
 		
 		
     </head>
+	
+	
     <body class="skin-blue">
 	
 	
@@ -53,21 +88,21 @@
 	<?php
 	require_once '../../core/init.php';
 	$arr=[];
+	require('header.php');
+	require('navigation.php');
+	
+	
 
 	foreach(Session::get('patient') as $pid)
 	{
 		break;
 	}
 	
-	
-	
-	
-	
-	
-	
-	//$a->create($_POST['date'],$_POST['time'],$_POST['title'],$_POST['description'],$pid);
-
 	?>
+		
+
+
+	
       
                    <aside class="right-side">
                 <!-- Content Header (Page header) -->
@@ -118,23 +153,28 @@
                                                     <!-- appoinment title input -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Title</label>
-                                                        <input type="text" class="form-control" placeholder="Enter the appoinment title ..." name="title" required/>
+                                                        &nbsp;&nbsp;<input type="text" class="form-control" placeholder="Enter the appoinment title ..." name="title" required/>
                                                     </div>
                                                     <!--/appoinment title input-->
                                                     <!-- Discription of appoinment -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Discription</label>
-                                                        <textarea class="form-control" rows="3" placeholder="Enter appoinment discription ..." name="description" required></textarea>
+                                                        &nbsp;&nbsp;<textarea class="form-control" rows="3" placeholder="Enter appoinment discription ..." name="description" required></textarea>
                                                     </div>
                                                     <!--/Discription of appoinment -->
                                                     <!-- Date dd/mm/yyyy -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Appoinment Date:</label>
+														&nbsp;&nbsp;
                                                         <div class="input-group">
-                                                            <div class="input-group-addon">
+                                                            &nbsp;<div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <input id="calander" type="DATE" name="date" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required/>
+													    <input class="date" data-date-format="yyyy/mm/dd" name="date" required>
+
+															
+															
+                                                        <!-- <input id="calander" type="DATE" name="date"  class="form-control" value='2015-1-15' data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required/>-->
                                                         </div><!-- /.input group -->
                                                     </div><!-- /.form group -->
 
@@ -142,17 +182,20 @@
 
                                                     <!--Time picker-->
                                                     <div class="form-group">
-													<label>Select</label>
-													<select class="form-control">
-														<option>option 1</option>
-														<option>option 2</option>
-														<option>option 3</option>
-														<option>option 4</option>
-														<option>option 5</option>
-													</select>
+													<label>&nbsp;&nbsp;Time</label>
+													<div id="responsecontainer" align="center">
 													</div>
 
-                                                    <button class="btn btn-primary right pull-right" type="submit">
+                                                     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+															 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+															  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<button class="btn btn-primary" type="submit">
                                                         &nbsp;&nbsp;Add
 													</button>
 
@@ -161,11 +204,9 @@
 
                                                     </div>
 
+												
 
-
-
-                                                    <!--/time picker-->
-
+                                                  
 
 
 
@@ -173,7 +214,13 @@
                                             </div><!-- /.box-body -->
                                         </div><!-- /.box -->
                                         <!--/Add apoinment box-->
+										
+										
 
+
+
+		</div>	
+	
 
                                     </div>
 
@@ -445,9 +492,8 @@
 
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-
-        <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-2.1.3.js"> </script>
+        
         <!-- jQuery UI 1.10.3 -->
         <script src="../../js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
