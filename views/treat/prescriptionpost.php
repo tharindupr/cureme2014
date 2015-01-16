@@ -29,7 +29,7 @@ $prescription->create(array('prescription_Id'=>$prescription->getkey(),'patient_
 				
 				
 
-header('Location: doctor.php');
+header('Location: prescription.php');
 
 
 
