@@ -1,75 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<script>
 		
-		function showdata(n)
-		{
-			
-
-			if (window.XMLHttpRequest)
-			{
-				xmlhttp = new XMLHttpRequest();
-			}
-			else
-			{
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				
-			}
-			xmlhttp.onreadystatechange=function()
-			{
-				if(xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					
-						document.getElementById("content").innerHTML=xmlhttp.responseText;
-						//xmlhttp.open("GET","signupPatient.html",true);
-				}
-			}
-			
-			
-			if(n==1)
-			{
-				xmlhttp.open("GET","profile.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==2)
-			{
-				xmlhttp.open("GET","appoinment.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==3)
-			{
-				xmlhttp.open("GET","report.html",true);
-				xmlhttp.send();
-			}
-			
-			
-			if(n==4)
-			{
-				xmlhttp.open("GET","conversations.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==5)
-			{
-				xmlhttp.open("GET","history.html",true);
-				xmlhttp.send();
-			}
-			
-			
-			
-			
-			
-			
-			//xmlhttp.open("GET","signupPharmacist.html",true);
-			
-
-		}
-		
-		</script>
-       
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -109,7 +41,7 @@
                             <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, <?php //echo "{$currentPatient['patient_FName']}" ;?></p>
+                            <p>Hello, <?php echo "{$currentPatient['patient_FName']}" ;?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -128,7 +60,7 @@
                     <ul class="sidebar-menu">
                         <li class="active">
 							
-                            <a onclick="showdata(1);">
+                            <a href="profile.php">
 							
                                 <i class="fa fa-dashboard"></i> <span>Profile</span>
 							
@@ -138,26 +70,26 @@
 							
 						</li>
                         <li>
-                            <a onclick="showdata(2);">
+                            <a href="appoinment.php">
                                 <i class="fa fa-calendar"></i> <span>Appoinments</span>
                             </a>
                         </li>
 
                         <li>
-                            <a onclick="showdata(3);">
+                            <a href="report.php">
                                 <i class="fa fa-calendar-o"></i> <span>Report Submission</span>
                             </a>
                         </li>
 
 
                         <li>
-                            <a onclick="showdata(4);">
+                            <a href="conversations.php">
                                 <i class="fa fa-comments"></i> <span>Conversations</span>
                             </a>
                         </li>
 
                         <li>
-                            <a onclick="showdata(5);">
+                            <a href="history.php">
                                 <i class="fa  fa-clock-o"></i> <span>History</span>
                             </a>
                         </li>

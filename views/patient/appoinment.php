@@ -30,7 +30,21 @@
         <!--[if lt IE 9]>
 
         <![endif]-->
-		
+		 <?php
+			require_once '../../core/init.php';
+			$arr=[];
+			require('header.php');
+			require('navigation.php');
+			
+			
+
+			foreach(Session::get('patient') as $pid)
+			{
+				break;
+			}
+	
+		?>
+		 
 		 <script type="text/javascript" src="jquery-2.1.3.js"> </script>
 
 		 <script type="text/javascript">
@@ -51,20 +65,47 @@
 				
 				
 
+				});
+			
 			});
-				
-			
-			
-			
-			
-		});
 		
-				$(".date").datepicker({
+			$(".date").datepicker({
 				  onSelect: function() {
 					$(this).change();
 				
 				  }
+			});
+			
+			
+			
+			
+			              
+				
+			  $.ajax({    //create an ajax request to load_page.php
+				type: "GET",
+				url: "<?php echo "appoinmentlist.php?id=".$currentPatient['patient_Id'] ?>",             
+				dataType: "html",   //expect html to be returned                
+				success: function(response){                    
+					$("#box").html(response); 
+					//alert(response);
+				}
+						
 				});
+			
+			 $.ajax({    //create an ajax request to load_page.php
+				type: "GET",
+				url: "<?php echo "appoinmentdelete.php?id=".$currentPatient['patient_Id'] ?>",             
+				dataType: "html",   //expect html to be returned                
+				success: function(response){                    
+					$("#delete").html(response); 
+					//alert(response);
+				}
+						
+				});
+				
+		
+			
+			
 				
 	
 		
@@ -85,20 +126,7 @@
 	
 	
 	
-	<?php
-	require_once '../../core/init.php';
-	$arr=[];
-	require('header.php');
-	require('navigation.php');
 	
-	
-
-	foreach(Session::get('patient') as $pid)
-	{
-		break;
-	}
-	
-	?>
 		
 
 
@@ -133,9 +161,9 @@
                             <div class="nav-tabs-custom">
                                 <!-- Tabs within a box -->
                                 <ul class="nav nav-tabs pull-right">
-                                    <li class="active"><a href="#add-appoinment" data-toggle="tab">Add Appoinment</a></li>
-                                    <li><a href="#edit-appoinment" data-toggle="tab">Edit Appoinment</a></li>
-                                    <li class="pull-left header"><i class="fa fa-clock-o"></i><i class="fa fa-calendar"></i> Appoinment</li>
+                                    <li class="active"><a href="#add-appoinment" data-toggle="tab">Add Appointment</a></li>
+                                    <li><a href="#edit-appoinment" data-toggle="tab">Delete Appointment</a></li>
+                                    <li class="pull-left header"><i class="fa fa-clock-o"></i><i class="fa fa-calendar"></i> Appointment</li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <!-- Morris chart - Sales -->
@@ -153,18 +181,18 @@
                                                     <!-- appoinment title input -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Title</label>
-                                                        &nbsp;&nbsp;<input type="text" class="form-control" placeholder="Enter the appoinment title ..." name="title" required/>
+                                                        &nbsp;&nbsp;<input type="text" width="48" class="form-control" placeholder="Enter the appoinment title ..." name="title" required/>
                                                     </div>
                                                     <!--/appoinment title input-->
                                                     <!-- Discription of appoinment -->
                                                     <div class="form-group">
-                                                        <label>&nbsp;&nbsp;Discription</label>
+                                                        <label>&nbsp;&nbsp;Descriptions</label>
                                                         &nbsp;&nbsp;<textarea class="form-control" rows="3" placeholder="Enter appoinment discription ..." name="description" required></textarea>
                                                     </div>
                                                     <!--/Discription of appoinment -->
                                                     <!-- Date dd/mm/yyyy -->
                                                     <div class="form-group">
-                                                        <label>&nbsp;&nbsp;Appoinment Date:</label>
+                                                        <label>&nbsp;&nbsp;Appointment Date:</label>
 														&nbsp;&nbsp;
                                                         <div class="input-group">
                                                             &nbsp;<div class="input-group-addon">
@@ -182,10 +210,11 @@
 
                                                     <!--Time picker-->
                                                     <div class="form-group">
-													<label>&nbsp;&nbsp;Time</label>
+													<label>&nbsp;&nbsp;Time </label>
 													<div id="responsecontainer" align="center">
 													</div>
-
+												&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                                                      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 													  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 													   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -195,9 +224,10 @@
 														   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 														    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 															 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-															  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<button class="btn btn-primary" type="submit">
-                                                        &nbsp;&nbsp;Add
-													</button>
+															  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+															  <button class="btn btn-primary" type="submit" id="add">&nbsp;&nbsp;Add</button>
+															  
+															
 
                                                     <div class="right">
 
@@ -227,81 +257,30 @@
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-appoinment" style="position: relative; height: 1000px;">
                                         <div class="box-header" style="cursor: move;">
-                                            <h3 class="box-title">&nbsp;&nbsp;Edit a new appoinment</h3>
+                                            <h3 class="box-title">&nbsp;&nbsp;Delete Appointment</h3>
                                         </div>
-
-                                        <!--Edite Appoinment-->
-                                        <div class="form-group">
-
-                                            <label>
-
-                                                &nbsp;&nbsp;Select Appoinment
-
-                                            </label>
-                                            <select class="form-control">
-                                                <option>
-
-                                                   &nbsp;&nbsp;Suger Checking
-
-                                                </option>
-                                                <option>
-
-                                                   &nbsp;&nbsp;M R I Scan..
-
-                                                </option>
-                                                <option>
-                                                    &nbsp;&nbsp;About blood report
-                                                </option>
-                                            </select>
-
-                                        </div>
-
-                                        <!-- Date dd/mm/yyyy -->
-                                        <div class="form-group">
-                                            <label>&nbsp;&nbsp;Appoinment Date:</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <input id="calander" type="date" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask/>
-                                            </div><!-- /.input group -->
-                                        </div><!-- /.form group -->
-
-                                        <!-- Date mm/dd/yyyy -->
-
-                                        <!--Time picker-->
-                                        <div class="form-group">
-                                            <label>&nbsp;&nbsp;Appoinment Time:</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o"></i>
-                                                </div>
-                                                <input  type="time" class="form-control calendar-time " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask/>
-                                            </div><!-- /.input group -->
-                                        </div><!-- /.form group -->
-                                        <div class="right">
-
-                                            <button class="btn btn-danger right pull-right">
-                                                &nbsp;&nbsp;Detete
-                                            </button>
-
-
-											
-											
-											
-                                        </div>
-
-                                        <div class="right">
-
-                                            <button class="btn btn-primary right pull-right">
-                                                &nbsp;&nbsp;Add
-                                            </button>
-
-
-                                        </div>
-
-
-
+									</br>
+                                       
+										<form method='POST' action=<?php echo "appoinmentdelete2.php?id=".$currentPatient['patient_Id'] ;?>> 
+										<div id="delete" >
+										</div>
+											&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                                                     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+													    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+														    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+															 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+															  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+										<button class="btn btn-danger" type='submit' id="deletebutton">Delete</button>
+										
+										
+										<form>
+										<div id='ok'></div>
 
 
 
@@ -344,143 +323,14 @@
                             </div><!-- /.box -->
 
                             <!--event display-->
-
-                            <div class="box  box-solid">
-                                <div class="box-header">
-                                    <i class="fa fa-eye"></i>
-                                    <h3 class="box-title"> Event List</h3>
-
-                                    <table class="table box-solid">
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Date
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    Time
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label>
-                                                    Titel
-                                                </label>
-                                            </td>
-                                            <td>
-                                                Check <!-- if docter check it and give comment and do click chech box -->
-                                            </td>
-                                        </tr>
-                                        <!--Apoinment shedule-->
-
-                                        <!-- tools box -->
-                                        <div class="pull-right box-tools">
-                                            <!-- button with a dropdown -->
-                                            <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-
-
-                                        </div><!-- /. tools -->
-
-
-
-                                        <div class="box box-body no-padding ">
-
-                                            <tr >
-                                                <td>
-                                                    <label>
-                                                        03/09/2014
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        14:30h
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Check Suger
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <div class="icheckbox_minimal" style="position: relative;" aria-checked="false" aria-disabled="false">
-
-                                                        <input type="checkbox" disabled="" style="position: absolute; opacity: 0;"></input>
-                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width…roll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;"></ins>
-                                                    </div>
-                                                    <ul class="dropdown-menu">
-                                                        <!--Doctor's Comment-->
-                                                        <p>
-                                                            <label>
-                                                                thes testin
-                                                            </label>
-                                                        </p>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr class="box box-solid bg-yellow"> <!--Argent= yellow col0ur-->
-                                                <td>
-                                                    <label>
-                                                        03/10/2014
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        14:00h
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        About blod report
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <div class="icheckbox_minimal" style="position: relative;" aria-checked="false" aria-disabled="false">
-
-                                                        <input type="checkbox" disabled="" style="position: absolute; opacity: 0;"></input>
-                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width…roll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;"></ins>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="box box-solid ">
-                                                <td>
-                                                    <label>
-                                                        05/10/2014
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        08:00h
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label>
-                                                        Do MRI scan
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <div class="icheckbox_minimal" style="position: relative;" aria-checked="false" aria-disabled="false">
-
-                                                        <input type="checkbox" disabled="" style="position: absolute; opacity: 0;"></input>
-                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width…roll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;"></ins>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <!--/Apoinment shedule-->
-
-
-                                        </div>
-
-
-                                        </tbody>
-                                    </table>
-
-                                </div>
+							
+                            <div class="box  box-solid" id="box">
+                                
 
 
 
 
-
+							</div>
                                 <!--/Event display-->
 
 
