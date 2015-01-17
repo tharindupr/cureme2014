@@ -49,8 +49,10 @@ include ('navigation.php');
 
 //getting the values from the created session
 
- 
+ $patientid=$_GET['id'];
+ //echo $patientid;
 
+ 
 $arr=[];
 foreach(Session::get('patient') as $t)
 {

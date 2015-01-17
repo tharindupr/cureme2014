@@ -2,15 +2,11 @@
 <html>
     <head>
 	<?php
-require_once 'header.php';
-require_once 'navigation.php';
-
-
-
-
-?>	
+		require_once 'header.php';
+		require_once 'navigation.php';
 	
-	    <meta charset="UTF-8">
+	?>
+        <meta charset="UTF-8">
         <title>CureMe | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
@@ -32,90 +28,117 @@ require_once 'navigation.php';
         <!-- Theme style -->
         <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-        <script type="text/javascript" src="../../js/jquery-2.1.3.js"> </script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
 
-		<script type="text/javascript">
-		
-		$(document).ready(function() {
-				
-				$("#search-btn").click(function() { 
-							  
-			
-				  $.ajax({    //create an ajax request to load_page.php
-					type: "GET",
-					url: "retreaive_prescription.php?id="+$("#pid").val(),             
-					dataType: "html",   //expect html to be returned                
-					success: function(response){                    
-						$("#box").html(response); 
-						//alert(response);
-					}
-							
-					});
-				
-				});
-					
-		
-			
-			});
-
-		</script>
+        <![endif]-->
     </head>
-    <body class="skin-blue">
-       
-
-            <!-- Right side column. Contains the navbar and content of the page -->
-            <aside class="right-side">
-			
+	<body>
+	<?php 
+	require_once '../../core/init.php';
+	
+	
+	$pid=$currentPatient['patient_Id'];
+	
+	$db=DB::getInstance();
+	$db->query('SELECT * FROM Prescriptions WHERE patient_Id = '.$pid.'');
+	$a=$db->results();
+	//print_r($a);
+	
+	
+	
+	
+	$presid=($a[0]->prescription_Id);
+	$date=($a[0]->date);
+	
+	
+	
+	
+	
+   
+		
+	?>
+		 <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Prescriptions
-
+                        Prescription
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Prescriptions</li>
+                        <li class="active">Prescription</li>
                     </ol>
                 </section>
 
-                   
-
                 <!-- Main content -->
                 <section class="content">
+				    <!-- Main row -->
+                    
+						<?php
+							foreach ($a as $ab){
+                            
+                            echo "<div class='row'>
+                        <!-- Left col -->
+                        <section class='col-lg-7 connectedSortable'>
+							<div class='nav-tabs-custom'>
+                                <!-- Tabs within a box -->
+                                <ul class='nav nav-tabs pull-right'>
+                                    
+                                    <li class='pull-left header'><i class='fa fa-file-text-o'></i> Prescription Details</li>
+                                </ul>
+                                <div class='tab-content no-padding'>
+                                    <!-- Morris chart - Sales -->
+                                    <div class='chart tab-pane active' id='view-chart' style='position: relative; height: 70px;'>
+                                        <div class='row'>
+                                            <div class='col-xs-12'>
+                                                
 
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title">Select Prescription</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                          
-                                <div class="input-group">
-                                    <input type="text" name="txtpresid" id="pid" class="form-control" placeholder="Enter Prescription ID here.....">
-                            <span class="input-group-btn">
-                                <button  name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"'></i></button>
-                            </span>
-                                </div>
-                           
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
+                                                    <div class='box-body table-responsive no-padding'>
+                                                        <table class='table table-hover'>
+
+                                                            <tr>
+                                                                <td>Prescription ID </td>
+
+                                                                <td>".$ab->prescription_Id."</td>
+
+                                                            </tr>
+															
+															<tr>
+                                                                <td>Date </td>
+
+                                                                <td>".$ab->date."</td>
+
+                                                            </tr>
+
+
+                                                          
+
+                                                        </table>
+                                                    </div><!-- /.box-body -->
+                                                
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <!--Edit form-->
+                                    
+                               
+                            </div><!-- /.box (chat box) -->
+
+                        </section><!-- right col -->
+                    </div><!-- /.row (main row) -->";
+					}
+					?>
 					
 					
-
-
-
-
 
                 </section><!-- /.content -->
-				
-				<div id='box'>
-		
-				</div>
             </aside><!-- /.right-side -->
-			
-		
-        </div><!-- ./wrapper -->
 
-        <!-- add new calendar event modal -->
+        
 
 
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -128,7 +151,7 @@ require_once 'navigation.php';
         <!-- Bootstrap -->
         <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="../../cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="../../js/plugins/morris/morris.min.js" type="text/javascript"></script>
         <!-- Sparkline -->
         <script src="../../js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>

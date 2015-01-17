@@ -16,6 +16,18 @@ class Prescription {
 		
 	}
 	
+	public function update($id,$fields)
+	{
+		$this->_db->update('prescriptions',$id,$fields);
+		//$this->_db->query('UPDATE patient SET patient_FName = ? WHERE patient_Id=100000',array("patient_FName"=>"Tharindddd"));
+		/*if(!($this->_db->update('patient',$id,$fields))){
+		
+			throw new Exception('There was a problem creating an account');
+		
+		}*/
+		
+	}
+	
 	public function getKey()
 	{
 		$this->_db->query('SELECT MAX(prescription_Id) FROM prescriptions;',array());

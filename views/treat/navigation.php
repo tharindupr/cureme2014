@@ -1,79 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<script>
 		
-		function showdata(n)
-		{
-			
-
-			if (window.XMLHttpRequest)
-			{
-				xmlhttp = new XMLHttpRequest();
-			}
-			else
-			{
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				
-			}
-			xmlhttp.onreadystatechange=function()
-			{
-				if(xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					
-						document.getElementById("content").innerHTML=xmlhttp.responseText;
-						//xmlhttp.open("GET","signupPatient.html",true);
-				}
-			}
-			
-			
-			if(n==1)
-			{
-				xmlhttp.open("GET","profile.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==2)
-			{
-				xmlhttp.open("GET","appoinment.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==3)
-			{
-				xmlhttp.open("GET","report.php",true);
-				xmlhttp.send();
-			}
-			
-			
-			if(n==4)
-			{
-				xmlhttp.open("GET","conversations.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==5)
-			{
-				xmlhttp.open("GET","history.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==6)
-			{
-				xmlhttp.open("GET","prescription.php",true);
-				xmlhttp.send();
-			}
-			
-			
-			
-			
-			//xmlhttp.open("GET","signupPharmacist.html",true);
-			
-
-		}
-		
-		</script>
-       
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -143,7 +71,7 @@
 						</li>
                         <li>
                             <a href="appoinment.php">
-                                <i class="fa fa-calendar"></i> <span>Appoinments</span>
+                                <i class="fa fa-calendar"></i> <span>Appointments</span>
                             </a>
                         </li>
 

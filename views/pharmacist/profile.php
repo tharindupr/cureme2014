@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+	<?php
+
+
+
+
+
+?>	
         <meta charset="UTF-8">
         <title>CureMe | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -32,6 +39,8 @@
 	<body>
 	<?php 
 	require_once '../../core/init.php';
+	require_once 'header.php';
+require_once 'navigation.php';
 	
 	
 	//getting the values from the created session
