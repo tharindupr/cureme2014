@@ -109,7 +109,7 @@
                 </div>
 			
 				               
-			   <textarea hidden name='patiend_Id' > <?phpecho $currentPatient['patient_Id'];?></textarea>
+			   <textarea hidden  name='patiend_Id' > <?php echo $currentPatient['patient_Id'];?></textarea>
 			   
                 <!--text area-->
                 <div class="form-group">

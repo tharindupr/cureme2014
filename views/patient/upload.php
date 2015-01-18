@@ -34,7 +34,7 @@ echo $maxkey;
 
 //$db->query("INSERT INTO cureme.`report` (`report_Id` ,`report_Type` ,`Date&Time` ,`Patient_patient_Id` ,`description`) VALUES (NULL ,  {$_POST['reporttype']},".date('Y-m-d h:i:sa').",  '{$_POST['patiend_Id']}',  {$_POST['description']})") ;
 
-$db->query("INSERT INTO `cureme`.`report` (`report_Id`, `report_Type`, `Date&Time`, `Patient_patient_Id`, `description`,`fileName`) VALUES (NULL,'".$_POST['reporttype']."', '".date('Y-m-d h:i:sa')."','".$_POST['patiend_Id']."','".$_POST['description']."','".$maxkey.".jpeg')");
+$db->query("INSERT INTO `cureme`.`report` (`report_Id`, `report_Type`, `created_Date`, `Patient_patient_Id`, `description`,`fileName`) VALUES (NULL,'".$_POST['reporttype']."', '".date('Y-m-d h:i:sa')."','".$_POST['patiend_Id']."','".$_POST['description']."','".$maxkey.".jpeg')");
 
 //$a=$db->results();
 
@@ -45,7 +45,7 @@ $db->query("INSERT INTO `cureme`.`report` (`report_Id`, `report_Type`, `Date&Tim
 
 
 $path = "../../img/reports/{$_POST['patiend_Id']}/";
-
+print_r($path);
 if ( ! is_dir($path)) {
     mkdir($path);
 }

@@ -47,56 +47,87 @@ require_once 'navigation.php';
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Report Submission</li>
+            <li class="active">Submitted Report</li>
         </ol>
     </section>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+   <div class="row">
             <!-- left column -->
-            <div class="col-md-9">
+
     <!-- general form elements -->
-    <div class="box box-primary">
+	
+   
+	<div class='col-sm-4'>
+	<?php  
+	require_once('../../core/init.php');
+	$arr=[];
+	foreach(Session::get('patient') as $t)
+	{
+		array_push($arr,"{$t}");;
+	}
 
-        <!-- form start -->
-        <form role="form">
-            <div class="box-body">
-                <div class="form-group">
-                    <label for="ReportType">Report type</label>
-                    <!--drop box-->
+	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
+	
+	
+	
+	
+	$db=DB::getInstance();
 
-                    <th><select name="Report type">
-                    <option >A</option>
-                    <option >B</option>
-                    <option >C</option>
-                    </select></th>
+	$db->query("SELECT * FROM report WHERE Patient_patient_Id=".$currentPatient['patient_Id']." order by report_Id desc limit 10");
+	
+	//print_r($db->results());
+	
+	
+	foreach ($db->results() as $report)
+	{
+	
+		$rp = array();
+		foreach ($report as $key => $value) {
+		$rp[$key]=	$value;			
+		}
+		//print_r($rp);
+		
+		$reportType=$rp['report_Type'];
+		$dateTime=$rp['created_Date'];
+		$description=$rp['description'];
+		$img=$rp['fileName'];
+		
+		
+		
+		//echo $reportType;
+	
+	
+	echo"
+		<a href='../../img/reports/ ".$currentPatient['patient_Id']."/".$img."' >
+		<div class='box box-primary' style='height:550px; width:250px;'>
+		<div class='box-header' data-toggle='tooltip' title='' data-original-title='Header tooltip'>
+                <h5 class='box-title'>".$reportType."</h5>
 
-
-                </div>
-                <div class="form-group">
-                    <label for="DATE">Date</label>
-                    <input type="date" class="form-control" id="DATE" placeholder="date">
-                </div>
-                <!--text area-->
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                </div>
-                <!-- text area-->
-                <div class="form-group">
-                    <label for="exampleInputFile">Add report</label>
-                    <input type="file" id="exampleInputFile">
-
-                </div>
-
-            </div><!-- /.box-body -->
-
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </form>
+            <div class='box-body'>
+
+                <img src='../../img/reports/ ".$currentPatient['patient_Id']."/".$img."' class='img-rounded' alt='User Image'>
+
+                <p>
+                    Submitted Date:</br>".$dateTime."</br>
+					</br>
+                    Description :</br>". $description."
+                   
+					
+                </p>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+		
+        </a>
+		</div>
+		
+		<div class='col-sm-4'>
+        "; 
+	}
+     ?>  
     </div><!-- /.box -->
-    </div>
+    
 
 
     <!-- right col (We are only adding the ID to make the widgets sortable)-->
