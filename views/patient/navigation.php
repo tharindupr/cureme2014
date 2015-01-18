@@ -71,7 +71,7 @@
 						</li>
                         <li>
                             <a href="appoinment.php">
-                                <i class="fa fa-calendar"></i> <span>Appoinments</span>
+                                <i class="fa fa-calendar"></i> <span>Appointments</span>
                             </a>
                         </li>
 
@@ -99,6 +99,11 @@
                                 <i class="fa fa-file-text-o"></i> <span>Prescription</span>
                             </a>
                         </li>
+						<li>
+							<a href='healthtips.php'>
+								<i class="fa  fa-heart"></i> <span>Health Tips</span>
+							</a>
+						</li>
 
 
 

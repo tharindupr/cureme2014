@@ -48,43 +48,75 @@ $arr=[];
 				
 				if ($drug1_name!=null){
 					$d=DB::getInstance();
-					$d->query("SELECT * FROM drug WHERE Generic ='".$drug1_name."' ");
-					$e=$d->results();
-					$drug1_brand=($e[0]->Brand);
+					//$d->query("SELECT * FROM drug WHERE Generic ='".$drug1_name."' ");
+					//print_r($d->query("SELECT * FROM drug WHERE Generic ='".$drug1_name."' ")->results()); 
+					if ($d->query("SELECT * FROM drug WHERE Generic ='".$drug1_name."' ")->results())
+					{
+						$e=$d->results();
+						$drug1_brand=($e[0]->Brand);
+					}
+					else{
+						
+						$drug1_brand="";
+					}
+					
 				}else{
 					$drug1_brand="";
 				}
 				
 				if ($drug2_name!=null){
 					//$drug2_brand=($e[0]->Brand);
-					$d->query("SELECT * FROM drug WHERE Generic ='".$drug2_name."' ");
-					$p=$d->results();
-					$drug2_brand=($p[0]->Brand);
+					//$d->query("SELECT * FROM drug WHERE Generic ='".$drug2_name."' ");
+					if ($d->query("SELECT * FROM drug WHERE Generic ='".$drug2_name."' ")->results())
+					{
+						$p=$d->results();
+						$drug2_brand=($p[0]->Brand);
+					}
+					else{
+						
+						$drug2_brand="";
+					}
 				}else{
 					$drug2_brand="";
 				}
 				
 				if ($drug3_name!=null){
-					$db->query("SELECT * FROM drug WHERE Generic = '".$drug3_name."'");
-					$f=$db->results();
-					$drug3_brand=($f[0]->Brand);
+					//$db->query("SELECT * FROM drug WHERE Generic = '".$drug3_name."'");
+					if ($d->query("SELECT * FROM drug WHERE Generic ='".$drug3_name."' ")->results())
+					{
+						$f=$db->results();
+						$drug3_brand=($f[0]->Brand);
+					}
+					else{
+						$drug3_brand="";
+					}
 				}else{
 					$drug3_brand="";
 				}
 				
 				if ($drug4_name!=null){
-					$db->query("SELECT * FROM drug WHERE Generic ='".$drug4_name."'");
-					$g=$db->results();
-					$drug4_brand=($g[0]->Brand);
+					//$db->query("SELECT * FROM drug WHERE Generic ='".$drug4_name."'");
+					if ($d->query("SELECT * FROM drug WHERE Generic ='".$drug4_name."' ")->results())
+					{
+						$g=$db->results();
+						$drug4_brand=($g[0]->Brand);
+					}else{
+						$drug4_brand="";
+					}
 				}else{
 					$drug4_brand="";
 				}
 				
 				
 				if ($drug5_name!=null){
-					$db->query("SELECT * FROM drug WHERE Generic = '".$drug5_name."'");
-					$h=$db->results();
-					$drug5_brand=($h[0]->Brand);
+					//$db->query("SELECT * FROM drug WHERE Generic = '".$drug5_name."'");
+					if ($d->query("SELECT * FROM drug WHERE Generic ='".$drug4_name."' ")->results())
+					{
+						$h=$db->results();
+						$drug5_brand=($h[0]->Brand);
+					}else{
+					$drug5_brand="";
+					}
 				}
 				else{
 					
