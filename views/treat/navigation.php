@@ -41,7 +41,7 @@
                             <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, <?php echo "{$currentPatient['patient_FName']}" ;?></p>
+                            <p>You are treating patient <?php echo " {$currentPatient['patient_FName']}" ;?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -70,7 +70,7 @@
 							
 						</li>
                         <li>
-                            <a href="appoinment.php">
+                            <a href="appoinmentcheck.php">
                                 <i class="fa fa-calendar"></i> <span>Appointments</span>
                             </a>
                         </li>
