@@ -85,8 +85,7 @@ require_once 'navigation.php';
 
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li ><a href="../doctor/select_patient.php">Patients</a></li>
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Appoinment</li>
                     </ol>
                 </section>

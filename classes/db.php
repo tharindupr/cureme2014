@@ -89,7 +89,9 @@ class DB{
 	
 	public function delete($table,$where)
 	{
-		return ($this->action('DELETE *',$table,$where));
+
+		return ($this->action('DELETE ',$table,$where));
+		echo "point 1";
 	}
 	public function insert($table,$fields=array())
 	{
@@ -180,7 +182,75 @@ class DB{
 			return false;
 		}
 	}
-/////////////////////////////////////////////////////////////////	
+/////////////////////////////////////////////////////////////////
+
+
+
+	public function answerToQuestion($table,$id,$fields)
+	{
+		
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="UPDATE {$table} SET {$set} WHERE question_Id={$id}";
+		
+		echo $sql;
+		print_r ($fields);
+	
+		if($this->query($sql,$fields)->error()){
+				
+			
+				
+				return true;
+			}
+		return false;
+	}
+
+
+///////////////////////////////////////////////
+
+	public function deleteQuestion($table,$id,$fields)
+	{
+		
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="DELETE * FROE {$table}  WHERE question_Id={$id}";
+		
+		echo $sql;
+		print_r ($fields);
+	
+		if($this->query($sql,$fields)->error()){
+				
+			
+				
+				return true;
+			}
+		return false;
+	}
+
+
+
+
+///////////////////////////////////////////////////////	
 	
 	public function error(){
 		return $this->_error; 

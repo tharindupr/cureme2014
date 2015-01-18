@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<?php
-	require_once 'header.php';
-require_once 'navigation.php';
-	
-	
-	?>
-	
-	
         <meta charset="UTF-8">
         <title>CureMe | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -36,46 +28,8 @@ require_once 'navigation.php';
         <!--[if lt IE 9]>
 
         <![endif]-->
-		
-		<script>
-					$(document).ready(function(){
-					$('.button').click(function(){
-						var clickBtnValue = $(this).val();
-						var ajaxurl = 'ajax.php',
-						data =  {'action': clickBtnValue};
-						$.post(ajaxurl, data, function (response) {
-							// Response div goes here.
-							alert("action performed successfully");
-						});
-					});
-
-				});
-		</script>
-		
-		
     </head>
     <body class="skin-blue">
-	
-	
-	
-	<?php
-	require_once '../../core/init.php';
-	$arr=[];
-
-	foreach(Session::get('patient') as $pid)
-	{
-		break;
-	}
-	
-	
-	
-	
-	
-	
-	
-	//$a->create($_POST['date'],$_POST['time'],$_POST['title'],$_POST['description'],$pid);
-
-	?>
       
                    <aside class="right-side">
                 <!-- Content Header (Page header) -->
@@ -85,8 +39,7 @@ require_once 'navigation.php';
 
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li ><a href="../doctor/select_patient.php">Patients</a></li>
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Appoinment</li>
                     </ol>
                 </section>
@@ -123,17 +76,17 @@ require_once 'navigation.php';
                                                 <h3 class="box-title">&nbsp;&nbsp;Create a new appoinment</h3>
                                             </div><!-- /.box-header -->
                                             <div class="box-body">
-                                                <form role="form" action="appoinmentpost.php" method="POST">
+                                                <form role="form">
                                                     <!-- appoinment title input -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Title</label>
-                                                        <input type="text" class="form-control" placeholder="Enter the appoinment title ..." name="title" required/>
+                                                        <input type="text" class="form-control" placeholder="Enter the appoinment title ..."/>
                                                     </div>
                                                     <!--/appoinment title input-->
                                                     <!-- Discription of appoinment -->
                                                     <div class="form-group">
                                                         <label>&nbsp;&nbsp;Discription</label>
-                                                        <textarea class="form-control" rows="3" placeholder="Enter appoinment discription ..." name="description" required></textarea>
+                                                        <textarea class="form-control" rows="3" placeholder="Enter appoinment discription ..."></textarea>
                                                     </div>
                                                     <!--/Discription of appoinment -->
                                                     <!-- Date dd/mm/yyyy -->
@@ -143,7 +96,7 @@ require_once 'navigation.php';
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <input id="calander" type="DATE" name="date" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required/>
+                                                            <input id="calander" type="DATE" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask/>
                                                         </div><!-- /.input group -->
                                                     </div><!-- /.form group -->
 
@@ -151,18 +104,18 @@ require_once 'navigation.php';
 
                                                     <!--Time picker-->
                                                     <div class="form-group">
-                                                        <label>&nbsp;&nbsp;Appoinment Time:</label>
+                                                        <label>Appoinment Time:</label>
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-clock-o"></i>
                                                             </div>
-                                                            <input  type="time" name="time" class="form-control calendar-time " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required/>
+                                                            <input  type="time" class="form-control calendar-time " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask/>
                                                         </div><!-- /.input group -->
                                                     </div><!-- /.form group -->
 
-                                                    <button class="btn btn-primary right pull-right" type="submit">
-                                                        &nbsp;&nbsp;Add
-													</button>
+                                                    <button class="btn btn-primary right pull-right">
+                                                        Add
+                                                    </button>
 
                                                     <div class="right">
 
@@ -188,7 +141,7 @@ require_once 'navigation.php';
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-appoinment" style="position: relative; height: 1000px;">
                                         <div class="box-header" style="cursor: move;">
-                                            <h3 class="box-title">&nbsp;&nbsp;Edit a new appoinment</h3>
+                                            <h3 class="box-title">Edit a new appoinment</h3>
                                         </div>
 
                                         <!--Edite Appoinment-->
@@ -196,22 +149,22 @@ require_once 'navigation.php';
 
                                             <label>
 
-                                                &nbsp;&nbsp;Select Appoinment
+                                                Select Appoinment
 
                                             </label>
                                             <select class="form-control">
                                                 <option>
 
-                                                   &nbsp;&nbsp;Suger Checking
+                                                   Suger Checking
 
                                                 </option>
                                                 <option>
 
-                                                   &nbsp;&nbsp;M R I Scan..
+                                                    M R I Scan..
 
                                                 </option>
                                                 <option>
-                                                    &nbsp;&nbsp;About blood report
+                                                    About blood report
                                                 </option>
                                             </select>
 
@@ -219,7 +172,7 @@ require_once 'navigation.php';
 
                                         <!-- Date dd/mm/yyyy -->
                                         <div class="form-group">
-                                            <label>&nbsp;&nbsp;Appoinment Date:</label>
+                                            <label>Appoinment Date:</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
@@ -232,7 +185,7 @@ require_once 'navigation.php';
 
                                         <!--Time picker-->
                                         <div class="form-group">
-                                            <label>&nbsp;&nbsp;Appoinment Time:</label>
+                                            <label>Appoinment Time:</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
@@ -243,7 +196,7 @@ require_once 'navigation.php';
                                         <div class="right">
 
                                             <button class="btn btn-danger right pull-right">
-                                                &nbsp;&nbsp;Detete
+                                                Detete
                                             </button>
 
 
@@ -252,7 +205,7 @@ require_once 'navigation.php';
                                         <div class="right">
 
                                             <button class="btn btn-primary right pull-right">
-                                                &nbsp;&nbsp;Add
+                                                Add
                                             </button>
 
 

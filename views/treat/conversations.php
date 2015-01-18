@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+
+
+require_once 'header.php';
+require_once 'navigation.php';
+
+
+?>
+
+
+
+
+
     <meta charset="UTF-8">
     <title>CureMe | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -34,15 +47,13 @@
 <?php
 require_once '../../core/init.php';
 $arr=[];
-require('header.php');
-require('navigation.php');
+//require('header.php');
+//require('navigation.php');
 
 foreach(Session::get('patient') as $pid)
 {
 	break;
 }
-
-
 
 ?>
 
@@ -51,36 +62,17 @@ foreach(Session::get('patient') as $pid)
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-       Conversations
+       Conversations 
 
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li ><a href="../doctor/select_patient.php">Patients</a></li>
         <li class="active">Conversations</li>
     </ol>
 </section>
-
-    <section class="content">
-    <div class="col-md-12">
-    <form role="form" method="post" action="questionpost.php" style="width:100% ">
-		
-        <div class="box-body">
-            <div class="form-group">
-                <label>Post you question here</label>
-				
-				<textarea class="form-control" rows="1" required="required" placeholder="Subject" name="subject"></textarea>
-				
-                <textarea class="form-control" rows="3" required="required" placeholder="Question" name="question"></textarea>
-				
-            </div>
-
-         </div><!-- /.box-body -->
-
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Post</button>
-        </div>
-    </form>
-    </div>
+    
+ 
 
         &nbsp;<br>
         &nbsp;<br>
@@ -112,6 +104,7 @@ foreach(Session::get('patient') as $pid)
                         <i class="fa fa-envelope bg-blue"></i>
 						
 						<?php 
+
 						 foreach($a as $i)
 						 {	
 							$ray=array();
@@ -121,36 +114,52 @@ foreach(Session::get('patient') as $pid)
 							}
 							
 							echo(
+
+                                
 							" <div class=\"timeline-item\">
                             <span class=\"time\"><i class=\"fa fa-clock-o\"></i>".$ray[2]."</span>
-                            <h3 class=\"timeline-header\"><a href=\"#\">".$ray[5]."</a> </h3>
+                            <h3 class=\"timeline-header\" ><a href=\"#\">".$ray[5]."</a> </h3>
                             <div class=\"timeline-body\">
-                                ".$ray[1]);
-                            if($ray[4]!=""){
-                                    echo    "<hr/><h6 class=\"timeline-header font\"><a href=\"#\">DrAnura Sampaths</a></h6>". $ray[4].
-                                    "<br/>
-                                    </div>
+                                ".$ray[1].
+                            "<div class=\"timeline-body\">");
+
+
+                                if($ray[4]!=""){
+                                    echo    "<h5 class=\"timeline-header font\"><a href=\"#\">Dr.Anura Sampath </a></h5>". $ray[4].
+                                    "<br/>".
+                                    "<form action=\"deleteAnswer.php\" method=\"POST\">
+                                    <input  hidden type=\"text\" name=\"qid\" value=\"{$ray[0]}\">
+                                    <button type=\"submit\" class=\"btn btn-danger btn-xs\">Delete</button>
+                                    </form>
                                     ";
 
                                     
-                                }
-                                else{
-                               echo("</div> <div class=\'timeline-footer\'>
-                               <form action=\"deleteConversation.php\" method=\"POST\">
-                               <input  hidden type=\"text\" name=\"qid\" value=\"{$ray[0]}\">
-                                <button class=\"btn btn-danger btn-xs\">Delete</button>
+                                }                           
+
+                                if($ray[4]==""){
+                                    echo("
+                                <form action=\"postAnswer.php\" method=\"POST\">
+                               
+                                <input class=\"form-control\" type=\"text\" name=\"comment\" placeholder=\"Enter comment\"/>
+
+                                <input  hidden type=\"text\" name=\"qid\" value=\"{$ray[0]}\">
+                            ".
+                            "<div class=\'timeline-footer\'>
+                             <button type=\"submit\" id=\"adddrug\" class=\"btn btn-primary  btn-xs\" >
+                                   post comment
+                                </button>
                                 </form>
-                            </div>");
-                           }
-							echo "</div>";
+                                </div>");
+                                }
+                                echo("</div> </div>
+							</div>");
 							
 							
 						 }
 						?>
                         
                     </li>
-
-
+                    
                     <!-- END timeline item -->
                     <li>
                         <i class="fa fa-clock-o"></i>
@@ -166,8 +175,6 @@ foreach(Session::get('patient') as $pid)
 
 </section><!-- /.content -->
 </aside><!-- /.right-side -->
-
-
 
 
 

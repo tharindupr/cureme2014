@@ -93,7 +93,7 @@
                     <label for="ReportType">Report type</label>
                     <!--drop box-->
 					&nbsp&nbsp&nbsp
-                    <th><select id="reporttype" required >
+                    <th><select name="reporttype" required >
                     <option >Full Blood Count</option>
                     <option >Haemoglobin Count</option>
                     <option >Platelets Count </option>
@@ -111,7 +111,7 @@
                 <!--text area-->
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" id='description' placeholder="Enter ..." required></textarea>
+                    <textarea class="form-control" rows="3" name='description' placeholder="Enter ..." required></textarea>
                 </div>
                 <!-- text area-->
                 <div class="form-group">

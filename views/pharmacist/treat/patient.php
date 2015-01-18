@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php
-require_once 'header.php';
-require_once 'navigation.php';
-
-?>
-
     <meta charset="UTF-8">
     <title>CureMe | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -38,57 +32,40 @@ require_once 'navigation.php';
 <body class="skin-blue">
 
 
+<?php
+require_once('../../core/init.php');
+
+$_db=DB::getInstance();
+$data=$_db->get('patient',array('patient_Id','=',$_GET['id']));
+
+$p=$data->results();
 
 
-<!-- Right side column. Contains the navbar and content of the page -->
-<aside class="right-side">
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        History
+Session::put('patient',$p[0]);
 
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li ><a href="../doctor/select_patient.php">Patients</a></li>
-        <li class="active">History</li>
-    </ol>
-</section>
-
-<!-- Main content -->
-<section class="content">
+include ('header.php');
+include ('navigation.php');
 
 
+//getting the values from the created session
+
+ 
+
+$arr=[];
+foreach(Session::get('patient') as $t)
+{
+	array_push($arr,"{$t}");;
+}
+
+$currentPatient=array('patient_Id'=>"{arr[0]}",'active'=>"{arr[1]}",'patient_FName'=>"{arr[2]}",'email'=>"{arr[3]}",'address_No'=>"{arr[4]}",'address_Street' =>"{arr[5]}",'address_City' => "{arr[6]}",'date_Of_Birth' => "{arr[7]}",'mobile_Number' => "{arr[8]}",'gender' =>"{arr[9]}",'date_Of_Registration'=>"{arr[10]}",'password' =>"{arr[11]}");
 
 
-<!-- Main row -->
-<div class="row">
-<!-- Left col -->
-<section class="col-lg-7 connectedSortable">
-
-
-
-
-
-
-
+//print_r($currentPatient);
+$_POST['cp']=$currentPatient;
+?>
 
 
 
-</section><!-- /.Left col -->
-<!-- right col (We are only adding the ID to make the widgets sortable)-->
-<section class="col-lg-5 connectedSortable">
-
-
-
-
-
-
-</section><!-- right col -->
-</div><!-- /.row (main row) -->
-
-</section><!-- /.content -->
-</aside><!-- /.right-side -->
 
 
 
@@ -102,7 +79,7 @@ require_once 'navigation.php';
 <!-- Bootstrap -->
 <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
 <!-- Morris.js charts -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="../../cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="../../js/plugins/morris/morris.min.js" type="text/javascript"></script>
 <!-- Sparkline -->
 <script src="../../js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>

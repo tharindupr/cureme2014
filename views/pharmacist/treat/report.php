@@ -8,7 +8,7 @@ require_once 'navigation.php';
 ?>
 
     <meta charset="UTF-8">
-    <title>CureMe | Dashboard</title>
+    <title>CureMe| Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,68 +32,90 @@ require_once 'navigation.php';
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="skin-blue">
 
-
-
-
-<!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        History
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Report Submission
 
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li ><a href="../doctor/select_patient.php">Patients</a></li>
-        <li class="active">History</li>
-    </ol>
-</section>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Report Submission</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-9">
+    <!-- general form elements -->
+    <div class="box box-primary">
 
-<!-- Main content -->
-<section class="content">
+        <!-- form start -->
+        <form role="form">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="ReportType">Report type</label>
+                    <!--drop box-->
 
-
-
-
-<!-- Main row -->
-<div class="row">
-<!-- Left col -->
-<section class="col-lg-7 connectedSortable">
-
-
-
-
-
-
-
-
-
-
-</section><!-- /.Left col -->
-<!-- right col (We are only adding the ID to make the widgets sortable)-->
-<section class="col-lg-5 connectedSortable">
+                    <th><select name="Report type">
+                    <option >A</option>
+                    <option >B</option>
+                    <option >C</option>
+                    </select></th>
 
 
+                </div>
+                <div class="form-group">
+                    <label for="DATE">Date</label>
+                    <input type="date" class="form-control" id="DATE" placeholder="date">
+                </div>
+                <!--text area-->
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+                <!-- text area-->
+                <div class="form-group">
+                    <label for="exampleInputFile">Add report</label>
+                    <input type="file" id="exampleInputFile">
+
+                </div>
+
+            </div><!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div><!-- /.box -->
+    </div>
+
+
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-2 connectedSortable">
 
 
 
 
-</section><!-- right col -->
-</div><!-- /.row (main row) -->
 
-</section><!-- /.content -->
-</aside><!-- /.right-side -->
+
+    </section><!-- /.content -->
 
 
 
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
+
+    <!-- /.content -->
+<!-- add new calendar event modal -->
+
 
 <!-- jQuery 2.0.2 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

@@ -15,6 +15,6 @@ $date = date('Y-m-d H:i:s');
 $question=new Question();
 $question->create(array('question_Content'=>$_POST['question'],'question_Date&Time'=>$date,'Patient_patient_Id'=>$currentPatient['patient_Id'],'subject'=>$_POST['subject']));
 
-header('Location: Conversations.php');
+header('Location: patient.php');
 
 ?>

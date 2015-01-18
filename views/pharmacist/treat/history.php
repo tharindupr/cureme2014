@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+require_once 'header.php';
+require_once 'navigation.php';
+
+?>
+
     <meta charset="UTF-8">
     <title>CureMe | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -29,147 +35,59 @@
 
     <![endif]-->
 </head>
-<body>
-
-<?php
-require_once '../../core/init.php';
-$arr=[];
-require('header.php');
-require('navigation.php');
-
-foreach(Session::get('patient') as $pid)
-{
-	break;
-}
+<body class="skin-blue">
 
 
 
-?>
 
-
+<!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-       Conversations
+        History
 
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Conversations</li>
+        <li class="active">History</li>
     </ol>
 </section>
 
-    <section class="content">
-    <div class="col-md-12">
-    <form role="form" method="post" action="questionpost.php" style="width:100% ">
-		
-        <div class="box-body">
-            <div class="form-group">
-                <label>Post you question here</label>
-				
-				<textarea class="form-control" rows="1" required="required" placeholder="Subject" name="subject"></textarea>
-				
-                <textarea class="form-control" rows="3" required="required" placeholder="Question" name="question"></textarea>
-				
-            </div>
-
-         </div><!-- /.box-body -->
-
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Post</button>
-        </div>
-    </form>
-    </div>
-
-        &nbsp;<br>
-        &nbsp;<br>
-		<?php 
-			  
-			  $db=DB::getInstance();
-			  $db->query('SELECT * FROM question WHERE Patient_patient_Id=?',array('Patient_patient_Id'=>$pid));
-			  $a=$db->results();
-			  //print_r($a);
-			  
-			  
-			  
-
-		?>
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- The time line -->
-                <ul class="timeline">
-                    <!-- timeline time label -->
-                    <li class="time-label">
-                                    <span class="bg-red">
-                                        Conversations
-                                    </span>
-                    </li>
-                    <!-- /.timeline-label -->
-                    <!-- timeline item -->
-                    <li>
-                        <i class="fa fa-envelope bg-blue"></i>
-						
-						<?php 
-						 foreach($a as $i)
-						 {	
-							$ray=array();
-							foreach($i as $j)
-							{
-								array_push($ray,$j);
-							}
-							
-							echo(
-							" <div class=\"timeline-item\">
-                            <span class=\"time\"><i class=\"fa fa-clock-o\"></i>".$ray[2]."</span>
-                            <h3 class=\"timeline-header\"><a href=\"#\">".$ray[5]."</a> </h3>
-                            <div class=\"timeline-body\">
-                                ".$ray[1]);
-                            if($ray[4]!=""){
-                                    echo    "<hr/><h6 class=\"timeline-header font\"><a href=\"#\">DrAnura Sampaths</a></h6>". $ray[4].
-                                    "<br/>
-                                    </div>
-                                    ";
-
-                                    
-                                }
-                                else{
-                               echo("</div> <div class=\'timeline-footer\'>
-                               <form action=\"deleteConversation.php\" method=\"POST\">
-                               <input  hidden type=\"text\" name=\"qid\" value=\"{$ray[0]}\">
-                                <button class=\"btn btn-danger btn-xs\">Delete</button>
-                                </form>
-                            </div>");
-                           }
-							echo "</div>";
-							
-							
-						 }
-						?>
-                        
-                    </li>
-
-
-                    <!-- END timeline item -->
-                    <li>
-                        <i class="fa fa-clock-o"></i>
-                    </li>
-                </ul>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+<!-- Main content -->
+<section class="content">
 
 
 
-    </section><!-- /.content -->
+
+<!-- Main row -->
+<div class="row">
+<!-- Left col -->
+<section class="col-lg-7 connectedSortable">
+
+
+
+
+
+
+
+
+
+
+</section><!-- /.Left col -->
+<!-- right col (We are only adding the ID to make the widgets sortable)-->
+<section class="col-lg-5 connectedSortable">
+
+
+
+
+
+
+</section><!-- right col -->
 </div><!-- /.row (main row) -->
 
 </section><!-- /.content -->
 </aside><!-- /.right-side -->
-
-
-
-
 
 
 
