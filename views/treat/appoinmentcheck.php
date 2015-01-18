@@ -5,7 +5,7 @@
 
 
     <meta charset="UTF-8">
-    <title>CureMe | Administrator</title>
+  
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- fullCalendar -->
     <link href="../../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
@@ -30,7 +30,7 @@
     <link href="../../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="style.css"/>
+	
 	<style>
 	.hideextra { white-space: nowrap; overflow: hidden; text-overflow:ellipsis; }
 	</style>
@@ -40,6 +40,17 @@
 			$arr=[];
 			require('header.php');
 			require('navigation.php');
+			$arr=[];
+		foreach(Session::get('patient') as $t)
+		{
+			array_push($arr,"{$t}");;
+		}
+
+		$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
+		
+			
+			
+			
 			
 	?>
 	<script type="text/javascript" src="../../js/jquery-2.1.3.js"> 
@@ -57,8 +68,9 @@
 				
 			  $.ajax({    //create an ajax request to load_page.php
 				type: "GET",
-				url: "checklist.php",             
-				dataType: "html",   //expect html to be returned                
+				url: <?php echo "\"checklist.php?id=".$currentPatient['patient_Id']."\"" ?>,             
+				dataType: "html",   //expect html to be returned  
+			
 				success: function(response){                    
 					$("#list").html(response); 
 					//alert(response);
@@ -82,7 +94,8 @@
 <section class="content-header">
     <h1>
         Appointments
-
+		
+		
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

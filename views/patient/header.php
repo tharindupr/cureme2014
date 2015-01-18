@@ -43,8 +43,11 @@
 
 	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
 
-	//print_r($arr);
-	//print_r($currentPatient);
+	
+	
+	$q="SELECT * FROM notification WHERE patient_Id=".$currentPatient['patient_Id']." order by notitification_ID desc limit 5";
+	$db=DB::getInstance();
+	$db->query($q);
 	
 	
 ?>
@@ -66,84 +69,54 @@
         <div class="navbar-right">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-envelope"></i>
-                        <span class="label label-success">4</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li><!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="img/avatar3.png" class="img-circle" alt="User Image"/>
-                                        </div>
-                                        <h4>
-                                            Test1
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                        </h4>
-                                        <p>Tets 1 Message</p>
-                                    </a>
-                                </li><!-- end message -->
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="img/avatar2.png" class="img-circle" alt="user image"/>
-                                        </div>
-                                        <h4>
-                                            Test2
-                                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                        </h4>
-                                        <p>Test Message?</p>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="img/avatar.png" class="img-circle" alt="user image"/>
-                                        </div>
-                                        <h4>
-                                            Test3
-                                            <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                        </h4>
-                                        <p>Test3 Message</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer"><a href="#">See All Messages</a></li>
-                    </ul>
-                </li>
+               
                 <!-- Notifications: style can be found in dropdown.less -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-warning"></i>
-                        <span class="label label-warning">10</span>
+                        <i class="fa fa-medkit "></i>
+                        <span class="label label-warning"><?php echo count($db->results()) ?></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 10 notifications</li>
+                        <li class="header">Your Most Recent Notifications</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
-                                <li>
-                                    <a href="#">
-                                        <i class="ion ion-ios7-people info"></i> Doctor as assign you some new medicines
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-warning danger"></i> Doctor Viewed your report
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users warning"></i> Your have paid your subscription
-                                    </a>
-                                </li>
+							<?php   
+							foreach ($db->results() as $noti)
+						
+										{
+										
+											$nt = array();
+											foreach ($noti as $key => $value) {
+											$nt[$key]=	$value;			
+											}
+											//print_r($rp);
+											//print_r($nt);
+											
+											
+											
+											//Notification List printing
+											if(isset($nt))
+											{
+											echo"
+											 <li>
+												<a href='#'>
+																<i class='ion ion-ios7-people info'></i>".$nt['content']." 
+												</a>
+											</li>
+												
+											";
+											
+											}
+										
+										
+										}
+										
+							
+							?>
+							
+							
+                     
 
 
                             </ul>

@@ -6,7 +6,7 @@ if (!$con)
 }   
 mysql_select_db("cureme",$con);
 
-$query="SELECT appoinment.createdDate,patient.patient_FName,appoinment.date,appoinment.time,appoinment.title,appoinment.description,appoinment.appoinment_Id FROM appoinment,patient where patient.patient_Id=appoinment.Patient_patient_Id and patient.patient_Id=100003;";
+$query="SELECT appoinment.createdDate,patient.patient_FName,appoinment.date,appoinment.time,appoinment.title,appoinment.description,appoinment.appoinment_Id FROM appoinment,patient where patient.patient_Id=appoinment.Patient_patient_Id and patient.patient_Id=".$_GET['id'];
 $result=mysql_query($query,$con);
 
 //?id=\"+$( this ).attr(\"id\")
@@ -18,7 +18,7 @@ $result=mysql_query($query,$con);
 			$.ajax({    //create an ajax request to load_page.php
 			
 				type: \"GET\",
-				url: \"appoinmentreject.php\",             
+				url: \"appoinmentreject.php?pid=".$_GET['id']."\",             
 				dataType: \"html\",   //expect html to be returned 
 				data: { id: $( this ).attr(\"id\")} ,
 				success: function(response){                    

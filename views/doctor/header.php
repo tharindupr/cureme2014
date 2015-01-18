@@ -23,13 +23,15 @@
     <!-- Theme style -->
     <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+ 
 </head>
+
+<?php
+$q="SELECT * FROM notification WHERE patient_Id=100 order by notitification_ID desc limit 5";
+$db=DB::getInstance();
+$db->query($q);
+?>
+
 <body class="skin-blue">
 <!-- header logo: style can be found in header.less -->
 <header class="header">
@@ -48,29 +50,57 @@
         </a>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-envelope"></i>
-                        <span class="label label-success">4</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have No messages</li>
-
-                        <li class="footer"><a href="#">See All Messages</a></li>
-                    </ul>
-                </li>
+               
+               
                 <!-- Notifications: style can be found in dropdown.less -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-warning"></i>
-                        <span class="label label-warning">10</span>
+                        <span class="label label-warning"><?php echo count($db->results()) ?></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 10 notifications</li>
+                        <li class="header">Your recent notifications</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
+							<?php   
+							foreach ($db->results() as $noti)
+						
+										{
+										
+											$nt = array();
+											foreach ($noti as $key => $value) {
+											$nt[$key]=	$value;			
+											}
+											//print_r($rp);
+											//print_r($nt);
+											
+											
+											
+											//Notification List printing
+											if(isset($nt))
+											{
+											echo"
+											 <li>
+												<a href='#'>
+																<i class='ion ion-ios7-people info'></i>".$nt['content']." 
+												</a>
+											</li>
+												
+											";
+											
+											}
+										
+										
+										}
+										
+							
+							?>
+							
+							
+							
+							
+							
 
                             </ul>
                         </li>

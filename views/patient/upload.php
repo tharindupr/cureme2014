@@ -65,6 +65,11 @@ echo "Upload Complete!";
 }
 
 
+$db=DB::getInstance();
+$query1="INSERT INTO `cureme`.`notification` (`notitification_ID`, `content`,`patient_Id`) VALUES (NULL, 'New report submitted by patient ID".$_POST['patiend_Id']."',100)";
+$db->query($query1);
+
+
 header('Location: report.php?report=ok');
 
 ?>

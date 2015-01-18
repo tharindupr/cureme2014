@@ -12,6 +12,11 @@ $a->create($a->getkey(),$_POST['date'],$_POST['time'],$_POST['title'],$_POST['de
 
 //echo $_POST['date'];
 
+$db=DB::getInstance();
+$query1="INSERT INTO `cureme`.`notification` (`notitification_ID`, `content`,`patient_Id`) VALUES (NULL, 'New appointment added',100)";
+$db->query($query1);
+
+
 header('Location: appoinment.php');
 
 ?>
