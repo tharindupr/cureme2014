@@ -34,8 +34,8 @@
 <?php
 require_once('../../core/init.php');
 
-include ('header.html');
-include ('navigation.html');
+require('header.php');
+require('navigation.php');
 
 if(Session::get('doctor')===null)
 {

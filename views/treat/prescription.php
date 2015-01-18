@@ -154,18 +154,18 @@ $arr=[];
 				
                 <div class="box">
                     <div class="box-header">
-                        <i class="fa fa-comments"></i>
+                        <i class="fa fa-pencil-square-o"></i>
                         <h3 class="box-title">Write Prescription</h3>
 
                     </div>
-					
-					
+					<?php $g=(int)$currentPatient['patient_Id']; ?>
+					<?php //echo $g ?>
                     <div class="box-footer ">
 
-					<form role="form" method="post" action="prescriptionpost.php">
+					<form role="form" method="post" action=<?php echo "prescriptionpost.php?cid=".$g ?> >
                         <div class="input-group">
-                            <label>Patient Name</label>
-                            <input class="form-control" type="text" name="patientname" placeholder="Type patient name"/>
+                            <!--<label>Patient Name</label>
+                            <input class="form-control" type="text" name="patientname" placeholder="Type patient name"/>-->
 							<br>
                             <label>Medicine</label>
 							<table border='0' id='table1' >
@@ -195,6 +195,7 @@ $arr=[];
 										<button type="submit" class="btn btn-success pull-right">Send</button>
 									
 									</div>
+									
 
 
                             </div>

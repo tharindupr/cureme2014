@@ -23,11 +23,34 @@
         <!-- Theme style -->
         <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+       <script type="text/javascript" src="../../js/jquery-2.1.3.js"> 
+	
+	
+		</script>
+		<script type="text/javascript">
+		
+			
+		$(document).ready(function() {
 
-        <![endif]-->
+				
+			
+									  
+					
+				  $.ajax({    //create an ajax request to load_page.php
+					type: "GET",
+					url: "profileview.php",             
+					dataType: "html",   //expect html to be returned                
+					success: function(response){                    
+						$("#content").html(response); 
+						//alert(response);
+					}
+							
+					});
+			
+			});
+		
+		
+		</script>
     </head>
 	<body>
 	<?php 
@@ -94,111 +117,16 @@
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <!-- Morris chart - Sales -->
-                                    <div class="chart tab-pane active" id="view-chart" style="position: relative; height: 1000px;">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <div class="box">
-
-                                                    <div class="box-body table-responsive no-padding">
-                                                        <table class="table table-hover">
-
-                                                            <tr>
-                                                                <td>First Name </td>
-
-                                                                <td><?php echo $currentPatient['patient_FName'];?></td>
-
-                                                            </tr>
-															
-															<tr>
-                                                                <td>Last Name </td>
-
-                                                                <td><?php echo $currentPatient['patient_LName'];?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Gender</td>
-
-                                                                <td><?php echo $currentPatient['gender'];?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Date of Birth </td>
-
-                                                                <td><?php echo $currentPatient['date_Of_Birth'];?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-
-                                                            <td>Age </td>
-
-                                                            <td><?php 
-															 //date in mm/dd/yyyy format; or it can be in other formats as well
-															  $originalDate = $currentPatient['date_Of_Birth'];;
-																
-															  $birthDate = date("d-m-Y", strtotime($originalDate));
-															  //explode the date to get month, day and year
-															  $birthDate = explode("-", $birthDate);
-															  //get age from date or birthdate
-															  $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
-																? ((date("Y") - $birthDate[2]) - 1)
-																: (date("Y") - $birthDate[2]));
-															  echo $age;?>
-															</td>
-
-                                                            </tr>
-															
-															<td>Email </td>
-
-                                                            <td><?php echo $currentPatient['email']; ?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Address</td>
-                                                                <td></td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>&nbsp;&nbsp;Number </td>
-
-                                                                <td><?php echo $currentPatient['address_No']; ?> </td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                 <td>&nbsp;&nbsp;Street </td>
-
-                                                                 <td><?php echo $currentPatient['address_Street']; ?> </td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>&nbsp;&nbsp;City </td>
-
-                                                                <td><?php echo $currentPatient['address_City'] ?> </td>
-
-                                                            </tr>
-                                                            <tr>
-
-                                                            <td>Mobile Number </td>
-
-                                                            <td><?php echo $currentPatient['mobile_Number'] ?></td>
-
-                                                            </tr>
-                                                          
-
-                                                        </table>
-                                                    </div><!-- /.box-body -->
-                                                </div><!-- /.box -->
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+									<div class='chart tab-pane active' id='view-chart' style='position: relative; height: 1000px;'>
+									<div id='content'>
+                                    
+									</div>
+									</div>
+									
+									
+									
+									
+									
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-chart" style="position: relative; height: 1000px;">
                                        

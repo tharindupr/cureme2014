@@ -33,6 +33,8 @@
 
 <?php
 require_once '../../core/init.php';
+require('header.php');
+require('navigation.php');
 $arr=[];
 
 ?>

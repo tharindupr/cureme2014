@@ -3,43 +3,7 @@
     <head>
 		<script>
 		
-		function showdata(n)
-		{
-			
-
-			if (window.XMLHttpRequest)
-			{
-				xmlhttp = new XMLHttpRequest();
-			}
-			else
-			{
-				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlhttp.onreadystatechange=function()
-			{
-				if(xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					
-						document.getElementById("content").innerHTML=xmlhttp.responseText;
-						//xmlhttp.open("GET","signupPatient.html",true);
-				}
-			}
-			
-			
-			if(n==1)
-			{
-				xmlhttp.open("GET","prescriptions.php",true);
-				xmlhttp.send();
-			}
-			
-			if(n==2)
-			{
-				xmlhttp.open("GET","profile.php",true);
-				xmlhttp.send();
-			}
-			
-
-		}
+		
 		
 		</script>
         <meta charset="UTF-8">
@@ -72,7 +36,6 @@
     </head>
     <body class="skin-blue">
      
-        <div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
@@ -92,12 +55,12 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a onclick='showdata(1);'>
-                                <i class="fa fa-shopping-cart"></i> <span>Prescriptions</span>
+                            <a href="prescriptions.php">
+                                <i class="fa fa-file-text-o"></i> <span>Prescriptions</span>
                             </a>
                         </li>
                         <li>
-                            <a onclick='showdata(2);'>
+                            <a href="profile.php">
                                 <i class="fa fa-user"></i> <span>About</span>
                             </a>
                         </li>
@@ -107,8 +70,7 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
-		<div id='content'>
-		</div>
+		
            
         </div><!-- ./wrapper -->
 

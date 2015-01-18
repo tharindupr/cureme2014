@@ -34,11 +34,15 @@
 <?php
 require_once '../../core/init.php';
 $arr=[];
+require('header.php');
+require('navigation.php');
 
 foreach(Session::get('patient') as $pid)
 {
 	break;
 }
+
+
 
 ?>
 
@@ -83,7 +87,7 @@ foreach(Session::get('patient') as $pid)
 		<?php 
 			  
 			  $db=DB::getInstance();
-			  $db->query('SELECT * FROM question WHERE Patient_patient_Id=?',array('Patient_patient_Id'=>$pid));
+			  $db->query('SELECT * FROM question WHERE Patient_patient_Id=? ORDER BY question_Id DESC',array('Patient_patient_Id'=>$pid));
 			  $a=$db->results();
 			  //print_r($a);
 			  
@@ -108,6 +112,7 @@ foreach(Session::get('patient') as $pid)
                         <i class="fa fa-envelope bg-blue"></i>
 						
 						<?php 
+					
 						 foreach($a as $i)
 						 {	
 							$ray=array();
@@ -124,7 +129,7 @@ foreach(Session::get('patient') as $pid)
                                 ".$ray[1]."
                             </div>
                             <div class=\'timeline-footer\'>
-                                <a class=\"btn btn-primary btn-xs\">Comment</a>
+								 <textarea class='form-control' rows='3' placeholder='Question' name='question'></textarea>
                                 <a class=\"btn btn-danger btn-xs\">Delete</a>
                             </div>
 							</div>");

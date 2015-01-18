@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 15, 2015 at 07:15 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Jan 18, 2015 at 05:59 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cureme`
 --
+CREATE DATABASE IF NOT EXISTS `cureme` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `cureme`;
 
 -- --------------------------------------------------------
 
@@ -28,13 +30,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `appoinment` (
   `appoinment_Id` int(11) NOT NULL,
-  `appoinment_Date&Time` datetime DEFAULT NULL,
-  `appoinment_Type` varchar(45) DEFAULT NULL,
+  `title` varchar(45) DEFAULT NULL,
   `confirmation_Flag` tinyint(1) DEFAULT NULL,
   `Patient_patient_Id` int(11) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `date` date NOT NULL,
+  `time` varchar(10) NOT NULL,
+  `createdDate` datetime NOT NULL,
   PRIMARY KEY (`appoinment_Id`,`Patient_patient_Id`),
   KEY `fk_Appoinment_Patient_idx` (`Patient_patient_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `appoinment`
+--
+
+INSERT INTO `appoinment` (`appoinment_Id`, `title`, `confirmation_Flag`, `Patient_patient_Id`, `description`, `date`, `time`, `createdDate`) VALUES
+(12, 'I want to take medicnes', 1, 100010, 'I''m suffering from Cold', '2015-01-16', '7.30 AM', '2015-01-17 13:14:40'),
+(13, 'I feel dizzy', 0, 100003, 'I feel dizzy every morning', '2015-01-24', '5.30 PM', '2015-01-17 13:25:36');
 
 -- --------------------------------------------------------
 
@@ -79,6 +92,35 @@ INSERT INTO `doctor` (`doctor_Id`, `doc_Reg_Id`, `name`, `address`, `age`, `rank
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `drug`
+--
+
+CREATE TABLE IF NOT EXISTS `drug` (
+  `Generic` varchar(60) NOT NULL,
+  `Brand` varchar(5000) NOT NULL,
+  PRIMARY KEY (`Generic`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `drug`
+--
+
+INSERT INTO `drug` (`Generic`, `Brand`) VALUES
+('Amoxicillin', 'Amoxil, Apo-Amoxi, DisperMax, Novamoxin, Trimox, Wymox'),
+('Aspirin', '217, 217 Strong, 8-Hour Bayer, A.S.A., Acetylsalicylic Acid, Alka-Seltzer Effervescent, Alka-Seltzer Morning Relief, Alka-Seltzer Plus Flu Effervescent, Alka-Seltzer Plus Honey, Alka-Seltzer PM, Alpha-Phed, Anacin, APAC, APF Arthrinol, Arthrisin, Arthritis Pain Formula, Artria S.R., Ascriptin, Aspergum, Astrin, Axotal, Bayer, Buffaprin, Bufferin, Buffets II, Buffinol, Butalgen, Cama Arthritis Reliever, Corcidin with Codeine, Coryphen, Dristan Formula P, Duradyne, Easprin, Ecotrin, Empirin, Entrophen, Excedrin Extra Strength, Excedrin Migraine, Fiorgen PF, Fiorinal, Fiormor, Fortabs, Gelprin, Gemnisyn, Goody''s Extra Strength, Goody''s Headache, Halfprin, Headstart, Isobutal, Isolin, Isollyl, Laniroif, Lanorinal, Magnaprin, Maprin, Marnal, Measurin, Nervine, Night-Time Effervescent Cold, Norwich Aspirin, Novasen, P-A-C, Pravigard PAC, Presalin, Riphen, Robaxisal, Sal-Adult, Sal-Infant, Salatin, Saleto, Salocol, Soma Compound, Supac, Supasa, Synalgos-DC, Tecnal, TenolPlus, Therapy Bayer, Tri-Pain, Triaphen, Trigesic, Ursinus Inlay, Vanquils, Vibutal, Viro-Med, Zorprin'),
+('Azithromycin', 'Zithromax'),
+('Cetirizine', 'Zyrtec, Zyrtec-D'),
+('Hydrochlorothiazide', 'Apo-Hydro, Diuchlor H, Esidrix, Hydro-D, HydroDIURIL, Hyzaar, Micardis, Neo-Codema, Novo-Hydrazide, Oretic, Teveten HCT, Uniretic, Urozide'),
+('Lisinopril', 'Prinivil, Zestril'),
+('Loratadine', 'Alavert, Claritin, Claritin-D'),
+('Metformin', 'Avandamet, Glucophage, Metaglip, Riomet'),
+('Omeprazole', 'Losec, Prilosec'),
+('Simvastatin', 'Epistatin, Synvinolin, Zocor'),
+('Telmisartan', 'Micardis');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `healthtip`
 --
 
@@ -101,7 +143,8 @@ INSERT INTO `healthtip` (`tip_Id`, `tip_Type`, `tip_Content`, `tip_Date`, `tip_T
 (3, 'Maleria', 'Spreading all over the country these days', '2014-11-15', '06:08:10'),
 (4, 'swhg', 'hdskjchs', '2014-11-15', '09:05:58'),
 (5, 'dd', 'dd', '2014-11-15', '09:09:38'),
-(6, 'dd', 'rgbt', '2014-11-15', '09:13:10');
+(6, 'dd', 'rgbt', '2014-11-15', '09:13:10'),
+(7, 'Hello', 'Test Tip', '2015-01-17', '04:16:16');
 
 -- --------------------------------------------------------
 
@@ -149,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
 
 INSERT INTO `patient` (`patient_Id`, `active`, `patient_FName`, `patient_LName`, `email`, `address_No`, `address_Street`, `address_City`, `date_Of_Birth`, `mobile_Number`, `gender`, `date_Of_Registration`, `password`, `salt`) VALUES
 (100001, 0, 'Kalpani', 'Rasangika', 'kalpani', 'dasfa', 'adsfdsa', 'adsfdasf', '2014-10-01', 'dsfsad', 'sdafa', '2014-10-01', 'asdfasdf', 'adfdsafsad'),
-(100003, 0, 'mahsh', 'Ranathunga', 'gmkulathunga@gmail.com', 'Thissawewa', 'West', 'Anuradhapura', '1997-05-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '&Îö¹¾C]É$uŒM´/¨u¶SrD“ÎÒÇ$˜cñ'),
+(100003, 0, 'Mahesh', 'Viranga', 'gmkulathunga@gmail.com', 'Thissawewa', 'West', 'Anuradhapura', '1997-05-01', '0710554644', 'Female', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '&Îö¹¾C]É$uŒM´/¨u¶SrD“ÎÒÇ$˜cñ'),
 (100004, 0, 'asdas', 'asda', 'asds@sada.ca', 'sad', 'sadad', 'Moneragala', '1992-01-02', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '¹·¥É\r>mHÇŽ×øˆ¢Ø7Åú°Bæý¨Jdž¾l'),
 (100005, 0, 'sadsd', 'asda', 'asssssds@sada.ca', 'sadasd', 'adasd', 'Batticaloa', '1992-01-10', '0710664555', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '²DSDñæŸ"ÿ/§4÷e\rFý")Ö®h¥—*²é9'),
 (100006, 0, 'sdsa', 'dasd', 'asdass@sada.ca', 'sadas', 'adsad', 'Matara', '1992-01-02', '0710554644', 'Male', '2014-10-08', '‹°Ïn¹±}}"´Vñ!%}Á%NfSpGcƒêwmô', '´_î>Êô¬Ïv–äÙ¾x’.¸l¡g.Ž„\0°ñÁ'),
@@ -290,6 +333,7 @@ CREATE TABLE IF NOT EXISTS `prescriptions` (
   `drug4_dose` varchar(200) NOT NULL,
   `drug5_name` varchar(100) NOT NULL,
   `drug5_dose` varchar(200) NOT NULL,
+  `issued` int(5) NOT NULL,
   PRIMARY KEY (`prescription_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -297,8 +341,13 @@ CREATE TABLE IF NOT EXISTS `prescriptions` (
 -- Dumping data for table `prescriptions`
 --
 
-INSERT INTO `prescriptions` (`prescription_Id`, `patient_Id`, `date`, `drug1_name`, `drug1_dose`, `drug2_name`, `drug2_dose`, `drug3_name`, `drug3_dose`, `drug4_name`, `drug4_dose`, `drug5_name`, `drug5_dose`) VALUES
-(1, 123, '2015-01-15', 'a', '1', 'b', '2', 'c', '3', 'd', '4', 'e', '5');
+INSERT INTO `prescriptions` (`prescription_Id`, `patient_Id`, `date`, `drug1_name`, `drug1_dose`, `drug2_name`, `drug2_dose`, `drug3_name`, `drug3_dose`, `drug4_name`, `drug4_dose`, `drug5_name`, `drug5_dose`, `issued`) VALUES
+(1, 100001, '2015-01-16', 'Amoxicillin', '1 tablet for 3 times per day after meal', '', '', '', '', '', '', '', '', 1),
+(2, 100003, '2015-01-16', 'Omeprazole', '20mg tablet before dinner', '', '', '', '', '', '', '', '', 1),
+(3, 100003, '2015-01-16', 'Cetirizine', '1 tablet after dinner', 'Amoxicillin', '3 times per day 2 tablets each after meals', 'Telmisartan', '40mg tablet morning and night after meals', 'Azithromycin', '20mg after night', '', '', 0),
+(4, 100003, '2015-01-17', 'Aspirin', '20mg after dinner for a week', '', '', '', '', '', '', '', '', 0),
+(5, 100003, '2015-01-18', 'Loratadine', '20mg after dinner for a week', '', '', '', '', '', '', '', '', 1),
+(6, 100003, '2015-01-18', 'New', 'One mg per day', '', '', '', '', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -315,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `subject` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`question_Id`,`Patient_patient_Id`),
   KEY `fk_Question_Patient1_idx` (`Patient_patient_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `question`
@@ -327,7 +376,10 @@ INSERT INTO `question` (`question_Id`, `question_Content`, `question_Date&Time`,
 (5, 'sadasdfafaa', '2014-10-28 04:13:44', 100003, '', 'Question 2'),
 (6, 'I have a big head ache', '2014-10-28 05:15:24', 100008, '', 'Cold'),
 (7, 'I hadasda', '2014-10-28 09:40:55', 100003, '', 'Headache'),
-(8, 'abcdefghij', '2014-11-10 17:39:57', 100003, '', 'abc');
+(8, 'abcdefghij', '2014-11-10 17:39:57', 100003, '', 'abc'),
+(9, 'Testing Conversation Details', '2015-01-18 03:50:58', 100001, '', 'Testing Conversation 01'),
+(10, 'Testing Conversation Details', '2015-01-18 03:54:44', 100001, '', 'Testing Conversation 02'),
+(11, 'Testing Conversation Details', '2015-01-18 03:55:09', 100001, '', 'Testing Conversation 03');
 
 -- --------------------------------------------------------
 
@@ -341,6 +393,7 @@ CREATE TABLE IF NOT EXISTS `report` (
   `Date&Time` datetime DEFAULT NULL,
   `report_Link` varchar(45) DEFAULT NULL,
   `Patient_patient_Id` int(11) NOT NULL,
+  `description` varchar(160) NOT NULL,
   PRIMARY KEY (`report_Id`,`Patient_patient_Id`),
   KEY `fk_Report_Patient1_idx` (`Patient_patient_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

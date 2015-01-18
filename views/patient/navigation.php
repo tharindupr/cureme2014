@@ -93,6 +93,12 @@
                                 <i class="fa  fa-clock-o"></i> <span>History</span>
                             </a>
                         </li>
+						
+						<li>
+                            <a href="prescription.php">
+                                <i class="fa fa-file-text-o"></i> <span>Prescription</span>
+                            </a>
+                        </li>
 
 
 

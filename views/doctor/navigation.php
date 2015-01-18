@@ -62,31 +62,31 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li >
-                <a onclick='showdata(1);'>
+                <a href='select_patient.php'>
                     <i class="fa fa-wheelchair"></i> <span>Patients</span>
                 </a>
             </li>
             <li class="active">
-                <a onclick='showdata(2);'>
+                <a href='pharmacies.php'>
                     <i class="fa fa-user"></i> <span>Pharmacies</span>
                 </a>
             </li>
 
             <li>
-                <a onclick='showdata(3);'>
+                <a href='appoinmentcheck.php'>
                     <i class="fa fa-calendar"></i> <span>Appoinments</span>
                 </a>
             </li>
 
 
             <li>
-                <a onclick='showdata(4)'>
+                <a href='healthtips.php'>
                     <i class="fa  fa-heart"></i> <span>Health Tips</span>
                 </a>
             </li>
 
             <li>
-                <a onclick='showdata(5)'>
+                <a href='about.php'>
                     <i class="fa  fa-home"></i> <span>About Me</span>
                 </a>
             </li>
