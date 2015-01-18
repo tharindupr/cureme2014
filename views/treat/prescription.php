@@ -40,8 +40,8 @@ require_once 'navigation.php';
 			var cell3=row.insertCell(2);
 			
 			
-			cell1.innerHTML="<input class='form-control' type='text' placeholder='Type medicine name' name=txtmedicine["+(i++)+"]>";
-			cell2.innerHTML="<input class='form-control' type='text' placeholder='Type dosage' name=txtdose["+(i)+"]>";
+			cell1.innerHTML="<input class='form-control' type='text' placeholder='Type medicine name' name=txtmedicine["+(i++)+"] required>";
+			cell2.innerHTML="<input class='form-control' type='text' placeholder='Type dosage' name=txtdose["+(i)+"] required>";
 			cell3.innerHTML="<button id='add-new-event' class='btn btn-danger pull-right' type='button' onclick='dltrow("+(i-1)+"); disappear()'> Delete Drug </button>";
 			
 

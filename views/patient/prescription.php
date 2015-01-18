@@ -42,7 +42,8 @@
 	$pid=$currentPatient['patient_Id'];
 	
 	$db=DB::getInstance();
-	$db->query('SELECT * FROM Prescriptions WHERE patient_Id = '.$pid.'');
+	
+	$db->query('SELECT * FROM Prescriptions WHERE patient_Id ='.$pid." order by prescription_Id desc");
 	$a=$db->results();
 	//print_r($a);
 	
