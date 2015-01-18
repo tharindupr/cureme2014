@@ -120,7 +120,7 @@
 									<div class='chart tab-pane active' id='view-chart' style='position: relative; height: 1000px;'>
 									<div id='content'>
                                     
-									</div>
+									</div>wDw
 									</div>
 									
 									

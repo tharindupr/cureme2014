@@ -71,7 +71,7 @@
 				'date_Of_Registration'=>date("Y-m-d"),
 				'password'=>Hash::make(Input::get('password'),$salt),
 				'salt'=>$salt)); 
-				
+				//mkdir("../img/reports/".$patient->getkey()-1);
 				header('Location: index.php#login');
 				
 				

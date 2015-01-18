@@ -87,7 +87,7 @@
     <div class="box box-primary">
 
         <!-- form start -->
-        <form role="form" action="upload.php" name="user" method="POST" enctype="multipart/form-data" >
+        <form role="form" action="upload.php" name="user" method="POST" enctype="multipart/form-data">
             <div class="box-body">
                 <div class="form-group">
                     <label for="ReportType">Report type</label>
@@ -105,9 +105,12 @@
 					
                     </select></th>
 
-
+					
                 </div>
-               
+			
+				               
+			   <textarea hidden name='patiend_Id' > <?phpecho $currentPatient['patient_Id'];?></textarea>
+			   
                 <!--text area-->
                 <div class="form-group">
                     <label>Description</label>
@@ -127,8 +130,16 @@
             </div>
 			
 			
-			<label id='response' class='danger'>
-			</label>
+			<center><label id='response' class='danger'>
+			<?php 
+				if(isset($_GET['report']) and $_GET['report']=='ok' )
+				{
+				echo "Report Sent Successfully";
+				
+				}
+			
+			?>
+			</label></center>
 			
 			
         </form>
@@ -139,7 +150,12 @@
     <!-- right col (We are only adding the ID to make the widgets sortable)-->
     <section class="col-lg-2 connectedSortable">
 
-
+	<div id="list">
+	
+	
+	
+	
+	</div>
 
 
 
