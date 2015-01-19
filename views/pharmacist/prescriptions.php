@@ -92,7 +92,7 @@ require_once 'navigation.php';
                                 <div class="input-group">
                                     <input type="text" name="txtpresid" id="pid" class="form-control" placeholder="Enter Prescription ID here.....">
                             <span class="input-group-btn">
-                                <button  name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"'></i></button>
+                                <button  name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>
                                 </div>
                            

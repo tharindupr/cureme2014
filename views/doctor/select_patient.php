@@ -53,7 +53,7 @@ $arr=[];
 
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Patients</li>
     </ol>
 </section>
@@ -81,9 +81,9 @@ $arr=[];
             <h3 class="box-title">Select Patient</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-            <form action="#" method="get">
+            <form action="searchPatient.php" method="POST">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input type="text" name="searchName" class="form-control" placeholder="Search...">
                             <span class="input-group-btn">
                                 <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>
@@ -161,6 +161,11 @@ $arr=[];
 </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+
+
+
+
 
 
 <!-- jQuery 2.0.2 -->

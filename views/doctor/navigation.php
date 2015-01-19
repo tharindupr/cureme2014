@@ -86,8 +86,19 @@
             </li>
 
             <li>
+                <a href='comfirmPatient.php'>
+                    <i class="fa  fa-male"></i> <span>Pending Patient</span>
+                </a>
+            </li>
+            <li>
+                <a href='comfirmPharmacy.php'>
+                    <i class="fa  fa-home"></i> <span>Pending Pharmacy</span>
+                </a>
+            </li>
+
+            <li>
                 <a href='about.php'>
-                    <i class="fa  fa-home"></i> <span>About Me</span>
+                    <i class="glyphicon glyphicon-user"></i> <span>About Me</span>
                 </a>
             </li>
 
