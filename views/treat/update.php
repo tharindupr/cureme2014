@@ -1,14 +1,39 @@
 <?php
 require_once '../../core/init.php';
-foreach (Session::get('patient') as $pId)
+
+$pid=$_GET['id'];
+$password=$_POST['new_password'];
+//echo $password;
+$salt=Hash::salt(32);
+
+//'password'=>Hash::make(Input::get('password'),$salt),
+				//'salt'=>$salt))
+				
+				//"UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+
+$password1=Hash::make($password,$salt);
+
+//echo $password1;
+
+				$db=DB::getInstance();
+				$db->query("UPDATE patient SET password = '$password1',salt='$salt' WHERE patient_Id = $pid");
+				header('Location: profile.php');
+			
+
+
+
+
+
+
+/*foreach (Session::get('patient') as $pId)
 {
 	break;
 }
 
 print_r($_POST);
 $newp=new Patient();
-$newp->update($pId,$_POST);
-header('Location: patient.php');
+$newp->update($pId,$_POST);*/
+
 
 
 

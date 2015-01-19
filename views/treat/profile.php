@@ -2,11 +2,9 @@
 <html>
     <head>
 	
-	<?php
-	require_once 'header.php';
-require_once 'navigation.php';
 	
-	?>
+	
+	
         <meta charset="UTF-8">
         <title>CureMe | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -28,15 +26,23 @@ require_once 'navigation.php';
         <link href="../../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-
-        <![endif]-->
-    </head>
-	<body>
-	<?php 
+		
+		<script language="javascript">
+			function check()
+			{
+				var pass= document.getElementById("new_password").value;
+				var cpass= document.getElementById("confirm_password").value;
+	
+				if(pass!=cpass)
+				{
+					alert("Passowrd Does not Match");
+					cpass.value="";
+				}
+			}
+		</script>
+		
+		
+<?php 
 	require_once '../../core/init.php';
 	$updated=0;
 	//this method is used to update patient
@@ -63,11 +69,46 @@ require_once 'navigation.php';
 	{	
 		echo "Success";
 	}
-	
+	require_once("header.php");
+	require_once("navigation.php");
 	
    
 		
 	?>
+		
+		
+		
+       <script type="text/javascript" src="../../js/jquery-2.1.3.js"> 
+	
+	
+		</script>
+		<script type="text/javascript">
+		
+			
+		$(document).ready(function() {
+
+				
+			
+									  
+					
+				  $.ajax({    //create an ajax request to load_page.php
+					type: "GET",
+					url: <?php echo "\"profileview.php?id=".$currentPatient['patient_Id']."\"" ?>,             
+					dataType: "html",   //expect html to be returned                
+					success: function(response){                    
+						$("#content").html(response); 
+						//alert(response);
+					}
+							
+					});
+			
+			});
+		
+		
+		</script>
+    </head>
+	<body>
+	
 		 <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
@@ -76,9 +117,8 @@ require_once 'navigation.php';
 
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li ><a href="../doctor/select_patient.php">Patients</a></li>
-                        <li class="active"><a href="profile.php">Profile</a></li>
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Profile</li>
                     </ol>
                 </section>
 
@@ -94,160 +134,66 @@ require_once 'navigation.php';
                             <div class="nav-tabs-custom">
                                 <!-- Tabs within a box -->
                                 <ul class="nav nav-tabs pull-right">
-                                 
-                                    <li class="pull-left header"><i class="fa fa-male"></i> <?php echo $currentPatient['patient_FName'];?>'s Details</li>
+                                    <li class="active"><a href="#view-chart" data-toggle="tab">View</a></li>
+                                    <li><a href="#edit-chart" data-toggle="tab">Edit</a></li>
+                                    <li class="pull-left header"><i class="fa fa-male"></i><?php echo $currentPatient['patient_FName'];?>'s Details</li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <!-- Morris chart - Sales -->
-                                    <div class="chart tab-pane active" id="view-chart" style="position: relative; height: 1000px;">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <div class="box">
-
-                                                    <div class="box-body table-responsive no-padding">
-                                                        <table class="table table-hover">
-
-                                                            <tr>
-                                                                <td>First Name </td>
-
-                                                                <td><?php echo $currentPatient['patient_FName'];?></td>
-
-                                                            </tr>
-															
-															<tr>
-                                                                <td>Last Name </td>
-
-                                                                <td><?php echo $currentPatient['patient_LName'];?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Gender</td>
-
-                                                                <td><?php echo $currentPatient['gender'];?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Date of Birth </td>
-
-                                                                <td><?php echo $currentPatient['date_Of_Birth'];?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-
-                                                            <td>Age </td>
-
-                                                            <td><?php 
-															 //date in mm/dd/yyyy format; or it can be in other formats as well
-															  $originalDate = $currentPatient['date_Of_Birth'];;
-																
-															  $birthDate = date("d-m-Y", strtotime($originalDate));
-															  //explode the date to get month, day and year
-															  $birthDate = explode("-", $birthDate);
-															  //get age from date or birthdate
-															  $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
-																? ((date("Y") - $birthDate[2]) - 1)
-																: (date("Y") - $birthDate[2]));
-															  echo $age;?>
-															</td>
-
-                                                            </tr>
-															
-															<td>Email </td>
-
-                                                            <td><?php echo $currentPatient['email']; ?></td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>Address</td>
-                                                                <td></td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>&nbsp;&nbsp;Number </td>
-
-                                                                <td><?php echo $currentPatient['address_No']; ?> </td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                 <td>&nbsp;&nbsp;Street </td>
-
-                                                                 <td><?php echo $currentPatient['address_Street']; ?> </td>
-
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td>&nbsp;&nbsp;City </td>
-
-                                                                <td><?php echo $currentPatient['address_City'] ?> </td>
-
-                                                            </tr>
-                                                            <tr>
-
-                                                            <td>Mobile Number </td>
-
-                                                            <td><?php echo $currentPatient['mobile_Number'] ?></td>
-
-                                                            </tr>
-                                                          
-
-                                                        </table>
-                                                    </div><!-- /.box-body -->
-                                                </div><!-- /.box -->
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <!--Edit form >
+									<div class='chart tab-pane active' id='view-chart' style='position: relative; height: 1000px;'>
+									<div id='content'>
+                                    
+									</div>
+									</div>
+									
+									
+									
+									
+									
+                                    <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-chart" style="position: relative; height: 1000px;">
                                        
-                                        <form role="form" method="POST" action="update.php" style="width:550px; ">
+                                        <form role="form" method="POST" action=<?php echo "update.php?id=".$currentPatient['patient_Id']."";?> style="width:550px; ">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                    <label for="patient_FName">&nbsp;&nbsp;First Name</label>
-                                                    <input type="text" required class="form-control" name="patient_FName" value=<?php //echo $currentPatient['patient_FName'] ?> >
+                                                    <label for="patient_FName">&nbsp;&nbsp;New Password</label>
+                                                    <input type="password" pattern=".{6,}" required title="6 characters minimum" class="form-control" id="new_password" name="new_password">
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="patient_LName">&nbsp;&nbsp;Last Name</label>
-                                                    <input type="text" required  class="form-control" name="patient_LName" value=<?php // echo $currentPatient['patient_LName'] ?>>
+                                                    <label for="patient_LName">&nbsp;&nbsp;Confirm New Password</label>
+                                                    <input type="password" pattern=".{6,}" required title="6 characters minimum" class="form-control" id="confirm_password" name="confirm_password" onblur='check()'>
                                                 </div>
 			
-                                                <div class="form-group">
+                                                <!--<div class="form-group">
                                                     <label>&nbsp;&nbsp;Gender</label>
                                                     <select class="form-control" name="gender">
-                                                        <option  <?php // if($currentPatient['gender']=='Male') echo "selected";?> >Male</option>
-                                                        <option  <?php // if($currentPatient['gender']=='Female') echo "selected";?>	>Female</option>
+                                                        <option  <?php if($currentPatient['gender']=='Male') echo "selected";?> >Male</option>
+                                                        <option  <?php if($currentPatient['gender']=='Female') echo "selected";?>	>Female</option>
                                                     </select>
                                                 </div>
 												
                                                 <div class="form-group">
                                                     <label for="dob">&nbsp;&nbsp;Date of Birth </label>
-                                                    <input type="date" class="form-control" name="date_Of_Birth" value=<?php // echo date($currentPatient['date_Of_Birth']); ?> >
+                                                    <input type="date" class="form-control" name="date_Of_Birth" value=<?php  echo date($currentPatient['date_Of_Birth']); ?> >
                                                 </div>
 												
 												<div class="form-group">
                                                     <label>&nbsp;&nbsp;Email</label>
-                                                    <input type="email" required  class="form-control" name="email" value=<?php // echo $currentPatient['email'] ?> >
+                                                    <input type="email" required  class="form-control" name="email" value=<?php echo $currentPatient['email'] ?> >
                                                     
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>&nbsp;&nbsp;Address </label>
-                                                    <input type="text" required  class="form-control" name="address_No"  value=<?php // echo "\"".$currentPatient['address_No']."\"" ?> >
-                                                    <input type="text" required  class="form-control" name="address_Street" value=<?php // echo "\"".$currentPatient['address_Street']."\"" ?>>
-                                                    <input type="text" required  class="form-control" name="address_City" value=<?php // echo $currentPatient['address_City'] ?>>
+                                                    <input type="text" required  class="form-control" name="address_No"  value=<?php echo "\"".$currentPatient['address_No']."\"" ?> >
+                                                    <input type="text" required  class="form-control" name="address_Street" value=<?php echo "\"".$currentPatient['address_Street']."\"" ?>>
+                                                    <input type="text" required  class="form-control" name="address_City" value=<?php echo $currentPatient['address_City'] ?>>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="mobile">&nbsp;&nbsp;Mobile Number</label>
-                                                    <input type="text" required  class="form-control" name="mobile_Number" value=<?php // echo $currentPatient['mobile_Number'] ?>>
+                                                    <input type="text" required  class="form-control" name="mobile_Number" value=<?php echo $currentPatient['mobile_Number'] ?>>
                                                 </div>
 
                                               
@@ -257,9 +203,9 @@ require_once 'navigation.php';
                                                     <label for="exampleInputFile">&nbsp;&nbsp;Upload a profile picture</label>
                                                     &nbsp;&nbsp;<input type="file" id="exampleInputFile">
                                                     <p class="help-block">&nbsp;&nbsp;Click and upload.</p>
-                                                </div>
+                                                </div>-->
 
-                                            </div><!-- /.box-body >
+                                            </div><!-- /.box-body -->
 
                                             <div class="box-footer">
                                                &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit"  class="btn btn-primary">Save</button>
@@ -267,7 +213,7 @@ require_once 'navigation.php';
                                         </form>
                                         </center>
 
-                                    </div>      <-->
+                                    </div>
                                 </div>
                             </div><!-- /.nav-tabs-custom -->
 

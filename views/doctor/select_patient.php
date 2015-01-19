@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-   
+   <?php
+require_once '../../core/init.php';
+require('header.php');
+require('navigation.php');
+$arr=[];
+
+?>
    
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
@@ -29,15 +35,67 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	  <link rel="stylesheet" href="/resources/demos/style.css">
+	  <script type="text/javascript" src="jquery-2.1.3.js"> </script>
+	  
+	  
+	  <?php 
+	 	$d=DB::getInstance();
+		$d->query('SELECT patient_Id,patient_FName,patient_LName FROM patient');
+				
+		$ar=array();
+			
+				
+	  
+	  
+	  
+	  
+	  echo "
+	  <script>
+	  
+	
+	   
+	  $(function() {
+		var availableTags = [
+		  \"ActionScript\"," ;
+		
+
+	foreach($d->results() as $i){
+				
+		echo	"\"".$i->patient_Id."\",\"".$i->patient_FName." ".$i->patient_LName."\",
+				
+				
+				";}
+				
+	  echo "\"10000\"
+		
+		];
+		
+		
+		
+		
+		$( \"#tags\" ).autocomplete({
+		  source: availableTags
+		});
+	  });
+  </script>";
+
+	
+?>
+	
+	
+	
 </head>
 
-<?php
-require_once '../../core/init.php';
-require('header.php');
-require('navigation.php');
-$arr=[];
 
-?>
+
+
+
+
+
 
 <body class="skin-blue">
 
@@ -63,7 +121,13 @@ $arr=[];
 				$db=DB::getInstance();
 				$db->query('SELECT * FROM patient');
 				$a=$db->results();
-				//print_r($a);
+				
+				
+				
+			
+				
+				
+				
 				?>
 
 <!-- Main content -->
@@ -83,7 +147,7 @@ $arr=[];
         <div class="box-body">
             <form action="#" method="get">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input type="text" id="tags" name="q" class="form-control" placeholder="Search...">
                             <span class="input-group-btn">
                                 <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>
