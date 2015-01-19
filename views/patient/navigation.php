@@ -38,7 +38,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
+                            <?php echo "<img src='../../img/".$currentPatient['patient_Id'].".jpeg'  alt='User Image' /> "?>
                         </div>
                         <div class="pull-left info">
                             <p>Hello, <?php echo "{$currentPatient['patient_FName']}" ;?></p>

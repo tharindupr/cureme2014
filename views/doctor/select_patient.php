@@ -39,7 +39,48 @@ $arr=[];
 	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 	  <link rel="stylesheet" href="/resources/demos/style.css">
-	  <script type="text/javascript" src="jquery-2.1.3.js"> </script>
+	 
+	  <script type="text/javascript" src="../../js/jquery-2.1.3.js"> 
+	
+	
+	  </script>
+	  <script type="text/javascript">
+	
+		
+	    $(document).ready(function() {
+           $("#test").click(function() {
+				$( "#select1" ).hide();
+				$.ajax({    
+				type: "GET",
+				url: "search.php?id="+$("#tags").val(),             
+				dataType: "html",            
+				success: function(response){                    
+					$("#select").html(response); 
+					
+				}
+						
+				});
+				
+				
+			});
+			
+			
+			$("#all").click(function() {
+				$( "#select" ).hide();
+				$( "#select1" ).show();
+						
+			});
+			
+			  
+				
+		
+		});
+	
+	
+	   </script>
+	  
+	  
+	  
 	  
 	  
 	  <?php 
@@ -138,31 +179,37 @@ $arr=[];
 
 <section class="col-lg-12">
 
-    
     <!-- general form elements disabled -->
     <div class="box box-primary">
         <div class="box-header">
-            <h3 class="box-title">Select Patient</h3>
+            <h3 class="box-title">Select Patient <div id='list'> </div></h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-            <form action="#" method="get">
+          
                 <div class="input-group">
                     <input type="text" id="tags" name="q" class="form-control" placeholder="Search...">
                             <span class="input-group-btn">
-                                <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+							
+								
+                                <button  id="test" class="btn btn-flat"><i class="fa fa-search"></i></button>
+								<button   id="all" class="btn btn-flat"><i class="fa fa-reply-all "></i></button>
+								
                             </span>
+							
                 </div>
-            </form>
+           
+			
         </div><!-- /.box-body -->
+		
     </div><!-- /.box -->
-
-    <div class="col-sm-2">
+	<div id='select'>
+	</div>
+	<div id='select1'>
+    <div  class="col-lg-3">
         
 
 
-        <!-- Primary box -->
-		
-		<!--<div class='box box-primary'>-->
+     
 		<?php
 			
 			foreach ($a as $ab){
@@ -170,37 +217,37 @@ $arr=[];
 		
         "
 		<a href='../treat/profile.php?id=".$ab->patient_Id."'>
-		<div class='box box-primary' style='height:220px; width:150px;'>
+		<div class='box box-primary' style='height:260px; width:180px;'>
 		<div class='box-header' data-toggle='tooltip' title='' data-original-title='Header tooltip'>
-                <h5 class='box-title'>".$ab->patient_FName."</h5>
+           <centre>     <h5 class='box-title'>".$ab->patient_FName."</h5>
 
             </div>
-            <div class='box-body'>
+            <div class='box-body'>  <img src='../../img/".$ab->patient_Id.".jpeg'  class='img-rounded' alt='User Image' WIDTH='60%' HIGHT='40%' /> 
 
-                <img src='img/avatar3.png' class='img-rounded' alt='User Image'>
+              
 
                 <p>
-                    Name : ".$ab->patient_FName." ".$ab->patient_LName."</br>
-                    Gender : ".$ab->gender."</br>
-                    Location : ".$ab->address_City."
+                    ID   : ".$ab->patient_Id."</br>
+					Name : ".$ab->patient_FName." ".$ab->patient_LName."</br>
+                    
 					
-                </p>
+                </p> </centre> 
             </div><!-- /.box-body -->
         </div><!-- /.box -->
         </a>
 		</div>
-		<div class='col-sm-2'>
+		<div class='col-lg-3'>
         ";
 	}
 	
 	?>
 	
     
-   
+</div>   
 </section>
 
 <!-- right col (We are only adding the ID to make the widgets sortable)-->
-<section class="col-lg-5 connectedSortable">
+<section class="col-sm-2 connectedSortable">
 
 </section><!-- right col -->
 

@@ -43,17 +43,17 @@
 	
 	$db=DB::getInstance();
 	
-	$db->query('SELECT * FROM Prescriptions WHERE patient_Id ='.$pid." order by prescription_Id desc");
+	$db->query('SELECT * FROM Prescriptions WHERE patient_Id ='.$pid." order by prescription_Id desc limit 5");
 	$a=$db->results();
 	//print_r($a);
 	
 	
-	
-	
+	if($a)
+	{
 	$presid=($a[0]->prescription_Id);
 	$date=($a[0]->date);
 	
-	
+	}
 	
 	
 	
@@ -77,6 +77,8 @@
 				    <!-- Main row -->
                     
 						<?php
+						if($a)	
+                           {
 							foreach ($a as $ab){
 							$status='';
 							
@@ -87,8 +89,7 @@
 							else
 							{$status='Not Issued';}
 							
-							
-                           
+						
                          echo "<div class='row'>
                         <!-- Left col -->
                         <section class='col-lg-7 connectedSortable'>
@@ -160,7 +161,7 @@
 					
 					}
 					
-					
+					}
 					
 					?>
 					

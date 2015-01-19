@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+	
+	
         <meta charset="UTF-8">
         <title>CureMe | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -40,6 +42,17 @@
 
 	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
 	}
+	
+	$_db=DB::getInstance();
+	$data=$_db->get('patient',array('patient_Id','=',$currentPatient['patient_Id']));
+
+	$p=$data->results();
+
+
+	Session::put('patient',$p[0]);
+	
+	
+	
 	
 	//print_r($arr);
 	//print_r($currentPatient);
@@ -132,8 +145,8 @@
 									
                                     <!--Edit form-->
                                     <div class="chart tab-pane" id="edit-chart" style="position: relative; height: 1000px;">
-                                       
-                                        <form role="form" method="POST" action="update.php" style="width:550px; ">
+                                      
+                                        <form role="form" method="POST" action="update.php" style="width:550px; " name="user" enctype="multipart/form-data">
                                             <div class="box-body">
                                                 <div class="form-group">
                                                     <label for="patient_FName">&nbsp;&nbsp;First Name</label>
@@ -142,7 +155,7 @@
 
                                                 <div class="form-group">
                                                     <label for="patient_LName">&nbsp;&nbsp;Last Name</label>
-                                                    <input type="text" required  class="form-control" name="patient_LName" value=<?php echo $currentPatient['patient_LName'] ?>>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" required  class="form-control" name="patient_LName" value=<?php echo $currentPatient['patient_LName'] ?>>
                                                 </div>
 			
                                                 <div class="form-group">
@@ -179,11 +192,11 @@
                                               
 
 
-                                                <div class="form-group">
-                                                    <label for="exampleInputFile">&nbsp;&nbsp;Upload a profile picture</label>
-                                                    &nbsp;&nbsp;<input type="file" id="exampleInputFile">
-                                                    <p class="help-block">&nbsp;&nbsp;Click and upload.</p>
-                                                </div>
+                                                 <div class="form-group">
+												<label for="exampleInputFile">Add a profile photo</label>
+												<input type="file" id="exampleInputFile"  type='file' name='myfile' accept='image/gif, image/jpeg,image/x-png' required>
+
+												</div>
 
                                             </div><!-- /.box-body -->
 
@@ -212,24 +225,15 @@
 
 
                             <!-- Calendar -->
-                            <div class="box box-solid bg-green-gradient">
+                            <div class="box box-solid bg-blue-gradient">
                                 <div class="box-header">
                                     <i class="fa fa-calendar"></i>
                                     <h3 class="box-title">Calendar</h3>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
                                         <!-- button with a dropdown -->
-                                        <div class="btn-group">
-                                            <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-                                            <ul class="dropdown-menu pull-right" role="menu">
-                                                <li><a href="#">Add new event</a></li>
-                                                <li><a href="#">Clear events</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">View calendar</a></li>
-                                            </ul>
-                                        </div>
-                                        <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                        <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>                                        
+                                       
+                                                             
                                     </div><!-- /. tools -->
                                 </div><!-- /.box-header -->
 								

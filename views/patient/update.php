@@ -5,27 +5,32 @@ foreach (Session::get('patient') as $pId)
 	break;
 }
 
-print_r($_POST);
+
 $newp=new Patient();
-$newp->update($pId,$_POST);
-header('Location: patient.php');
+$newp->update($pId,$_POST);   //geting the post variable and passing to a new patient object
+  
 
+$name=$_FILES["myfile"]["name"];
 
+$type=$_FILES["myfile"]["type"];
+$size=$_FILES["myfile"]["size"];
+$temp=$_FILES["myfile"]["tmp_name"];
+$error=$_FILES["myfile"]["error"];
 
-/*$a->create(array(
-				'patient_Id'=>$a->getkey(), //this will generate a patient id next to previous patient		
-				'patient_FName'=>'Raveen',		
-				'patient_LName'=>'Perera',			
-				'email'=>'perera@gmail.com',				
-				'address_No'=>'sadsa',			
-				'address_Street'=>'sadasdasd',	
-				'address_City'=>'sadasdsad',			
-				'date_Of_Birth'=>date("Y-m-d"),	
-				'mobile_Number'=>'0710554644',
-				'gender'=>'Male',			
-				'date_Of_Registration'=>date("Y-m-d"),
-				'password'=>'1234567',
-				'salt'=>'sadasdasdasdasdasd')); */
+if($error>0)
+{
+	die("Error uploading file! Code $error.");
+}
+else
+{
+move_uploaded_file($temp,"../../img/;".$name);
+rename("../../img/;".$name, "../../img/".$pId.".jpeg");
+echo "Upload Complete!";
+	
+}
+
+header('Location: profile.php'); //heading to the profile
+
 
 
 ?>
