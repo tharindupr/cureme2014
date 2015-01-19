@@ -105,9 +105,9 @@ require('navigation.php');
 					<form role="form" method="post" action="healthtipspost.php">
                         <div class="input-group">
                             <label>Tip Title</label>
-                            <input class="form-control" type="text" name="tiptitle" placeholder="Type message titel..."/>
+                            <input required class="form-control" type="text" name="tiptitle" placeholder="Type message titel..."/>
                             <label>Tip body</label>
-                            <input class="form-control" type="text" name="tipbody" placeholder="Type message..."/>
+                            <input required class="form-control" type="text" name="tipbody" placeholder="Type message..."/>
 
                         </div>
                         <div class="input-group-btn">

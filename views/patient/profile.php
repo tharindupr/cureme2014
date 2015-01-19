@@ -22,38 +22,7 @@
         <link href="../../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
-
-       <script type="text/javascript" src="../../js/jquery-2.1.3.js"> 
-	
-	
-		</script>
-		<script type="text/javascript">
-		
-			
-		$(document).ready(function() {
-
-				
-			
-									  
-					
-				  $.ajax({    //create an ajax request to load_page.php
-					type: "GET",
-					url: "profileview.php",             
-					dataType: "html",   //expect html to be returned                
-					success: function(response){                    
-						$("#content").html(response); 
-						//alert(response);
-					}
-							
-					});
-			
-			});
-		
-		
-		</script>
-    </head>
-	<body>
-	<?php 
+<?php 
 	require_once '../../core/init.php';
 	$updated=0;
 	//this method is used to update patient
@@ -86,6 +55,40 @@
    
 		
 	?>
+		
+		
+		
+       <script type="text/javascript" src="../../js/jquery-2.1.3.js"> 
+	
+	
+		</script>
+		<script type="text/javascript">
+		
+			
+		$(document).ready(function() {
+
+				
+			
+									  
+					
+				  $.ajax({    //create an ajax request to load_page.php
+					type: "GET",
+					url: <?php echo "\"profileview.php?id=".$currentPatient['patient_Id']."\"" ?>,             
+					dataType: "html",   //expect html to be returned                
+					success: function(response){                    
+						$("#content").html(response); 
+						//alert(response);
+					}
+							
+					});
+			
+			});
+		
+		
+		</script>
+    </head>
+	<body>
+	
 		 <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
@@ -120,7 +123,7 @@
 									<div class='chart tab-pane active' id='view-chart' style='position: relative; height: 1000px;'>
 									<div id='content'>
                                     
-									</div>wDw
+									</div>
 									</div>
 									
 									

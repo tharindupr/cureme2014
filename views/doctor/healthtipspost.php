@@ -19,7 +19,7 @@ $query1="INSERT INTO `cureme`.`notification` (`notitification_ID`, `content`) VA
 $db->query($query1);				
 				
 
-header('Location: doctor.php');
+header('Location: healthtips.php');
 
 
 

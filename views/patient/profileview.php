@@ -8,7 +8,7 @@ if (!$con)
 }   
 mysql_select_db("cureme",$con);
 
-$query="SELECT * FROM patient WHERE patient_Id=100003";
+$query="SELECT * FROM patient WHERE patient_Id=".$_GET['id'];
 $result=mysql_query($query,$con);
 $res=mysql_fetch_array($result);
 
