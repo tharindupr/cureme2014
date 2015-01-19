@@ -184,7 +184,47 @@ class DB{
 	}
 /////////////////////////////////////////////////////////////////
 
+public function updateDoctor($id,$fields)
+	{
+		
+		$set='';
+		$x=1;
+		foreach($fields as $name => $value){
+			$set.="{$name} = ?";
+			if($x<count($fields)){
+				$set.=',';
+			
+			}
+			$x++;
+		}
+		
+		$sql="UPDATE doctor SET {$set} WHERE doctor_Id=1";
+		echo $sql;
+		echo "<br>";
+		print_r($fields);
+		
+		$rst=$this->query($sql,$fields);		
+		echo "done2";
+		if($rst->error()){
+				
+			
+				echo "done4",$this->_error;
+				return true;
+		}else{
+			echo "done3";
+			return false;
+		}
+	}
 
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
 
 	public function answerToQuestion($table,$id,$fields)
 	{

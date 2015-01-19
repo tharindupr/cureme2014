@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
-
     <meta charset="UTF-8">
     <title>Cure Me|Administrator</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -32,86 +30,136 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
+
+<?php
+require_once '../../core/init.php';
+require('header.php');
+require('navigation.php');
+$arr=[];
+
+?>
+
 <body class="skin-blue">
+
 <div class="wrapper row-offcanvas row-offcanvas-left">
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="left-side sidebar-offcanvas">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="img/doctor.png" class="img-circle" alt="User Image" />
-            </div>
-            <div class="pull-left info">
-                <p>Welcome Again</p>
 
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                            <span class="input-group-btn">
-                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu">
-            <li >
-                <a href='select_patient.php'>
-                    <i class="fa fa-wheelchair"></i> <span>Patients</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href='pharmacies.php'>
-                    <i class="fa fa-user"></i> <span>Pharmacies</span>
-                </a>
-            </li>
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Pending aproved Patients
 
-            <li>
-                <a href='appoinmentcheck.php'>
-                    <i class="fa fa-calendar"></i> <span>Appoinments</span>
-                </a>
-            </li>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Pending Patients</li>
+    </ol>
+</section>
+
+<?php 
+			  
+				$db=DB::getInstance();
+				$db->query('SELECT * FROM patient WHERE active=0');
+				$a=$db->results();
+				//print_r($a);
+				?>
+
+<!-- Main content -->
+<section class="content">
+
+<!--main row-->
 
 
-            <li>
-                <a href='healthtips.php'>
-                    <i class="fa  fa-heart"></i> <span>Health Tips</span>
-                </a>
-            </li>
+<section class="col-lg-12">
 
-            <li>
-                <a href='comfirmPatient.php'>
-                    <i class="fa  fa-male"></i> <span>Pending Patient</span>
-                </a>
-            </li>
-            <li>
-                <a href='comfirmPharmacy.php'>
-                    <i class="fa  fa-home"></i> <span>Pending Pharmacy</span>
-                </a>
-            </li>
-
-            <li>
-                <a href='profile.php'>
-                    <i class="glyphicon glyphicon-user"></i> <span>About Me</span>
-                </a>
-            </li>
+    
+ 
+    <div class="col-sm-2">
+        
 
 
-
-        </ul>
-    </section>
-    <!-- /.sidebar -->
+        <!-- Primary box -->
 		
-</aside>
-<div id='content'>
+		<!--<div class='box box-primary'>-->
+		<?php
+			
+			foreach ($a as $ab){
+			echo
+		
+        "
+		<a href='../treat/patient.php?id=".$ab->patient_Id."'>
+		<div class='box box-primary' style='height:320px; width:150px;'>
+		<div class='box-header' data-toggle='tooltip' title='' data-original-title='Header tooltip'>
+                <h5 class='box-title'>".$ab->patient_FName."</h5>
 
-</div>
+            </div>
+            <div class='box-body'>
+                <div style='height:210px; width:150px;'>
+                <img src='img/avatar3.png' class='img-rounded' alt='User Image'>
+
+                <p>
+                    Name : ".$ab->patient_FName." ".$ab->patient_LName."</br>
+                    Gender : ".$ab->gender."</br>
+                    Location : ".$ab->address_City."</br>
+					Email : ".$ab->email."
+                </p>
+                </div>
+                <div class='box-footer box'>
+                <center>
+                <form action='ActivatePatient.php' method='post'>
+                <input type='txt' name='patient_Id' value=\"$ab->patient_Id\" hidden=''>
+                <button type='submit' class='btn-md button btn-success' name='active'>active</button>
+                </form>
+                </center>
+                </div>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+        </a>
+		</div>
+		<div class='col-sm-2'>
+        ";
+	}
+	
+	?>
+	
+    
+   
+</section>
+
+<!-- right col (We are only adding the ID to make the widgets sortable)-->
+<section class="col-lg-5 connectedSortable">
+
+</section><!-- right col -->
+
+
+<!-- Left col -->
+
+<section class="col-lg-7 connectedSortable">
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- Main row -->
+
+
+</section><!-- /.content -->
+</aside><!-- /.right-side -->
+</div><!-- ./wrapper -->
+
+
+
+
+
+
 
 <!-- jQuery 2.0.2 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

@@ -30,35 +30,41 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<<<<<<< HEAD
-=======
 
 <?php
 require_once '../../core/init.php';
-$arr=[];
 require('header.php');
 require('navigation.php');
+$arr=[];
 
 ?>
 
->>>>>>> remotes/origin/sanda
 <body class="skin-blue">
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
+<!-- Left side column. contains the logo and sidebar -->
 
+<!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Pharmacies
+        Registerd Pharmacies
 
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"> Pharmacies
-        </li>
+        <li><a href="doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Pharmacies</li>
     </ol>
 </section>
+
+<?php 
+              
+                $db=DB::getInstance();
+                $db->query('SELECT * FROM pharmasist');
+                $a=$db->results();
+                //print_r($a);
+                ?>
 
 <!-- Main content -->
 <section class="content">
@@ -68,220 +74,60 @@ require('navigation.php');
 
 <section class="col-lg-12">
 
-<!--Add Appoinment box-->
-<!-- general form elements disabled -->
-<div class="box box-primary">
-<div class="box">
-<div class="box-header">
-    <h3 class="box-title">Pharamcies List</h3>
-<<<<<<< HEAD
-=======
-	
-				<?php 
-			  
-					$db=DB::getInstance();
-					$db->query('SELECT * FROM pharmasist');
-					$a=$db->results();
-					//print_r($a);
-					?>
-	
-	
->>>>>>> remotes/origin/sanda
-</div><!-- /.box-header -->
-<div class="box-body table-responsive">
-
-<table id="example1" class="table table-bordered table-striped">
-<thead>
-<tr>
-<<<<<<< HEAD
-    <th>Pharmacy ID</th>
-    <th>Pharmacy Name</th>
-    <th>Address</th>
-=======
-    <th>Pharmacy Reg No</th>
-	<th>Owner Name</th>
-    <th>Pharmacy Name</th>
-    <th>Address</th>
-	<th>Contact No</th>
->>>>>>> remotes/origin/sanda
-    <th>Registered Date</th>
-    <th>Edit</th>
-</tr>
-</thead>
-<tbody>
-
-<<<<<<< HEAD
-<tr>
-    <td>PH011</td>
-    <td>City Clinic</td>
-    <td>Nuwara Eliya</td>
-    <td>2014-06-08</td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td>PH012</td>
-    <td>New Pahramacy</td>
-    <td>Anuradhapura</td>
-    <td>2014-06-08</td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td>PH013</td>
-    <td>Osusala</td>
-    <td>Colombo</td>
-    <td>2014-06-08</td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td>PH014</td>
-    <td>City Clinic</td>
-    <td>Nuwara Eliya</td>
-    <td>2014-06-08</td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td>PH015</td>
-    <td>City Clinic</td>
-    <td>Nuwara Eliya</td>
-    <td>2014-06-08</td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td>PH016</td>
-    <td>City Clinic</td>
-    <td>Nuwara Eliya</td>
-    <td>2014-06-08</td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><button class="btn btn-primary btn-flat">Remove</button></td>
-</tr>
-
-</tbody>
-<tfoot>
-<tr>
-    <th>Pharmacy ID</th>
-    <th>Pharmacy Name</th>
-    <th>Address</th>
-    <th>Registered Date</th>
-    <th>Edit</th>
-</tr>
-</tfoot>
-=======
-<?php
-	$arraylen=sizeof($a);
-	//echo $arraylen;
-	foreach ($a as $ab){
-	echo
-"<tr>
-    <td>".$ab->registration_Number."</td>
-	<td>".$ab->owner."</td>
-    <td>".$ab->pharmacy_Name."</td>
-    <td>".$ab->address_No.", ".$ab->address_No.", ".$ab->address_Street.", ".$ab->address_City."</td>
-	<td>".$ab->contact_Number."</td>
-    <td>".$ab->date_Of_Registration."</td>
-    <td><button class='btn btn-primary btn-flat'>Remove</button></td>
-</tr>";
-}
-
-?>
+    
+ 
+    <div class="col-sm-3">
+        
 
 
+        <!-- Primary box -->
+        
+        <!--<div class='box box-primary'>-->
+        <?php
+            
+            foreach ($a as $ab){
+            echo
+        
+        "
+        
+        <div class='box box-primary' style='height:180px; width:250px;'>
+        <div class='box-header' data-toggle='tooltip' title='' data-original-title='Header tooltip'>
+                <h5 class='box-title'><b>".$ab->pharmacy_Name."</b></h5>
 
-</tbody>
-
->>>>>>> remotes/origin/sanda
-</table>
-</div><!-- /.box-body -->
-</div><!-- /.box -->
-    </div>
-</div><!-- /.box -->
-
-
-
-
-
-
-
-
-
+            </div>
+            <div class='box-body'>
+                <div >
+                <p>
+                    <b>Name    : </b>".$ab->pharmacy_Name."</br>
+                    <b>Reg. no : </b>".$ab->registration_Number."</br>
+                    <b>Location: </b>".$ab->address_City."</br>
+                    <b>Email   : </b>".$ab->email."
+                </p>
+                </div>
+                
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+        
+        </div>
+        <div class='col-sm-2'>
+        ";
+    }
+    
+    ?>
+    
+    
+   
 </section>
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- right col (We are only adding the ID to make the widgets sortable)-->
 <section class="col-lg-5 connectedSortable">
 
-
-
-
-
-
-
-
 </section><!-- right col -->
-
-
-
 
 
 <!-- Left col -->
 
 <section class="col-lg-7 connectedSortable">
-
-
-
 
 </section>
 
@@ -300,31 +146,45 @@ require('navigation.php');
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
+
+
+
+
+
+
 <!-- jQuery 2.0.2 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<!-- jQuery UI 1.10.3 -->
+<script src="../../js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
 <!-- Bootstrap -->
 <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-<!-- DATA TABES SCRIPT -->
-<script src="../../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-<script src="../../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+<!-- Morris.js charts -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="../../js/plugins/morris/morris.min.js" type="text/javascript"></script>
+<!-- Sparkline -->
+<script src="../../js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- jvectormap -->
+<script src="../../js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+<script src="../../js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+<!-- jQuery Knob Chart -->
+<script src="../../js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+<!-- daterangepicker -->
+<script src="../../js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<!-- datepicker -->
+<script src="../../js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="../../js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+<!-- iCheck -->
+<script src="../../js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
 <!-- AdminLTE App -->
 <script src="../../js/AdminLTE/app.js" type="text/javascript"></script>
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../../js/AdminLTE/dashboard.js" type="text/javascript"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="../../js/AdminLTE/demo.js" type="text/javascript"></script>
-<!-- page script -->
-<script type="text/javascript">
-    $(function() {
-        $("#example1").dataTable();
-        $('#example2').dataTable({
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": true,
-            "bAutoWidth": false
-        });
-    });
-</script>
 
 </body>
 </html>

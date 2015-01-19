@@ -188,18 +188,29 @@ require_once '../core/init.php';
                             </div>
                         </div>
                         <br><br>
-							<?php
-								// Echo session variables that were set on previous page
-								
-								
-//								session_start();
+                        <label class="text-danger">
+                            <?php
+                                // Echo session variables that were set on previous page
+                                
+                                
+//                              session_start();
+                                if (isset($_SESSION['paymentError'])) {
+                                    echo  $_SESSION['paymentError'] ;
+                                }else {
+                                    
+                                }
 
-								if (isset($_SESSION['logError'])) {
-									echo  $_SESSION["logError"] ;
-								}else {
-									
-								}
-							?>
+                                if (isset($_SESSION['logError'])) {
+                                    echo  $_SESSION["logError"] ;
+                                }else {
+                                    
+                                }
+                            ?>
+
+
+
+                        </label>
+							
 						<br><br>
 						
                         
