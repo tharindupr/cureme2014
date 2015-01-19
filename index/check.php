@@ -18,20 +18,20 @@ require_once '../core/init.php';
 		if($login_patient==3){
 			
 			echo 'Success';
-			header('Location: ../views/patient/patient.php');
+			header('Location: ../views/patient/profile.php');
 			
 		}
 		
 		else if($login_pharmasist==3)
 		{
 			//echo 'Success as a pharmacy';
-			header('Location: ../views/pharmacist/phar_home.php');
+			header('Location: ../views/pharmacist/prescriptions.php');
 		}
 		
 		else if($login_doctor==3)
 		{
 			//echo 'Success as a doctor';
-			header('Location: ../views/doctor/doctor.php');
+			header('Location: ../views/doctor/select_patient.php');
 		}
 		else if($login_patient==2)
 		{

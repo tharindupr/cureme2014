@@ -60,7 +60,7 @@ $arr=[];
 	   
 	  $(function() {
 		var availableTags = [
-		  \"ActionScript\"," ;
+		" ;
 		
 
 	foreach($d->results() as $i){
@@ -169,7 +169,7 @@ $arr=[];
 			echo
 		
         "
-		<a href='../treat/patient.php?id=".$ab->patient_Id."'>
+		<a href='../treat/profile.php?id=".$ab->patient_Id."'>
 		<div class='box box-primary' style='height:220px; width:150px;'>
 		<div class='box-header' data-toggle='tooltip' title='' data-original-title='Header tooltip'>
                 <h5 class='box-title'>".$ab->patient_FName."</h5>
