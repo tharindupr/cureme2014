@@ -13,6 +13,4 @@ $query="UPDATE appoinment SET confirmation_Flag=1 WHERE appoinment_Id=".$_GET['i
 $result=mysql_query($query,$con);
 
 
-
-
 ?>

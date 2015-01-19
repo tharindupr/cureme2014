@@ -56,18 +56,33 @@ while($vv=mysql_fetch_row($result))
                                                     <label>".
                                                         $vv[1]
                                                     ."</label>
-                                                </td>
-                                                <td>
-                                                    <div class='icheckbox_minimal' style='position: relative;' aria-checked='false' aria-disabled='false'>
-
-                                                        <input type='checkbox' disabled='' style='position: absolute; opacity: 0;'></input>
-                                                        <ins class='iCheck-helper' style='position: absolute; top: 0%; left: 0%; display: block; width…roll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;'></ins>
+                                                </td>";
+				
+//Already done appointments are ticked				
+					if($vv[2]){
+                                         echo"       <td>
+                                                   
+														<input type='checkbox' disabled='' width='20%' name='vehicle' value='Car' checked>
+                                                       
                                                     </div>
                                                 
                                                 </td>
 												</tr>";
-										
-
+								}		
+					else{
+					 echo"       <td>
+                                                   
+														<input type='checkbox' disabled='' width='20%' name='vehicle' value='Car'>
+                                                       
+                                                    </div>
+                                                
+                                                </td>
+												</tr>";
+					
+					
+					
+					
+					}
 }
 
 
