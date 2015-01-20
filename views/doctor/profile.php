@@ -33,12 +33,12 @@
 	if($updated==0)
 	{
 	$arr=[];
-	foreach(Session::get('patient') as $t)
+	foreach(Session::get('doctor') as $t)
 	{
 		array_push($arr,"{$t}");;
 	}
 
-	$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
+	$currentDoctor=array('doctor_Id'=>$arr[0],'doc_Reg_Id'=>$arr[1],'doctor_FName'=>$arr[2],'doctor_LName'=>$arr[3],'email'=>$arr[10],'address_No'=>$arr[4],'address_Street' =>$arr[5],'address_City' => $arr[6],'date_Of_Birth' => $arr[7],'mobile_Number' => $arr[11],'gender' =>$arr[8],'rank'=>$arr[9],'password' =>$arr[12]);
 	}
 	
 	//print_r($arr);
@@ -73,10 +73,10 @@
 					
 				  $.ajax({    //create an ajax request to load_page.php
 					type: "GET",
-					url: <?php echo "\"profileview.php?id=".$currentPatient['patient_Id']."\"" ?>,             
+					url: "profileview.php?",             
 					dataType: "html",   //expect html to be returned                
 					success: function(response){                    
-						$("#content").html(response); 
+						$("#co").html(response); 
 						//alert(response);
 					}
 							
@@ -104,6 +104,8 @@
 
                 <!-- Main content -->
                 <section class="content">
+
+
 				    <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
@@ -121,7 +123,7 @@
                                 <div class="tab-content no-padding">
                                     <!-- Morris chart - Sales -->
 									<div class='chart tab-pane active' id='view-chart' style='position: relative; height: 1000px;'>
-									<div id='content'>
+									<div id='co'>
                                     
 									</div>
 									</div>
@@ -137,46 +139,48 @@
                                             <div class="box-body">
                                                 <div class="form-group">
                                                     <label for="patient_FName">&nbsp;&nbsp;First Name</label>
-                                                    <input type="text" required class="form-control" name="patient_FName" value=<?php echo $currentPatient['patient_FName'] ?> >
+                                                    <input type="text" required class="form-control" name="doctor_FName" value=<?php echo $currentDoctor['doctor_FName'] ?> >
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="patient_LName">&nbsp;&nbsp;Last Name</label>
-                                                    <input type="text" required  class="form-control" name="patient_LName" value=<?php echo $currentPatient['patient_LName'] ?>>
+                                                    <input type="text" required  class="form-control" name="doctor_LName" value=<?php echo $currentDoctor['doctor_LName'] ?>>
                                                 </div>
 			
                                                 <div class="form-group">
                                                     <label>&nbsp;&nbsp;Gender</label>
                                                     <select class="form-control" name="gender">
-                                                        <option  <?php if($currentPatient['gender']=='Male') echo "selected";?> >Male</option>
-                                                        <option  <?php if($currentPatient['gender']=='Female') echo "selected";?>	>Female</option>
+                                                        <option  <?php if($currentDoctor['gender']=='Male') echo "selected";?> >Male</option>
+                                                        <option  <?php if($currentDoctor['gender']=='Female') echo "selected";?>	>Female</option>
                                                     </select>
                                                 </div>
 												
                                                 <div class="form-group">
                                                     <label for="dob">&nbsp;&nbsp;Date of Birth </label>
-                                                    <input type="date" class="form-control" name="date_Of_Birth" value=<?php  echo date($currentPatient['date_Of_Birth']); ?> >
+                                                    <input type="date" class="form-control" name="date_Of_Birth" value=<?php  echo date($currentDoctor['date_Of_Birth']); ?> >
                                                 </div>
 												
 												<div class="form-group">
                                                     <label>&nbsp;&nbsp;Email</label>
-                                                    <input type="email" required  class="form-control" name="email" value=<?php echo $currentPatient['email'] ?> >
+                                                    <input type="email" required  class="form-control" name="email" value=<?php echo $currentDoctor['email'] ?> >
                                                     
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>&nbsp;&nbsp;Address </label>
-                                                    <input type="text" required  class="form-control" name="address_No"  value=<?php echo "\"".$currentPatient['address_No']."\"" ?> >
-                                                    <input type="text" required  class="form-control" name="address_Street" value=<?php echo "\"".$currentPatient['address_Street']."\"" ?>>
-                                                    <input type="text" required  class="form-control" name="address_City" value=<?php echo $currentPatient['address_City'] ?>>
+                                                    <input type="text" required  class="form-control" name="address_No"  value=<?php echo "\"".$currentDoctor['address_No']."\""; ?> >
+                                                    <input type="text" required  class="form-control" name="address_Street" value=<?php echo "\"".$currentDoctor['address_Street']."\""; ?>>
+                                                    <input type="text" required  class="form-control" name="address_City" value=<?php echo "\"". $currentDoctor['address_City']."\""; ?>>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="mobile">&nbsp;&nbsp;Mobile Number</label>
-                                                    <input type="text" required  class="form-control" name="mobile_Number" value=<?php echo $currentPatient['mobile_Number'] ?>>
+                                                    <input type="text" required  class="form-control" name="mobile_Number" value=<?php echo $currentDoctor['mobile_Number']; ?>>
                                                 </div>
-
-                                              
+                                                <div class="form-group">
+                                                    <label for="mobile">&nbsp;&nbsp;Dooctor Rank</label>
+                                                    <input type="text" required  class="form-control" name="rank" value=<?php echo "\"".$currentDoctor['rank']."\""; ?>>
+                                                </div>
 
 
                                                 <div class="form-group">
@@ -244,67 +248,7 @@
                            
 
 
-                            <!-- Chat box -->
-                            <div class="box box-primary" style="position: relative;">
-                                <div class="box-header">
-                                    <i class="fa fa-comments-o"></i>
-                                    <h3 class="box-title">Chat</h3>
-                                    <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                                        <div class="btn-group" data-toggle="btn-toggle" >
-                                            <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
-                                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="box-body chat" id="chat-box">
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar.png" alt="user image" class="online"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                                                Doctor
-                                            </a>
-                                            I would like to meet you to discuss the latest news about
-                                            your conditions
-                                        </p>
-
-                                    </div><!-- /.item -->
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar2.png" alt="user image" class="offline"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                                                <?php echo $currentPatient['patient_FName'];?>
-                                            </a>
-                                            Ok
-                                        </p>
-                                    </div><!-- /.item -->
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar.png" alt="user image" class="offline"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                                                Doctor
-                                            </a>
-                                            I would like to meet you to discuss the latest news about
-                                            the arrival of the new theme. They say it is going to be one the
-                                            best themes on the market
-                                        </p>
-                                    </div><!-- /.item -->
-                                </div><!-- /.chat -->
-                                <div class="box-footer">
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="Type message..."/>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- /.box (chat box) -->
+                            
 
                         </section><!-- right col -->
                     </div><!-- /.row (main row) -->

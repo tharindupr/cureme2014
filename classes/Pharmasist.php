@@ -80,16 +80,28 @@ class Pharmasist{
 		//$pass=($this->data()[0]->password);
 		
 		if($user){
-			if($this->data()[0]->password===Hash::make($password,$this->data()[0]->salt)){
-				Session::put('pharmasist',$this->data()[0]);
+			if(($this->data()[0]->password===Hash::make($password,$this->data()[0]->salt))&&($this->data()[0]->active==1)){
+
+
+
+				if($this->data()[0]->active==1){
+					Session::put('pharmasist',$this->data()[0]);
 				
-				return(true);
+					return 3;
+
+				}else{
+					return 2;
+				}
+	
+				
+				
+				
 			}
 			
 			
 		}
 	
-		return(false);
+		return 1;
 	}
 	
 	public function logout(){

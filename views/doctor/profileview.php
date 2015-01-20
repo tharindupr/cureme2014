@@ -1,5 +1,6 @@
 
 <?php
+require_once '../../core/init.php';
 
 $con=mysql_connect("localhost","root","");  
 if (!$con)
@@ -8,24 +9,24 @@ if (!$con)
 }   
 mysql_select_db("cureme",$con);
 
-$query="SELECT * FROM patient WHERE patient_Id=".$_GET['id'];
+$query="SELECT * FROM doctor WHERE doctor_Id=1";
 $result=mysql_query($query,$con);
 $res=mysql_fetch_array($result);
 
 
-$currentPatient['patient_FName']=$res[2];
-$currentPatient['patient_LName']=$res[3];
-$currentPatient['gender']=$res[10];
-$currentPatient['date_Of_Birth']=$res[8];
-$currentPatient['email']=$res[4];
-$currentPatient['address_No']=$res[5];
-$currentPatient['address_Street']=$res[6];
-$currentPatient['address_City']=$res[7];
-$currentPatient['mobile_Number']=$res[9];
+$currentDoctor['doctor_FName']=$res[2];
+$currentDoctor['doctor_LName']=$res[3];
+$currentDoctor['gender']=$res[8];
+$currentDoctor['date_Of_Birth']=$res[7];
+$currentDoctor['email']=$res[10];
+$currentDoctor['address_No']=$res[4];
+$currentDoctor['address_Street']=$res[5];
+$currentDoctor['address_City']=$res[6];
+$currentDoctor['mobile_Number']=$res[11];
+$currentDoctor['rank']=$res[9];
 
-
+//echo "test";
 echo"
-<body>
 <!-- Morris chart - Sales -->
                                     
                                         <div class='row'>
@@ -38,28 +39,28 @@ echo"
                                                             <tr>
                                                                 <td>First Name </td>
 
-                                                                <td>".$currentPatient['patient_FName']."</td>
+                                                                <td>".$currentDoctor['doctor_FName']."</td>
 
                                                             </tr>
 															
 															<tr>
                                                                 <td>Last Name </td>
 
-                                                                <td>". $currentPatient['patient_LName']."</td>
+                                                                <td>". $currentDoctor['doctor_LName']."</td>
 
                                                             </tr>
 
                                                             <tr>
                                                                 <td>Gender</td>
 
-                                                                <td>". $currentPatient['gender']."</td>
+                                                                <td>". $currentDoctor['gender']."</td>
 
                                                             </tr>
 
                                                             <tr>
                                                                 <td>Date of Birth </td>
 
-                                                                <td>".$currentPatient['date_Of_Birth']."</td>
+                                                                <td>".$currentDoctor['date_Of_Birth']."</td>
 
                                                             </tr>
 
@@ -70,7 +71,7 @@ echo"
                                                             <td>";
 				
 															 //date in mm/dd/yyyy format; or it can be in other formats as well
-															  $originalDate = $currentPatient['date_Of_Birth'];;
+															  $originalDate = $currentDoctor['date_Of_Birth'];;
 																
 															  $birthDate = date('d-m-Y', strtotime($originalDate));
 															  //explode the date to get month, day and year
@@ -88,7 +89,7 @@ echo"
 															
 															<td>Email </td>
 
-                                                            <td>".$currentPatient['email']."</td>
+                                                            <td>".$currentDoctor['email']."</td>
 
                                                             </tr>
 
@@ -100,28 +101,35 @@ echo"
                                                             <tr>
                                                                 <td>&nbsp;&nbsp;Number </td>
 
-                                                                <td>".$currentPatient['address_No']."</td>
+                                                                <td>".$currentDoctor['address_No']."</td>
 
                                                             </tr>
 
                                                             <tr>
                                                                  <td>&nbsp;&nbsp;Street </td>
 
-                                                                 <td>".$currentPatient['address_Street']."</td>
+                                                                 <td>".$currentDoctor['address_Street']."</td>
 
                                                             </tr>
 
                                                             <tr>
                                                                 <td>&nbsp;&nbsp;City </td>
 
-                                                                <td>".$currentPatient['address_City'] ."</td>
+                                                                <td>".$currentDoctor['address_City'] ."</td>
 
                                                             </tr>
                                                             <tr>
 
                                                             <td>Mobile Number </td>
 
-                                                            <td>".$currentPatient['mobile_Number'] ."</td>
+                                                            <td>".$currentDoctor['mobile_Number'] ."</td>
+
+                                                            </tr>
+                                                            <tr>
+
+                                                            <td>Docter Rank </td>
+
+                                                            <td>".$currentDoctor['rank'] ."</td>
 
                                                             </tr>
                                                           

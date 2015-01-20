@@ -59,13 +59,13 @@ class Doctor{
 			if($this->data()[0]->password===$password){
 				Session::put('doctor',$this->data()[0]);
 				
-				return(true);
+				return 3;
 			}
 			
 			
 		}
 	
-		return(false);
+		return 1;
 	}
 	
 	public function logout(){

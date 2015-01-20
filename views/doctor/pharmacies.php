@@ -49,12 +49,12 @@ $arr=[];
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Pending aproved Pharmacys
+        Registerd Pharmacies
 
     </h1>
     <ol class="breadcrumb">
         <li><a href="doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Activate pharmacy</li>
+        <li class="active">Pharmacies</li>
     </ol>
 </section>
 
@@ -76,7 +76,7 @@ $arr=[];
 
     
  
-    <div class="col-sm-2">
+    <div class="col-sm-3">
         
 
 
@@ -89,25 +89,25 @@ $arr=[];
             echo
         
         "
-        <a href='../treat/patient.php?id=".$ab->pharmacy_Id."'>
-        <div class='box box-primary' style='height:220px; width:150px;'>
-        <div class='box-header' style='height:20%; width:100%;' data-toggle='tooltip' title='' data-original-title='Header tooltip'>
-                <h5 class='box-title'>".$ab->pharmacy_Name."</h5>
+        
+        <div class='box box-primary' style='height:180px; width:250px;'>
+        <div class='box-header' data-toggle='tooltip' title='' data-original-title='Header tooltip'>
+                <h5 class='box-title'><b>".$ab->pharmacy_Name."</b></h5>
 
             </div>
             <div class='box-body'>
-                <div style='height:200px; width:150px;'>
+                <div >
                 <p>
-                    Name    : ".$ab->pharmacy_Name."</br>
-                    Reg. no : ".$ab->registration_Number."</br>
-                    Location: ".$ab->address_City."</br>
-                    Email   : ".$ab->email."
+                    <b>Name    : </b>".$ab->pharmacy_Name."</br>
+                    <b>Reg. no : </b>".$ab->registration_Number."</br>
+                    <b>Location: </b>".$ab->address_City."</br>
+                    <b>Email   : </b>".$ab->email."
                 </p>
                 </div>
                 
             </div><!-- /.box-body -->
         </div><!-- /.box -->
-        </a>
+        
         </div>
         <div class='col-sm-2'>
         ";
