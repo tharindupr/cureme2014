@@ -246,64 +246,46 @@
 
                             <!-- Chat box -->
                             <div class="box box-primary" style="position: relative;">
-                                <div class="box-header">
-                                    <i class="fa fa-comments-o"></i>
-                                    <h3 class="box-title">Chat</h3>
-                                    <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                                        <div class="btn-group" data-toggle="btn-toggle" >
-                                            <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
-                                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <section class="col-lg-12 connectedSortable ">
 
-                                <div class="box-body chat" id="chat-box">
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar.png" alt="user image" class="online"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                                                Doctor
-                                            </a>
-                                            I would like to meet you to discuss the latest news about
-                                            your conditions
-                                        </p>
+                <!-- Tips -->
+                
+                <?php 
+              
+                $db=DB::getInstance();
+                $db->query("SELECT * FROM message WHERE patient_Id=".$currentPatient['patient_Id']);
+                $a=$db->results();
+                //print_r($a);
+                ?>
+                
+                <div class="box">
+                    <div class="box-header">
+                        <i class="fa fa-comments"></i>
+                        <h3 class="box-title">Message</h3>
 
-                                    </div><!-- /.item -->
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar2.png" alt="user image" class="offline"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                                                <?php echo $currentPatient['patient_FName'];?>
-                                            </a>
-                                            Ok
-                                        </p>
-                                    </div><!-- /.item -->
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar.png" alt="user image" class="offline"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                                                Doctor
-                                            </a>
-                                            I would like to meet you to discuss the latest news about
-                                            the arrival of the new theme. They say it is going to be one the
-                                            best themes on the market
-                                        </p>
-                                    </div><!-- /.item -->
-                                </div><!-- /.chat -->
-                                <div class="box-footer">
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="Type message..."/>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                    
+                    <div class='box-body chat' id='chat-box'>
+                    <?php
+                    $arraylen=sizeof($a);
+                    //echo $arraylen;
+                    foreach ($a as $ab){
+                        echo"<div class='item'>
+                            <img src='img/avatar.png' alt='user image' class='online'/>
+                            <p class='message'>
+                                <a href='#' class='name'>
+                                    <small class='text-muted pull-right'>Message time: ".$ab->date." ".$ab->time."</small>".$ab->message_Subject."
+                                </a>".$ab->message_Containt."</p>
+                            </div>";
+                    
+                    }
+                
+                    ?>
+                    
+                    </div><!-- /.tips -->
+                    
+            </section>
+
                             </div><!-- /.box (chat box) -->
 
                         </section><!-- right col -->
