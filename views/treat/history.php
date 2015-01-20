@@ -57,7 +57,7 @@ $currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$
 
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="../doctor/select_patient.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">History</li>
     </ol>
 </section>

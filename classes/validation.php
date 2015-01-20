@@ -10,6 +10,7 @@ class Validation{
 	
 	}
 	 
+	//this will validate the items array
 	public function check($source,$items=array()){
 		foreach($items as $item=>$rules){
 			foreach($rules as $rule=>$rule_value){
@@ -65,7 +66,7 @@ class Validation{
 		return $this;
 	
 	}
-	
+	//adding errors to error array
 	private function addError($error){
 		$this->_errors[]=$error;
 	}

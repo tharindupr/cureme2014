@@ -46,7 +46,7 @@ require_once 'navigation.php';
 
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="../doctor/select_patient.php"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Submitted Report</li>
         </ol>
     </section>

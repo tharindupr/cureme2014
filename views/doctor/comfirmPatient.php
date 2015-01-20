@@ -52,10 +52,10 @@ $arr=[];
         Pending aproved Patients
 
     </h1>
-    <ol class="breadcrumb">
+    <!--<ol class="breadcrumb">
         <li><a href="doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Pending Patients</li>
-    </ol>
+    </ol>->
 </section>
 
 <?php 

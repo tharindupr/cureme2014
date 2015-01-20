@@ -66,8 +66,8 @@ foreach(Session::get('patient') as $pid)
 
     </h1>
     <ol class="breadcrumb">
-        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li ><a href="../doctor/select_patient.php">Patients</a></li>
+        <li><a href="../doctor/select_patient.php"><i class="fa fa-dashboard"></i> Home</a></li>
+        
         <li class="active">Conversations</li>
     </ol>
 </section>

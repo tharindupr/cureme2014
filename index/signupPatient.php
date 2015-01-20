@@ -89,6 +89,7 @@
 			{
 				$vali.=$err;
 			}
+			
 		}
 	}
 	
@@ -129,7 +130,10 @@
 			
 				<h4>Register as a patient</h4>
 				<br>
-				<p><font color="red">All fields are required</font></p>
+				<p><font color="red">all fields are required</br></font>
+				
+					<font color="red"><?php echo $vali ?></font>
+				</p>
 				<br>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
@@ -246,12 +250,14 @@
                             </div>
                         </div>
 						<div class="row control-group">
+					
+						
                             <!--<div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Your Image</label>
 								<p font color="#DCDCDC">Select your photo</p>
                                 <input type="file" class="form-control" id="image" name="profile "accept="image/x-png, image/gif, image/jpeg">
                                 <p class="help-block text-danger">
-								<?php echo $vali ?>
+								
 								</p>
                             </div>-->
                         </div>

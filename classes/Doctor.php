@@ -7,7 +7,7 @@
  */
 class Doctor{
 	
-	
+//this class is a specialized class for doctor to connect with database
 	
 	
     //put your code here
