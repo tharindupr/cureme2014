@@ -128,6 +128,10 @@
 				<br><br>
 			
 				<h4>Register as a pharmacy</h4>
+				<br>
+				<p><font color="red">All fields are required</font></p>
+				<br>
+				
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="sentMessage" method="POST" action="signupPharmacy.php" id="contactForm">
@@ -230,14 +234,14 @@
                             </div>
                         </div>
 						<div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <!--<div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Pharmacy Logo</label>
 								<p font color="#DCDCDC">Select your logo</p>
                                 <input type="file" class="form-control" id="image" name="logo" accept="image/x-png, image/gif, image/jpeg">
                                 <p class="help-block text-danger">
 								<?php echo $vali ?>
 								</p>
-                            </div>
+                            </div>-->
                         </div>
                         <br>
                         

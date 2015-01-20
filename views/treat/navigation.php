@@ -60,8 +60,8 @@
                     <ul class="sidebar-menu">
                         <li class="active">
 							
-                            <a href="profile.php">
-							
+                           <?php //echo " <a href='profile.php?id=' {$currentPatient['patient_Id']}>" ;?>
+							<a href='profile.php'>
                                 <i class="fa fa-dashboard"></i> <span>Profile</span>
 							
 							</a>

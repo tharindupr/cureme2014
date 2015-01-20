@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<?php 
-	require_once '../../core/init.php';
-	
-	
-	$_db=DB::getInstance();
-	$data=$_db->get('patient',array('patient_Id','=',$_GET['id']));
-
-	$p=$data->results();
-
-
-	Session::put('patient',$p[0]);
-	
-	
-	?>
+	<?php
+require_once '../../core/init.php';
+if(isset($_GET['id'])){
+$_db=DB::getInstance();
+$data=$_db->get('patient',array('patient_Id','=',$_GET['id']));
+$p=$data->results();
+Session::put('patient',$p[0]);}
+?>
 	
 	
 	
@@ -57,10 +51,11 @@
 		
 <?php 
 	
+	$updated=0;
 	//this method is used to update patient
 	
 	
-	$updated=0;
+	
 	//getting the values from the created session
 	if($updated==0)
 	{
@@ -177,45 +172,7 @@
                                                     <input type="password" pattern=".{6,}" required title="6 characters minimum" class="form-control" id="confirm_password" name="confirm_password" onblur='check()'>
                                                 </div>
 			
-                                                <!--<div class="form-group">
-                                                    <label>&nbsp;&nbsp;Gender</label>
-                                                    <select class="form-control" name="gender">
-                                                        <option  <?php if($currentPatient['gender']=='Male') echo "selected";?> >Male</option>
-                                                        <option  <?php if($currentPatient['gender']=='Female') echo "selected";?>	>Female</option>
-                                                    </select>
-                                                </div>
-												
-                                                <div class="form-group">
-                                                    <label for="dob">&nbsp;&nbsp;Date of Birth </label>
-                                                    <input type="date" class="form-control" name="date_Of_Birth" value=<?php  echo date($currentPatient['date_Of_Birth']); ?> >
-                                                </div>
-												
-												<div class="form-group">
-                                                    <label>&nbsp;&nbsp;Email</label>
-                                                    <input type="email" required  class="form-control" name="email" value=<?php echo $currentPatient['email'] ?> >
-                                                    
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>&nbsp;&nbsp;Address </label>
-                                                    <input type="text" required  class="form-control" name="address_No"  value=<?php echo "\"".$currentPatient['address_No']."\"" ?> >
-                                                    <input type="text" required  class="form-control" name="address_Street" value=<?php echo "\"".$currentPatient['address_Street']."\"" ?>>
-                                                    <input type="text" required  class="form-control" name="address_City" value=<?php echo $currentPatient['address_City'] ?>>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="mobile">&nbsp;&nbsp;Mobile Number</label>
-                                                    <input type="text" required  class="form-control" name="mobile_Number" value=<?php echo $currentPatient['mobile_Number'] ?>>
-                                                </div>
-
-                                              
-
-
-                                                <div class="form-group">
-                                                    <label for="exampleInputFile">&nbsp;&nbsp;Upload a profile picture</label>
-                                                    &nbsp;&nbsp;<input type="file" id="exampleInputFile">
-                                                    <p class="help-block">&nbsp;&nbsp;Click and upload.</p>
-                                                </div>-->
+                                                
 
                                             </div><!-- /.box-body -->
 
@@ -251,7 +208,7 @@
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
                                         <!-- button with a dropdown -->
-                                                                          
+                                                                             
                                     </div><!-- /. tools -->
                                 </div><!-- /.box-header -->
 								
@@ -268,64 +225,83 @@
 
                             <!-- Chat box -->
                             <div class="box box-primary" style="position: relative;">
-                                <div class="box-header">
-                                    <i class="fa fa-comments-o"></i>
-                                    <h3 class="box-title">Chat</h3>
-                                    <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                                        <div class="btn-group" data-toggle="btn-toggle" >
-                                            <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
-                                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <section class="col-lg-12 connectedSortable ">
 
-                                <div class="box-body chat" id="chat-box">
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar.png" alt="user image" class="online"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                                                Doctor
-                                            </a>
-                                            I would like to meet you to discuss the latest news about
-                                            your conditions
-                                        </p>
+                <!-- Tips -->
+                
+                <?php 
+              
+                $db=DB::getInstance();
+                $db->query("SELECT * FROM message WHERE patient_Id=".$currentPatient['patient_Id']);
+                $a=$db->results();
+                //print_r($a);
+                ?>
+                
+                <div class="box">
+                    <div class="box-header">
+                        <i class="fa fa-comments"></i>
+                        <h3 class="box-title">Message</h3>
 
-                                    </div><!-- /.item -->
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar2.png" alt="user image" class="offline"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                                                <?php echo $currentPatient['patient_FName'];?>
-                                            </a>
-                                            Ok
-                                        </p>
-                                    </div><!-- /.item -->
-                                    <!-- chat item -->
-                                    <div class="item">
-                                        <img src="img/avatar.png" alt="user image" class="offline"/>
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                                                Doctor
-                                            </a>
-                                            I would like to meet you to discuss the latest news about
-                                            the arrival of the new theme. They say it is going to be one the
-                                            best themes on the market
-                                        </p>
-                                    </div><!-- /.item -->
-                                </div><!-- /.chat -->
-                                <div class="box-footer">
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="Type message..."/>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                    
+                    <div class='box-body chat' id='chat-box'>
+                    <?php
+                    $arraylen=sizeof($a);
+                    //echo $arraylen;
+                    foreach ($a as $ab){
+                        echo"<div class='item'>
+                            <img src='img/avatar.png' alt='user image' class='online'/>
+                            <p class='message'>
+                                <a href='#' class='name'>
+                                    <small class='text-muted pull-right'> ".$ab->date." ".$ab->time."</small>".$ab->message_Subject."
+                                </a>".$ab->message_Containt."</p>
+                            </div>";
+                    
+                    }
+                    
+                    ?>
+                    
+                    </div><!-- /.tips -->
+                    <div class="box-footer ">
+
+                    <form role="form" method="post" action=<?php echo "\"sendMessage.php?id=".$currentPatient['patient_Id']."\"" ?>>
+                        <div class="input-group">
+                            <label>Message Title</label>
+                            <input required class="form-control" type="text" name="messageTitel" placeholder="Type message titel..."/>
+                            <label>Message body</label>
+                            <input required class="form-control" type="text" name="messageBody" placeholder="Type message..."/>
+                            
+                        </div>
+                        <div class="input-group-btn">
+                            <div class="btn-group">
+
+
+
+                            <!-- Single button -->
+                            <!--<div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle fa fa-share" data-toggle="dropdown">
+                                    Select All <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Send to all<i class="pull-right fa fa-globe"></i></a></li>
+                                    <li><a href="#">send to selected area<i class="pull-right fa fa-map-marker"></i></a></li>
+                                    <li><a href="#">send to selected patient<i class="pull-right fa fa-map-marker"></i></a></li>
+
+                                </ul>
+                            </div>-->
+                                <button type="submit" class="btn btn-primary  fa fa-plus">
+                                    Send tip
+                                </button>
+
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                    </div>
+            </section>
+            
                             </div><!-- /.box (chat box) -->
 
                         </section><!-- right col -->

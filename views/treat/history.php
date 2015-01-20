@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
 <?php
-require_once 'header.php';
-require_once 'navigation.php';
+require_once '../../core/init.php';
+require_once("header.php");
+require_once("navigation.php");
+$arr=array();
+foreach(Session::get('patient') as $t)
+{
+	array_push($arr,"{$t}");;
+}
+
+
+$currentPatient=array('patient_Id'=>$arr[0],'active'=>$arr[1],'patient_FName'=>$arr[2],'patient_LName'=>$arr[3],'email'=>$arr[4],'address_No'=>$arr[5],'address_Street' =>$arr[6],'address_City' => $arr[7],'date_Of_Birth' => $arr[8],'mobile_Number' => $arr[9],'gender' =>$arr[10],'date_Of_Registration'=>$arr[11],'password' =>$arr[12]);
+	
+
+
+
 
 ?>
-
+<head>
     <meta charset="UTF-8">
-    <title>CureMe | Dashboard</title>
+  
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -29,11 +41,7 @@ require_once 'navigation.php';
     <!-- Theme style -->
     <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-
-    <![endif]-->
+ 
 </head>
 <body class="skin-blue">
 
@@ -49,8 +57,7 @@ require_once 'navigation.php';
 
     </h1>
     <ol class="breadcrumb">
-        <li><a href="../doctor/doctor.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li ><a href="../doctor/select_patient.php">Patients</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">History</li>
     </ol>
 </section>
@@ -58,7 +65,51 @@ require_once 'navigation.php';
 <!-- Main content -->
 <section class="content">
 
+<div class="col-md-12">
+                            <div class="box box-info">
+                                <div class="box-header">
+                                    <i class="fa fa-clock-o"></i>
+                                    <h3 class="box-title">Create History</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+								
+										<form role="form" method="post" action=<?php echo "historypost.php?id=".$currentPatient['patient_Id'] ?> style="width:100% ">
+		
+											<div class="box-body">
+												<div class="form-group">
+													<label>Post Here</label>
+													
+													<textarea class="form-control" rows="1" required="required" placeholder="Subject" name="subject"></textarea>
+													
+													<textarea class="form-control" rows="3" required="required" placeholder="Description" name="question"></textarea>
+												
+													
+												</div>
+												
+												
 
+											 </div><!-- /.box-body -->
+
+											<div class="box-footer">
+												<button type="submit" class="btn btn-primary">Post</button>
+											</div>
+										</form>
+								
+								
+                                    <div class="callout callout-danger">
+                                        <h4></h4>
+                                        <p></p>
+                                    </div>
+                                    <div class="callout callout-info">
+                                        <h4></h4>
+                                        <p></p>
+                                    </div>
+                                    <div class="callout callout-warning">
+                                        <h4></h4>
+                                        <p></p>
+                                    </div>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
 
 
 <!-- Main row -->
